@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "nodemon server/index.js",
+    "dev": "nodemon server/index.js",
     "prettier:write": "prettier --write .",
     "lint:eslint": "npm run prettier:write && npm run lint",
     "test": "npm test",
@@ -17,7 +17,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "mongoose": "^6.2.3"
+    "mongoose": "^6.2.3",
+    "react-router-dom": "^6.2.1"
   },
   "type": "module",
   "devDependencies": {
