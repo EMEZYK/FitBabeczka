@@ -1,24 +1,25 @@
+import { response } from "express";
 import Recipe from "../model/recipes.js";
 
-export const getAllRecipes = (req, res) => {
+export const getAllRecipes = async (req, res) => {
   Recipe.find({})
     .then((result) => res.status(200).json({ result }))
     .catch((error) => res.status(500).json({ msg: error }));
 };
 
-export const getRecipe = (req, res) => {
+export const getRecipe = async (req, res) => {
   Recipe.findOne({ _id: req.params.id })
     .then((result) => res.status(200).json({ result }))
     .catch(() => res.status(404).json({ msg: "Recipe not found" }));
 };
 
-export const createRecipe = (req, res) => {
+export const createRecipe = async (req, res) => {
   Recipe.create(req.body)
     .then((result) => res.status(200).json({ result }))
     .catch((error) => res.status(500).json({ msg: error }));
 };
 
-export const updateRecipe = (req, res) => {
+export const updateRecipe = async (req, res) => {
   Recipe.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
     runValidators: true,
@@ -27,12 +28,32 @@ export const updateRecipe = (req, res) => {
     .catch((error) => res.status(404).json({ msg: "Recipe not found" }));
 };
 
-export const deleteRecipe = (req, res) => {
+export const deleteRecipe = async (req, res) => {
   Recipe.findOneAndDelete({ _id: req.params.id })
     .then((result) => res.status(200).json({ result }))
     .catch((error) => res.status(404).json({ msg: "Recipe not found" }));
 };
 
-// router.post("/search", searchRecipe);
-// router.get("/categories", getCategories);
-// router.get("/categories/:id", getCategoryById);
+export const searchRecipe = async (req, res) => {
+  let recipe = await Recipe.find({
+    $or: [
+      { name: { $regex: req.params.key } }, //w nazwie ; key = szukane słowo
+      { description: { $regex: req.params.key } }, //w opisie
+      { ingredients: { $regex: req.params.key } }, //szukam w składnikach
+    ], //$or oznacza, ze mozemy tez wielu fieldow szukac
+  });
+  res.send(recipe);
+};
+
+// export const exploreLatest = async (req, res) => {
+//   try {
+//     const limitRecipes = 3;
+
+//   }
+// }
+
+// export async function getAllOffers(options, limit, skip) {
+//   const offers = await Offer.find(options).limit(limit).skip(skip);
+
+//   return offers;
+// }
