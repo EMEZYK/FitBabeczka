@@ -16,7 +16,14 @@ export const createUser = async (data) => {
     if (err.name === "MongoServerError" && err.code === 11000) {
       throw new Error("Email must be unique");
     } else {
-      console.log(err);
+      console.log("inny error");
     }
   }
+};
+
+export const updateUser = async (id, data) => {
+  return await Admin.findByIdAndUpdate(id, data, {
+    runValidators: true,
+    new: true,
+  });
 };
