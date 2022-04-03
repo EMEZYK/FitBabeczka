@@ -44,16 +44,3 @@ export const searchRecipe = async (req, res) => {
   });
   res.send(recipe);
 };
-
-// export const exploreLatest = async (req, res) => {
-//   try {
-//     const limitRecipes = 3;
-
-//   }
-// }
-
-// export async function getAllOffers(options, limit, skip) {
-//   const offers = await Offer.find(options).limit(limit).skip(skip);
-
-//   return offers;
-// }

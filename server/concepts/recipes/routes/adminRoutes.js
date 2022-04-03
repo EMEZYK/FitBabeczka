@@ -8,7 +8,6 @@ import { updateUser } from "../controllers/adminController.js";
 const router = express.Router();
 
 router.post("/signup", createUser);
-router.put("/:id", updateUser);
 router.post(
   "/login",
   signInUser,
@@ -17,5 +16,6 @@ router.post(
   }),
   authenticationController
 );
+router.put("/:id", updateUser);
 
 export default router;

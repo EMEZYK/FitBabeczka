@@ -19,14 +19,23 @@ const recipeSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: String,
-      enum: ["Ciasta", "Ciastka", "Desery", "Muffinki", "Babeczki"],
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Category",
       required: true,
     },
-    image: {
-      type: String,
-      required: true,
-    },
+    image: [
+      {
+        url: {
+          type: String,
+          required: true,
+        },
+        isMainPhoto: {
+          type: Boolean,
+          required: true,
+          default: false,
+        },
+      },
+    ],
   },
   {
     versionKey: false,
