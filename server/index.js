@@ -15,6 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(express.static("public")); //zeby za kazdym razem nie trzeba bylo calej sciezki podawa, tylko /img/image.jpg itp
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 mongoose
   .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
