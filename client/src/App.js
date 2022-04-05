@@ -1,21 +1,35 @@
 import "./App.css";
+import useFetchData from "./hooks/fetch-data";
 
-function App() {
+const App = () => {
+  const { response, error, loading } = useFetchData({
+    url: "/recipes",
+    method: "GET",
+    headers: {
+      accept: "*/*",
+    },
+  });
+  console.log(response);
+  const recipes = response.result;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Ewelaaaa</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          {error && error.message}
+          {recipes && recipes.length > 0 && (
+            <ul>
+              {recipes.map((recipe) => (
+                <li key={recipe.id}>{recipe.name}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
