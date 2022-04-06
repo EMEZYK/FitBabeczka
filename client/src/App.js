@@ -1,33 +1,35 @@
+import {
+  BrowserRouter as Router,
+  // Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./components/global-styles/Global.styled";
+import LandingPage from "./components/views/LandingPage/LandingPage";
 import "./App.css";
-import useFetchData from "./hooks/fetch-data";
+
+const theme = {
+  colors: {
+    nav: "#fff",
+    body: "#fff",
+    container: "#F4F1F4",
+    footer: "#000",
+  },
+  mobile: "768px",
+};
 
 const App = () => {
-  const { response, error, loading } = useFetchData({
-    url: "/recipes",
-    method: "GET",
-    headers: {
-      accept: "*/*",
-    },
-  });
-  console.log(response);
-  const recipes = response.result;
-
   return (
     <div className="App">
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {error && error.message}
-          {recipes && recipes.length > 0 && (
-            <ul>
-              {recipes.map((recipe) => (
-                <li key={recipe.id}>{recipe.name}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Router>
+          <Routes>
+            <Route path="/" element={<LandingPage />}></Route>
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 };
