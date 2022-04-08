@@ -10,4 +10,5 @@ export const SaveButton = styled.button`
   font-weight: bold;
   text-transform: uppercase;
   margin: 10px;
+  cursor: pointer;
 `;

@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
-const useFetchData = (params) => {
+const useFetchData = ({ url, method, headers = null, body = null }) => {
   const [response, setResponse] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async (params) => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await axios.request(params); // await axios.get("/recipes");
+      const result = await axios.request({
+        method: method,
+        url: url,
+        data: body,
+      }); // await axios.get("/recipes");
       setResponse(result.data);
       setError(null);
     } catch (err) {
@@ -19,11 +23,14 @@ const useFetchData = (params) => {
     } finally {
       setLoading(false);
     }
-  };
-  useEffect(() => {
-    fetchData(params);
-  }, []);
+  }, [url, method, body]);
 
+  useEffect(() => {
+    const callData = async () => {
+      await fetchData(url, method, body);
+    };
+    callData();
+  }, [url, method, body]);
   return { response, error, loading };
 };
 

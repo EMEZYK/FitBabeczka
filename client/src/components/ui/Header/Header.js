@@ -3,10 +3,10 @@ import { Header } from "./Header.styled";
 const HeaderComponent = () => {
   return (
     <Header>
-      <img src="photos/headerPhoto.svg" alt=""></img>
+      <img src="photos/photoMain.svg" alt=""></img>
       <div className="about">
         <div className="about-page">
-          Oryginalne przepisy na zdrowe słodkości
+          Sprawdzone przepisy na zdrowe słodkości
         </div>
         <div className="description">
           Lorem Ipsum is simply dummy text of the printing and typesetting
