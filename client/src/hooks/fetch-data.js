@@ -29,8 +29,9 @@ const useFetchData = ({ url, method, headers = null, body = null }) => {
     const callData = async () => {
       await fetchData(url, method, body);
     };
+    console.log("x");
     callData();
-  }, [url, method, body]);
+  }, [url, method, body, fetchData]);
   return { response, error, loading };
 };
 
