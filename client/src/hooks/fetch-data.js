@@ -9,7 +9,6 @@ const useFetchData = ({ url, method, headers = null, body = null }) => {
   const [loading, setLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
-    setLoading(true);
     try {
       const result = await axios.request({
         method: method,
@@ -26,11 +25,7 @@ const useFetchData = ({ url, method, headers = null, body = null }) => {
   }, [url, method, body]);
 
   useEffect(() => {
-    const callData = async () => {
-      await fetchData(url, method, body);
-    };
-    console.log("x");
-    callData();
+    fetchData();
   }, [url, method, body, fetchData]);
   return { response, error, loading };
 };
