@@ -1,5 +1,4 @@
 import SavedButton from "../../ui/SaveButton/SaveButton";
-import Navbar from "../../ui/Navbar/NavContainer";
 import InputSearchComponent from "../../ui/SearchInput/InputLoop";
 import { Wrapper } from "../../global-styles/Flex.styled";
 import FooterComponent from "../../ui/Footer/Footer";
@@ -48,7 +47,6 @@ const LandingPage = () => {
 
   return (
     <>
-      <Navbar />
       <Wrapper>
         <HeaderComponent />
         <CategoriesWrapperComponent />
