@@ -7,14 +7,25 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.nav};
   padding: 0.4rem;
+  list-style: none;
 
   a {
-    color: #545454;
+    color: #000;
     text-decoration: none;
     margin-right: 1rem;
   }
 
-  div.right-container {
+  .active {
+    color: #dea8a8;
+  }
+
+  .left-container {
+    width: 30%;
+    display: flex;
+    align-items: center;
+  }
+
+  .right-container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -23,24 +34,24 @@ export const NavContainer = styled.nav`
     font-size: clamp(1rem, 2vw, 1.1rem);
     font-family: "Kaushan Script", cursiv;
   }
-
-  div.login {
+  li:last-child {
+    margin-left: 3rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  li:last-child a {
+    color: #545454;
+  }
+  div.login {
     align-items: center;
     justify-content: center;
     margin-left: 3rem;
   }
 
-  div.login a {
-    margin-left: 0.5rem;
-  }
-  div.right-container img {
+  .right-container img {
     max-width: 1rem;
-  }
-
-  div.left-container {
-    width: 30%;
-    display: flex;
-    align-items: center;
+    margin-right: 1rem;
   }
 `;
