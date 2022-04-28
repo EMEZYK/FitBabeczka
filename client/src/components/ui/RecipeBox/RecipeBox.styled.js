@@ -12,19 +12,27 @@ export const RecipeBox = styled.div`
     align-items: center;
   }
   h2 {
-    font-size: clamp(0.6rem, 2vw, 0.9rem);
+    font-size: clamp(0.6rem, 2vw, 1.2rem);
     font-weight: 500;
   }
 
   button {
-    width: 6vw;
+    width: 7vw;
     cursor: pointer;
     background-color: #6f6c6c;
     color: #ffff;
     border-style: none;
-    padding: 1px;
-    font-size: clamp(0.2rem, 2vw, 0.7rem);
-    margin: 2px;
+    padding: 0.2rem;
+    font-size: clamp(0.2rem, 3vw, 0.9rem);
+    margin-top: 0.4em;
+  }
+  @media (max-width: 1280px) {
+    width: 80%;
+    height: 40vh;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
   }
 `;
 

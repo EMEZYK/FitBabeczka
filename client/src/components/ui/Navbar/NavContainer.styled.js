@@ -15,10 +15,6 @@ export const NavContainer = styled.nav`
     margin-right: 1rem;
   }
 
-  .active {
-    color: #dea8a8;
-  }
-
   .left-container {
     width: 30%;
     display: flex;
@@ -31,27 +27,27 @@ export const NavContainer = styled.nav`
     align-items: center;
     width: 70%;
     height: 100%;
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-size: clamp(1.6rem, 1.2vw, 3rem);
     font-family: "Kaushan Script", cursiv;
   }
-  li:last-child {
-    margin-left: 3rem;
+
+  .right-container .active {
+    color: #dea8a8;
+  }
+  .menu-page {
+    padding: 1rem;
+  }
+
+  .menu-page:last-child {
+    display: block;
+    margin-left: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  li:last-child a {
-    color: #545454;
-  }
-  div.login {
-    align-items: center;
-    justify-content: center;
-    margin-left: 3rem;
-  }
-
-  .right-container img {
-    max-width: 1rem;
-    margin-right: 1rem;
+  .menu-page:last-child img {
+    max-width: 1.1rem;
+    margin-right: 0.6rem;
   }
 `;

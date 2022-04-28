@@ -22,6 +22,7 @@ const CategoriesWrapperComponent = () => {
             <CategoriesWrapper>
               {categories.map((category) => (
                 <CategoryCircleComponent
+                  source={category.path}
                   image={category.image}
                   key={category._id}
                   name={category.name}

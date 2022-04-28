@@ -18,6 +18,12 @@ import DishFormPage from "./components/views/AdminPanel/DishFormPage";
 import NavigateContainer from "./components/ui/Navbar/NavContainer";
 import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";
 import LandingPanelPages from "./components/views/Navigation/GeneralNavbarPages";
+import CakesPage from "./components/views/CakePage/CakesPage";
+import CookiesPage from "./components/views/CookiesPage/CookiesPage";
+import TartsPage from "./components/views/TartsPage/TartsPage";
+import MuffinsPage from "./components/views/MuffinsPage/MuffinsPage";
+import DessertsPage from "./components/views/DessertsPage/DessertsPage";
+
 const theme = {
   colors: {
     nav: "#fff",
@@ -42,6 +48,11 @@ const App = () => {
             <Route path="/" element={<PagesWithCommonNavbar />}>
               <Route path="/" element={<LandingPage />} />
               <Route path="/przepisy" element={<MenuPage />} />
+              <Route path="/przepisy/ciastka" element={<CookiesPage />} />
+              <Route path="/przepisy/ciasta" element={<CakesPage />} />
+              <Route path="/przepisy/babeczki" element={<TartsPage />} />
+              <Route path="/przepisy/muffinki" element={<MuffinsPage />} />
+              <Route path="/przepisy/desery" element={<DessertsPage />} />
               <Route path="/kontakt" element={<AboutMePage />} />
               <Route path="/user/login" element={<LoginPage />} />
             </Route>

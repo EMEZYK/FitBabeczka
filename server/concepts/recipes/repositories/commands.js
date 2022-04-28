@@ -1,4 +1,5 @@
 import Admin from "../model/admin.js";
+import Category from "../model/category.js";
 
 export const createUser = async (data) => {
   const newUser = new Admin({
@@ -26,4 +27,8 @@ export const updateUser = async (id, data) => {
     runValidators: true,
     new: true,
   });
+};
+
+export const updateCategory = async (filter, data) => {
+  return await Category.updateOne(filter, data);
 };

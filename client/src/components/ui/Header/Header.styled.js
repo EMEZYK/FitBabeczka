@@ -3,16 +3,20 @@ import styled from "styled-components";
 export const Header = styled.div`
   display: flex;
   position: relative;
-  width: 90%;
+  width: 85%;
   justify-content: center;
   align-items: center;
+
+  img {
+    width: 100vw;
+  }
 
   .about {
     position: absolute;
     top: 20%;
     left: 2%;
     min-height: 55%;
-    width: 32%;
+    width: 31%;
     padding: 10px;
     color: #000;
     font-size: clamp(0.8rem, 2vw, 0.5rem);

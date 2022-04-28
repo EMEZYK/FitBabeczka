@@ -4,14 +4,12 @@ import { NavLink } from "react-router-dom";
 const Navbar = ({ source, name, icon }) => {
   return (
     <>
-      {/* <NavigationStyle> */}
-      <li>
+      <li className="menu-page">
         <NavLink to={source} activeClassname="active">
           <img src={icon} alt="" />
           {name}
         </NavLink>
       </li>
-      {/* </NavigationStyle> */}
     </>
   );
 };
