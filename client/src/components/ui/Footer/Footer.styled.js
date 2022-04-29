@@ -5,7 +5,7 @@ export const Footer = styled.footer`
   width: 100%;
   height: 10vh;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.footer};
+  background-color: ${({ theme }) => theme.colors.footer.primary};
   color: #ffff;
 
   p {

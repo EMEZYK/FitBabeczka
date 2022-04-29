@@ -5,7 +5,7 @@ export const NavContainer = styled.nav`
   align-items: center;
   border-bottom: 2px solid black;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.nav};
+  background-color: ${({ theme }) => theme.colors.navbar.primary};
   padding: 0.4rem;
   list-style: none;
 

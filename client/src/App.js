@@ -23,16 +23,18 @@ import CookiesPage from "./components/views/CookiesPage/CookiesPage";
 import TartsPage from "./components/views/TartsPage/TartsPage";
 import MuffinsPage from "./components/views/MuffinsPage/MuffinsPage";
 import DessertsPage from "./components/views/DessertsPage/DessertsPage";
+import RecipePage from "./components/views/RecipePage/RecipePage";
+import { theme } from "./theme/theme";
 
-const theme = {
-  colors: {
-    nav: "#fff",
-    body: "#fff",
-    container: "#F4F1F4",
-    footer: "#000",
-  },
-  mobile: "768px",
-};
+// const theme = {
+//   colors: {
+//     nav: "#fff",
+//     body: "#fff",
+//     container: "#F4F1F4",
+//     footer: "#000",
+//   },
+//   mobile: "768px",
+// };
 
 const App = () => {
   return (
@@ -47,7 +49,7 @@ const App = () => {
             </Route>
             <Route path="/" element={<PagesWithCommonNavbar />}>
               <Route path="/" element={<LandingPage />} />
-              <Route path="/przepisy" element={<MenuPage />} />
+              <Route path="/przepisy" element={<RecipePage />} />
               <Route path="/przepisy/ciastka" element={<CookiesPage />} />
               <Route path="/przepisy/ciasta" element={<CakesPage />} />
               <Route path="/przepisy/babeczki" element={<TartsPage />} />

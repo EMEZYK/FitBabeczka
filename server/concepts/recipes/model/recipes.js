@@ -36,6 +36,18 @@ const recipeSchema = new mongoose.Schema(
         },
       },
     ],
+    time: {
+      type: String,
+      required: true,
+    },
+    difficultyLevel: {
+      type: String,
+      required: true,
+    },
+    servingsNumber: {
+      type: Number,
+      required: true,
+    },
   },
   {
     versionKey: false,

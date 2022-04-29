@@ -1,0 +1,63 @@
+export const theme = {
+  colors: {
+    common: {
+      body: "#fff",
+      backgroundColor: "#F4F1F4",
+      mobileBackgroundColor: "#fff",
+    },
+    navbar: {
+      primary: "#fff",
+      secondary: "#D7C4CF",
+      boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+    },
+    button: {
+      primary: "#6f6c6c",
+      secondary: "#e4caca",
+      boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+      activePage: "#F8CECE",
+    },
+    card: {
+      boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+      primary: "#fff",
+      secondary: "#F4F1F4",
+    },
+    input: {
+      primary: "#fff",
+    },
+    footer: {
+      primary: "#000",
+    },
+  },
+  fontsize: {
+    desktop: {
+      xxs: 12,
+      xs: 14,
+      s: 16,
+      m: 18,
+      l: 20,
+      xl: 24,
+      xxl: 32,
+    },
+    mobile: {
+      xxs: 10,
+      xs: 12,
+      s: 14,
+      m: 16,
+      l: 18,
+      xl: 20,
+      xxl: 24,
+    },
+  },
+  weight: {
+    light: 200,
+    regular: 400,
+    bold: 700,
+  },
+};
+
+//       input: {
+//         primary: "#F9F8F8",
+//         secondary: "#000",
+//         placeholder: "#9E9999",
+//         transparent: "transparent",
+//       },

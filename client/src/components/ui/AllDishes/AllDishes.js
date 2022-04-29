@@ -7,9 +7,10 @@ const AllDishesComponent = ({ recipes }) => {
     <GridContainer>
       {recipes.map((recipe) => (
         <RecipeBoxComponent
-          image={recipe.image[0].url}
-          name={recipe.name}
-          key={recipe._id}
+          recipe={recipe}
+          // image={recipe.image[0].url}
+          // name={recipe.name}
+          // key={recipe._id}
         ></RecipeBoxComponent>
       ))}
     </GridContainer>

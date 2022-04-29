@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const RecipeBox = styled.div`
-  width: 16vw;
-  max-height: 48vh;
-  background-color: #fff;
+  width: ${({ width }) => (width ? width : "16vw")};
+  height: ${({ height }) => (height ? height : "48vh")};
+  background-color: ${({ theme, color }) =>
+    color ? color : theme.colors.card.primary};
+  padding: ${({ padding }) => (padding ? padding : "0")};
+  box-shadow: ${({ boxShadow }) => (boxShadow ? boxShadow : "0")};
 
   .recipeName {
     display: flex;
@@ -26,6 +29,7 @@ export const RecipeBox = styled.div`
     font-size: clamp(0.2rem, 3vw, 0.9rem);
     margin-top: 0.4em;
   }
+
   @media (max-width: 1280px) {
     width: 80%;
     height: 40vh;
