@@ -16,16 +16,33 @@ import {
   ImageContainer,
 } from "./RecipePage.styled";
 import { RecipeInfoCard } from "../../ui/Card/InfoCard";
+import { useContext } from "react";
+import { GetRecipes } from "../../../context/recipes-context";
 
-const RecipePage = () => {
+export const RecipePage = () => {
+  const recipes = useContext(GetRecipes);
+
+  if (recipes.length === 0) {
+    return <div>Loading...</div>;
+  }
+  const recipe = recipes.find(
+    (recipe) => (recipe._id = "6249ad210c6d5dbca309ef56")
+  );
+
   return (
     <RecipeContainer>
       <Wrapper height={"80vh"} width={"90%"}>
         <ImageContainer>
-          <RecipeImage />
-          <RecipeInfoCard image={"/icons/time.png"} />
-          <RecipeInfoCard image={"/icons/level.png"} />
-          <RecipeInfoCard image={"/icons/plates.png"} />
+          <RecipeImage src={recipe.image[0].url} />
+          <RecipeInfoCard image={"/icons/time.png"} details={recipe.time} />
+          <RecipeInfoCard
+            image={"/icons/level.png"}
+            details={recipe.difficultyLevel}
+          />
+          <RecipeInfoCard
+            image={"/icons/plates.png"}
+            details={recipe.servingsNumber}
+          />
         </ImageContainer>
         <RecipeBox
           height={"90%"}
@@ -34,31 +51,18 @@ const RecipePage = () => {
           color={theme.colors.card.secondary}
           boxShadow={theme.colors.card.boxShadow}
         >
-          <TitleRecipe>CIASTO KRÓWKOWE</TitleRecipe>
-          <RecipeShortDescription>
-            Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w
-            przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez
-            nieznanego drukarza do wypełnienia tekstem próbnej książki.
-          </RecipeShortDescription>
+          <TitleRecipe>{recipe.name}</TitleRecipe>
+          <RecipeShortDescription>{recipe.description}</RecipeShortDescription>
           <RecipeDescriptionContainer>
             <IngredientsContainer>
               <RecipeHeader>Składniki</RecipeHeader>
               <IngredientList>
-                <Ingredient> mleko</Ingredient>
-                <Ingredient> cos</Ingredient>
+                <Ingredient> {recipe.ingredients}</Ingredient>
               </IngredientList>
             </IngredientsContainer>
             <DescriptionContainer>
               <RecipeHeader>Przygotowanie</RecipeHeader>
-              <RecipePreparation>
-                Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz
-                w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w.
-                przez nieznanego drukarza do wypełnienia tekstem próbnej
-                książki.Lorem Ipsum jest tekstem stosowanym jako przykładowy
-                wypełniacz w przemyśle poligraficznym. Został po raz pierwszy
-                użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem
-                próbnej książki.
-              </RecipePreparation>
+              <RecipePreparation>{recipe.preparation}</RecipePreparation>
             </DescriptionContainer>
           </RecipeDescriptionContainer>
         </RecipeBox>

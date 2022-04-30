@@ -20,6 +20,7 @@ const LandingPage = () => {
   };
 
   let params = defaultParams;
+
   if (searchTerm === "") {
     params = defaultParams;
   } else {

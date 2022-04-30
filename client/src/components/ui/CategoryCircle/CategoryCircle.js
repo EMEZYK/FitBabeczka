@@ -6,7 +6,7 @@ const CategoryCircleComponent = (props) => {
     <CategoryCircle>
       <NavLink
         to={props.source}
-        activeClassname="active"
+        activeclassname="active"
         style={{ textDecoration: "none" }}
       >
         <CategoryImage src={props.image} alt=""></CategoryImage>

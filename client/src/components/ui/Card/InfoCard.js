@@ -1,10 +1,10 @@
 import { RecipeInfo } from "./InfoCard.styled";
 
-export const RecipeInfoCard = ({ image, alt }) => {
+export const RecipeInfoCard = ({ image, alt, details }) => {
   return (
     <RecipeInfo>
       <img src={image} alt={alt}></img>
-      <p>łatwy</p>
+      <p>{details}</p>
     </RecipeInfo>
   );
 };

@@ -25,45 +25,38 @@ import MuffinsPage from "./components/views/MuffinsPage/MuffinsPage";
 import DessertsPage from "./components/views/DessertsPage/DessertsPage";
 import RecipePage from "./components/views/RecipePage/RecipePage";
 import { theme } from "./theme/theme";
-
-// const theme = {
-//   colors: {
-//     nav: "#fff",
-//     body: "#fff",
-//     container: "#F4F1F4",
-//     footer: "#000",
-//   },
-//   mobile: "768px",
-// };
+import RecipesProvider from "./context/recipes-context";
 
 const App = () => {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Router>
-          <Routes>
-            <Route element={<PagesWithAdminNavbar />}>
-              <Route path="/user/home" element={<UserHomePage />} />
-              <Route path="/user/menu" element={<EditMenuPage />} />
-            </Route>
-            <Route path="/" element={<PagesWithCommonNavbar />}>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/przepisy" element={<RecipePage />} />
-              <Route path="/przepisy/ciastka" element={<CookiesPage />} />
-              <Route path="/przepisy/ciasta" element={<CakesPage />} />
-              <Route path="/przepisy/babeczki" element={<TartsPage />} />
-              <Route path="/przepisy/muffinki" element={<MuffinsPage />} />
-              <Route path="/przepisy/desery" element={<DessertsPage />} />
-              <Route path="/kontakt" element={<AboutMePage />} />
-              <Route path="/user/login" element={<LoginPage />} />
-            </Route>
-            <Route path="/user/przepis" element={<DishFormPage />} />
+      <RecipesProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <Router>
+            <Routes>
+              <Route element={<PagesWithAdminNavbar />}>
+                <Route path="/user/home" element={<UserHomePage />} />
+                <Route path="/user/menu" element={<EditMenuPage />} />
+              </Route>
+              <Route path="/" element={<PagesWithCommonNavbar />}>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/przepisy" element={<RecipePage />} />
+                <Route path="/przepisy/ciastka" element={<CookiesPage />} />
+                <Route path="/przepisy/ciasta" element={<CakesPage />} />
+                <Route path="/przepisy/babeczki" element={<TartsPage />} />
+                <Route path="/przepisy/muffinki" element={<MuffinsPage />} />
+                <Route path="/przepisy/desery" element={<DessertsPage />} />
+                <Route path="/kontakt" element={<AboutMePage />} />
+                <Route path="/user/login" element={<LoginPage />} />
+              </Route>
+              <Route path="/user/przepis" element={<DishFormPage />} />
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Router>
-      </ThemeProvider>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Router>
+        </ThemeProvider>
+      </RecipesProvider>
     </div>
   );
 };
