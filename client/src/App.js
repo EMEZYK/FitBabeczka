@@ -41,7 +41,8 @@ const App = () => {
               </Route>
               <Route path="/" element={<PagesWithCommonNavbar />}>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/przepisy" element={<RecipePage />} />
+                <Route path="/przepisy" element={<MenuPage />} />
+                <Route path="/przepisy/:id" element={<RecipePage />} />
                 <Route path="/przepisy/ciastka" element={<CookiesPage />} />
                 <Route path="/przepisy/ciasta" element={<CakesPage />} />
                 <Route path="/przepisy/babeczki" element={<TartsPage />} />

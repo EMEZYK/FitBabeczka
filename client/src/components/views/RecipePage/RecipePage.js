@@ -18,16 +18,16 @@ import {
 import { RecipeInfoCard } from "../../ui/Card/InfoCard";
 import { useContext } from "react";
 import { GetRecipes } from "../../../context/recipes-context";
+import { useParams } from "react-router-dom";
 
 export const RecipePage = () => {
   const recipes = useContext(GetRecipes);
+  const { id } = useParams();
 
   if (recipes.length === 0) {
     return <div>Loading...</div>;
   }
-  const recipe = recipes.find(
-    (recipe) => (recipe._id = "6249ad210c6d5dbca309ef56")
-  );
+  const recipe = recipes.find((recipe) => recipe._id === id);
 
   return (
     <RecipeContainer>
