@@ -1,16 +1,20 @@
-import { RecipeBox } from "./RecipeBox.styled";
-import { RecipeImage } from "./RecipeBox.styled";
+import {
+  RecipeBox,
+  Image,
+  RecipeName,
+  RecipeNameWrapper,
+  ReadMoreButton,
+} from "./RecipeBox.styled";
 
 const RecipeBoxComponent = (props) => {
-  console.log(props.recipe);
   return (
     <>
       <RecipeBox>
-        <RecipeImage src={props.recipe.image[0].url} alt=""></RecipeImage>
-        <div className="recipeName">
-          <h2>{props.recipe.name}</h2>
-          <button>czytaj</button>
-        </div>
+        <Image src={props.recipe.image[0].url} alt=""></Image>
+        <RecipeNameWrapper>
+          <RecipeName>{props.recipe.name}</RecipeName>
+          <ReadMoreButton>czytaj</ReadMoreButton>
+        </RecipeNameWrapper>
       </RecipeBox>
     </>
   );

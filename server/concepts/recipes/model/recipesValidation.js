@@ -4,7 +4,7 @@ const validateRecipe = (recipe) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     description: Joi.string().max(500).required(),
-    ingredients: Joi.array().max(40).required(),
+    ingredients: Joi.array().items(Joi.string()).descriptionmax(40).required(),
     preparation: Joi.string().max(500).required(),
     category: Joi.objectId().required(),
     image: Joi.array().items(

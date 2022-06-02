@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const FlexWrapper = styled.div`
   display: flex;
   flex-wrap: ${({ wrap }) => (wrap ? wrap : "wrap")};
   flex-direction: ${({ direction }) => (direction ? direction : "column")};
@@ -10,6 +10,6 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.common.backgroundColor};
   margin: 0 auto;
   padding: ${({ padding }) => (padding ? padding : "0")};
-
   justify-content: center;
+  border-bottom: ${({ border }) => (border ? border : "0")};
 `;

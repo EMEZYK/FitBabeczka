@@ -17,12 +17,12 @@ export const ImageContainer = styled(RecipeBox)`
 `;
 
 export const TitleRecipe = styled.h1`
-  font-size: ${({ theme }) => theme.fontsize.desktop.xl}px;
+  font-size: ${({ theme }) => theme.fontsize.desktop.xxl}px;
   text-align: left;
 `;
 
 export const RecipeShortDescription = styled(Typography)`
-  font-size: ${({ theme }) => theme.fontsize.desktop.xxs}px;
+  font-size: ${({ theme }) => theme.fontsize.desktop.xs}px;
   text-align: left;
   padding: 1rem 0;
 `;
@@ -35,6 +35,7 @@ export const RecipePreparation = styled(Typography)`
 export const RecipeHeader = styled(Typography)`
   font-size: ${({ theme }) => theme.fontsize.desktop.m}px;
   text-transform: uppercase;
+  font-weight: ${({ theme }) => theme.weight.bold};
   text-align: left;
 `;
 
@@ -57,7 +58,7 @@ export const IngredientsContainer = styled.div`
 
 export const IngredientList = styled.ul`
   margin-top: 1rem;
-  font-size: ${({ theme }) => theme.fontsize.desktop.s}px;
+  font-size: ${({ theme }) => theme.fontsize.desktop.xs}px;
 `;
 
 export const Ingredient = styled.li`

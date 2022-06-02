@@ -1,23 +1,12 @@
 import CategoryCircleComponent from "../CategoryCircle/CategoryCircle";
 import { CategoriesWrapper } from "./CategoryWrapper.styled";
-import useFetchData from "../../../hooks/fetch-data";
 
-const CategoriesWrapperComponent = () => {
-  const { response, error } = useFetchData({
-    url: "/categories",
-    method: "GET",
-    headers: {
-      accept: "*/*",
-    },
-  });
-
-  const categories = response;
-
+const CategoriesWrapperComponent = ({ categories, categoriesLoadingError }) => {
   return (
     <>
       {
         <div>
-          {error && error.message}
+          {categoriesLoadingError && categoriesLoadingError.message}
           {categories && categories.length > 0 && (
             <CategoriesWrapper>
               {categories.map((category) => (
@@ -25,6 +14,7 @@ const CategoriesWrapperComponent = () => {
                   source={category.path}
                   image={category.image}
                   key={category._id}
+                  categoryId={category._id}
                   name={category.name}
                 ></CategoryCircleComponent>
               ))}

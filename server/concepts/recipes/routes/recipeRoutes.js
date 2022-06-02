@@ -9,9 +9,9 @@ import {
 } from "../controllers/recipeController.js";
 const router = express.Router();
 
+router.get("/", getAllRecipes);
 router.get("/search/:key", searchRecipe);
 router.get("/:id", getRecipe);
-router.get("/", getAllRecipes);
 router.post("/", createRecipe);
 router.put("/:id", updateRecipe);
 router.delete("/:id", deleteRecipe);

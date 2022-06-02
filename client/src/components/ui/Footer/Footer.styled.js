@@ -12,5 +12,9 @@ export const Footer = styled.footer`
     color: white;
     font-size: 0.8rem;
     width: 100%;
+
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+    }
   }
 `;

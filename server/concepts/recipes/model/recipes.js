@@ -48,6 +48,11 @@ const recipeSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    dateCreated: {
+      type: Date,
+      required: true,
+      default: Date.now,
+    },
   },
   {
     versionKey: false,

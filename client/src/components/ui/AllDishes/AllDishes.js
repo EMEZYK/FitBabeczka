@@ -2,21 +2,23 @@ import GridContainer from "../../global-styles/Grid.styled";
 import RecipeBoxComponent from "../RecipeBox/RecipeBox";
 import { NavLink } from "react-router-dom";
 
-const AllDishesComponent = ({ recipes }) => {
+const AllDishesComponent = ({ recipes, loading }) => {
   recipes = recipes ? recipes : [];
+  // recipes = recipes ? recipes : [];
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <GridContainer>
       {recipes.map((recipe) => (
         <NavLink
-          to={`przepisy/${recipe._id}`}
-          style={{ textDecoration: "none" }}
+          to={`/${recipe._id}`}
+          style={{ textDecoration: "none", color: "#000" }}
+          key={recipe._id}
         >
-          <RecipeBoxComponent
-            recipe={recipe}
-            // image={recipe.image[0].url}
-            // name={recipe.name}
-            // key={recipe._id}
-          ></RecipeBoxComponent>
+          <RecipeBoxComponent recipe={recipe}></RecipeBoxComponent>
         </NavLink>
       ))}
     </GridContainer>

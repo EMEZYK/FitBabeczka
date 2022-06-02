@@ -9,7 +9,7 @@ import GlobalStyles from "./components/global-styles/Global.styled";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import "./App.css";
 import AboutMePage from "./components/views/ContactPage/AboutMePage";
-import MenuPage from "./components/views/MenuPage/MenuPage";
+import AllRecipesPage from "./components/views/AllRecipesPage/AllRecipes";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NotFoundPage from "./components/views/NotFoundPage/NotFoundPage";
 import UserHomePage from "./components/views/AdminPanel/UserHomePage";
@@ -18,16 +18,23 @@ import DishFormPage from "./components/views/AdminPanel/DishFormPage";
 import NavigateContainer from "./components/ui/Navbar/NavContainer";
 import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";
 import LandingPanelPages from "./components/views/Navigation/GeneralNavbarPages";
-import CakesPage from "./components/views/CakePage/CakesPage";
-import CookiesPage from "./components/views/CookiesPage/CookiesPage";
-import TartsPage from "./components/views/TartsPage/TartsPage";
-import MuffinsPage from "./components/views/MuffinsPage/MuffinsPage";
-import DessertsPage from "./components/views/DessertsPage/DessertsPage";
-import RecipePage from "./components/views/RecipePage/RecipePage";
+import RecipePage from "./components/views/OneRecipePage/OneRecipePage";
 import { theme } from "./theme/theme";
 import RecipesProvider from "./context/recipes-context";
+import CategoryRecipesPage from "./components/views/CategoryRecipesPage/CategoryRecipesPage";
+import useFetchData from "./hooks/fetch-data";
 
 const App = () => {
+  const { response, error } = useFetchData({
+    url: "/categories",
+    method: "GET",
+    headers: {
+      accept: "*/*",
+    },
+  });
+
+  const categories = response;
+
   return (
     <div className="App">
       <RecipesProvider>
@@ -40,14 +47,37 @@ const App = () => {
                 <Route path="/user/menu" element={<EditMenuPage />} />
               </Route>
               <Route path="/" element={<PagesWithCommonNavbar />}>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/przepisy" element={<MenuPage />} />
-                <Route path="/przepisy/:id" element={<RecipePage />} />
-                <Route path="/przepisy/ciastka" element={<CookiesPage />} />
-                <Route path="/przepisy/ciasta" element={<CakesPage />} />
-                <Route path="/przepisy/babeczki" element={<TartsPage />} />
-                <Route path="/przepisy/muffinki" element={<MuffinsPage />} />
-                <Route path="/przepisy/desery" element={<DessertsPage />} />
+                <Route
+                  path="/"
+                  element={
+                    <LandingPage
+                      categories={categories}
+                      categoriesLoadingError={error}
+                    />
+                  }
+                />
+                <Route
+                  path="/przepisy"
+                  element={
+                    <AllRecipesPage
+                      categories={categories}
+                      categoriesLoadingError={error}
+                    />
+                  }
+                />
+                <Route path="/:id" element={<RecipePage />} />
+                {categories.map((category) => (
+                  <Route
+                    key={category._id}
+                    path={category.path}
+                    element={
+                      <CategoryRecipesPage
+                        pageTitle={category.name}
+                        categoryId={category._id}
+                      />
+                    }
+                  />
+                ))}
                 <Route path="/kontakt" element={<AboutMePage />} />
                 <Route path="/user/login" element={<LoginPage />} />
               </Route>

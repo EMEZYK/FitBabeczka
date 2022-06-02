@@ -4,6 +4,8 @@ export const theme = {
       body: "#fff",
       backgroundColor: "#F4F1F4",
       mobileBackgroundColor: "#fff",
+      heading: "#F8CECE",
+      border: "#DEA8A8",
     },
     navbar: {
       primary: "#fff",
@@ -15,6 +17,7 @@ export const theme = {
       secondary: "#e4caca",
       boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       activePage: "#F8CECE",
+      searchButton: "#fff",
     },
     card: {
       boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
@@ -36,7 +39,8 @@ export const theme = {
       m: 18,
       l: 20,
       xl: 24,
-      xxl: 32,
+      xxl: 28,
+      xxxl: 36,
     },
     mobile: {
       xxs: 10,

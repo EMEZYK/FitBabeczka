@@ -1,14 +1,28 @@
 import { response } from "express";
 import Recipe from "../model/recipes.js";
+import { getRecipes } from "../repositories/queries.js";
 
 export const getAllRecipes = async (req, res) => {
-  Recipe.find({})
-    .then((result) => res.status(200).json(result))
-    .catch((error) => res.status(500).json({ msg: error }));
+  try {
+    const page = parseInt(req.query.page);
+    const skipValue = parseInt(req.query.skip || 0);
+    const limitValue = parseInt(req.query.limit);
+    // const skipValue = parseInt(page - 1) * limitValue;
+
+    // const sort = req.query.sort;
+    // const sort = JSON.parse(req.query.sort);
+
+    const recipes = await getRecipes(skipValue, limitValue);
+
+    return res.status(200).send(recipes);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send(error.message);
+  }
 };
 
 export const getRecipe = async (req, res) => {
-  Recipe.findOne({ _id: req.params.id })
+  Recipe.findById({ _id: req.params.id })
     .then((result) => res.status(200).json(result))
     .catch(() => res.status(404).json({ msg: "Recipe not found" }));
 };
@@ -20,7 +34,7 @@ export const createRecipe = async (req, res) => {
 };
 
 export const updateRecipe = async (req, res) => {
-  Recipe.findOneAndUpdate({ _id: req.params.id }, req.body, {
+  Recipe.findByIdAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
     runValidators: true,
   })
@@ -29,7 +43,7 @@ export const updateRecipe = async (req, res) => {
 };
 
 export const deleteRecipe = async (req, res) => {
-  Recipe.findOneAndDelete({ _id: req.params.id })
+  Recipe.findByIdAndDelete({ _id: req.params.id })
     .then((result) => res.status(200).json(result))
     .catch((error) => res.status(404).json({ msg: "Recipe not found" }));
 };
@@ -42,5 +56,9 @@ export const searchRecipe = async (req, res) => {
       { ingredients: { $regex: req.params.key, $options: "i" } }, //szukam w składnikach
     ], //$or oznacza, ze mozemy tez wielu fieldow szukac
   });
+  // .sort(req.query.sort);
+  // .limit(req.query.limit);
+  console.log(recipe);
+
   res.send(recipe);
 };

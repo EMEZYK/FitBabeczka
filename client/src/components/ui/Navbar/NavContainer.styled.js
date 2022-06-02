@@ -15,6 +15,10 @@ export const NavContainer = styled.nav`
     margin-right: 1rem;
   }
 
+  /* a:hover {
+    color: #b12337;
+  } */
+
   .left-container {
     width: 30%;
     display: flex;
@@ -34,6 +38,7 @@ export const NavContainer = styled.nav`
   .right-container .active {
     color: #dea8a8;
   }
+
   .menu-page {
     padding: 1rem;
   }
