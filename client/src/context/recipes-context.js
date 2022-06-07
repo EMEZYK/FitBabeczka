@@ -7,7 +7,7 @@ axios.defaults.baseURL = "http://localhost:3000";
 export const GetRecipes = createContext();
 export const RecipesProvider = ({ children }) => {
   const { response } = useFetchData({
-    url: "/recipes?&limit=1000",
+    url: "/recipes?limit=1000",
     method: "GET",
     headers: {
       accept: "*/*",

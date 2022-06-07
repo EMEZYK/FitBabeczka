@@ -6,7 +6,7 @@ export const getAllRecipes = async (req, res) => {
   try {
     const limitValue = parseInt(req.query.limit);
 
-    const page = parseInt(req.query.page || 1);
+    const page = parseInt(req.query.page || 0);
     const skipValue = page * limitValue;
     const recipes = await getRecipes(skipValue, limitValue);
 

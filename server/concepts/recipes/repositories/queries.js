@@ -11,6 +11,7 @@ export async function getRecipes(skip, limit, sort) {
     },
     {
       $facet: {
+        total: [{ $count: "createdAt" }],
         data: [
           {
             $addFields: {
@@ -18,14 +19,15 @@ export async function getRecipes(skip, limit, sort) {
             },
           },
         ],
-        total: [{ $count: "createdAt" }],
       },
     },
     {
       $unwind: "$total",
     },
+
     {
       $project: {
+        allRecipes: "$data",
         filteredData: {
           $slice: [
             "$data",

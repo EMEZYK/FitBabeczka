@@ -22,14 +22,14 @@ import { useParams } from "react-router-dom";
 
 export const RecipePage = () => {
   const recipes = useContext(GetRecipes);
+  console.log("rec", recipes);
 
   const { id } = useParams();
 
   if (recipes.length === 0) {
     return <div>Loading...</div>;
   }
-  const recipe = recipes.data.find((recipe) => recipe._id === id);
-
+  const recipe = recipes.filteredData.find((recipe) => recipe._id === id);
   let recipeLevel = recipe.difficultyLevel;
 
   switch (recipeLevel) {

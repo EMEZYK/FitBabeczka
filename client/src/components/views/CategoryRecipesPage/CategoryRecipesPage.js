@@ -8,11 +8,9 @@ import { PageTitle } from "../../ui/PageTitle/PageTitle.styled";
 
 const CategoryRecipesPage = ({ categoryId, pageTitle }) => {
   const recipes = useContext(GetRecipes);
-  console.log("tuty", recipes.data);
-  const recipesByCategory = recipes.data.filter(
+  const recipesByCategory = recipes.filteredData.filter(
     (recipe) => recipe.category === categoryId
   );
-
   const renderRecipes = () => {
     if (recipesByCategory) {
       return <AllDishesComponent recipes={recipesByCategory} />;

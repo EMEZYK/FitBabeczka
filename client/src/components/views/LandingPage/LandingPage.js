@@ -12,7 +12,7 @@ import {
 
 const LandingPage = ({ categories, categoriesLoadingError }) => {
   const defaultParams = {
-    url: "/recipes?&limit=8",
+    url: "/recipes?limit=8",
     // url: "/recipes?sort=-dateCreated&limit=8",
     method: "GET",
     headers: {
@@ -29,7 +29,7 @@ const LandingPage = ({ categories, categoriesLoadingError }) => {
 
   const renderRecipes = () => {
     if (!error) {
-      return <AllDishesComponent recipes={response.data} />;
+      return <AllDishesComponent recipes={response.filteredData} />;
     } else if (error) {
       return <div>cannot load recipes</div>;
     }
