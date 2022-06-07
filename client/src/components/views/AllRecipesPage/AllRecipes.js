@@ -57,12 +57,20 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
     fetchSearchData();
   }, [termToLookup]);
 
-  const nextPage = () => {
-    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
-  };
-
-  const previousPage = () => {
-    setPageNumber(Math.max(0, pageNumber - 1));
+  const displayPagination = () => {
+    if (termToLookup.length === 0) {
+      return (
+        <Pagination
+          totalRecipes={numberOfRecipes}
+          recipesPerPage={limitOfRecipes}
+          paginate={setPageNumber}
+          numberOfPages={numberOfPages}
+          thisPage={pageNumber}
+          setPageNumber={setPageNumber}
+          pageNumber={pageNumber}
+        />
+      );
+    }
   };
 
   const renderRecipes = () => {
@@ -81,25 +89,10 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
           setTermToLookup={setTermToLookup}
           searchTerm={searchTerm}
         />
-        {renderRecipes()}
-        <PaginatedList>
-          <NextPrevButton onClick={previousPage}>
-            <a href="#">&laquo;</a>
-          </NextPrevButton>
-          <Pagination
-            totalRecipes={numberOfRecipes}
-            recipesPerPage={limitOfRecipes}
-            paginate={setPageNumber}
-            numberOfPages={numberOfPages}
-            thisPage={pageNumber}
-          />
 
-          <NextPrevButton onClick={nextPage}>
-            <a href="#" onClick={nextPage}>
-              &raquo;
-            </a>
-          </NextPrevButton>
-        </PaginatedList>
+        {renderRecipes()}
+        {displayPagination()}
+
         <FooterComponent />
       </FlexWrapper>
     </>
