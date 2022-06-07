@@ -5,32 +5,33 @@ import { FlexWrapper } from "../../global-styles/Flex.styled";
 import CategoriesWrapperComponent from "../../ui/CategoryWrapper/CategoryWrapper";
 import InputSearchComponent from "../../ui/SearchInput/InputLoop";
 import FooterComponent from "../../ui/Footer/Footer";
+import { PaginatedList, NextPrevButton } from "./AllRecipes.styled";
 import axios from "axios";
 import { Pagination } from "../../ui/Pagination/Pagination";
 
 const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
   const [recipes, setRecipes] = useState([]);
-  // const [allRecipes, setAllRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); //wpisywany
   const [termToLookup, setTermToLookup] = useState(""); // wpisany w input termin
-  const [limitOfRecipes] = useState(4);
-  const [skip, setSkip] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [numberOfRecipes, setNumberOfRecipes] = useState();
   const [loading, setLoading] = useState(true);
+
+  const [limitOfRecipes] = useState(4);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
+  const [numberOfRecipes, setNumberOfRecipes] = useState();
 
   const fetchData = async () => {
     await axios({
-      url: `/recipes?limit=${limitOfRecipes}&skip=${skip}`,
+      url: `/recipes?limit=${limitOfRecipes}&page=${pageNumber}`,
     })
       .then((response) => {
-        console.log(response);
-        const limitedRecipes = response.data.data;
-        const recipesLength = response.data.total[0].count;
-        // const completeListOfRecipes = response.data.allData;
-        // setAllRecipes(completeListOfRecipes);
+        const limitedRecipes = response.data.filteredData;
+        const recipesLength = response.data.pagination.total;
+        const totalPages = response.data.pagination.pages;
+
         setRecipes(limitedRecipes);
         setNumberOfRecipes(recipesLength);
+        setNumberOfPages(totalPages);
       })
       .catch((error) => console.error(`Error: ${error} `));
     setLoading(false);
@@ -38,7 +39,7 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
 
   useEffect(() => {
     fetchData();
-  }, [skip, limitOfRecipes, searchTerm === ""]);
+  }, [limitOfRecipes, searchTerm === "", pageNumber, numberOfRecipes]);
 
   const fetchSearchData = async () => {
     await axios({
@@ -47,7 +48,6 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
       .then((response) => {
         const allRecipes = response.data;
         setRecipes(allRecipes);
-        // setAllRecipes(allRecipes);
       })
       .catch((error) => console.error(`Error: ${error} `));
     setLoading(false);
@@ -58,24 +58,15 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
   }, [termToLookup]);
 
   const nextPage = () => {
-    setSkip(skip + limitOfRecipes);
+    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
   };
+
   const previousPage = () => {
-    setSkip(skip - limitOfRecipes);
+    setPageNumber(Math.max(0, pageNumber - 1));
   };
-
-  const onPageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const indexOfLastRecipe = currentPage * limitOfRecipes;
-  const indexOfFirstRecipe = indexOfLastRecipe - limitOfRecipes;
-  console.log(recipes);
-
-  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
   const renderRecipes = () => {
-    return <AllDishesComponent recipes={currentRecipes} loading={loading} />;
+    return <AllDishesComponent recipes={recipes} loading={loading} />;
   };
 
   return (
@@ -91,16 +82,24 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
           searchTerm={searchTerm}
         />
         {renderRecipes()}
-        <div>
-          <button onClick={previousPage}>Previous Page</button>
+        <PaginatedList>
+          <NextPrevButton onClick={previousPage}>
+            <a href="#">&laquo;</a>
+          </NextPrevButton>
           <Pagination
             totalRecipes={numberOfRecipes}
             recipesPerPage={limitOfRecipes}
-            paginate={onPageChange}
+            paginate={setPageNumber}
+            numberOfPages={numberOfPages}
+            thisPage={pageNumber}
           />
 
-          <button onClick={nextPage}>Next Page</button>
-        </div>
+          <NextPrevButton onClick={nextPage}>
+            <a href="#" onClick={nextPage}>
+              &raquo;
+            </a>
+          </NextPrevButton>
+        </PaginatedList>
         <FooterComponent />
       </FlexWrapper>
     </>

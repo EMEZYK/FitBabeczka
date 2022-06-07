@@ -1,22 +1,38 @@
 import React from "react";
-import { PaginationList } from "./Pagination.styled";
+import { PaginationList, PageNumber } from "./Pagination.styled";
+import { useState } from "react";
 
-export const Pagination = ({ totalRecipes, recipesPerPage, paginate }) => {
-  const pageNumbers = [];
+export const Pagination = ({
+  totalRecipes,
+  recipesPerPage,
+  paginate,
+  thisPage,
+  numberOfPages,
+}) => {
+  const pageNumbers = new Array(numberOfPages).fill(null).map((v, i) => i);
 
-  for (let i = 1; i <= Math.ceil(totalRecipes / recipesPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  console.log("pageNumbers", pageNumbers);
+  const [activePageNumber, setActivePageNumber] = useState(0);
+
+  const toggleActive = (pageNum) => {
+    setActivePageNumber(pageNum);
+  };
+
   return (
     <nav>
       <PaginationList>
         {pageNumbers.map((page) => (
-          <li key={page} className="page-item">
-            <a href="#/" onClick={() => paginate(page)}>
-              {page}
+          <PageNumber
+            className={activePageNumber === page ? "active" : ""}
+            key={page}
+            onClick={() => {
+              toggleActive(page);
+              paginate(page);
+            }}
+          >
+            <a href="#/" className={activePageNumber === page ? "active" : ""}>
+              {page + 1}
             </a>
-          </li>
+          </PageNumber>
         ))}
       </PaginationList>
     </nav>

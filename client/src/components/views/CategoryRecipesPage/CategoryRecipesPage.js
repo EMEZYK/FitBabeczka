@@ -13,8 +13,6 @@ const CategoryRecipesPage = ({ categoryId, pageTitle }) => {
     (recipe) => recipe.category === categoryId
   );
 
-  console.log(recipesByCategory);
-
   const renderRecipes = () => {
     if (recipesByCategory) {
       return <AllDishesComponent recipes={recipesByCategory} />;

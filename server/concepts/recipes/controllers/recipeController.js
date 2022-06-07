@@ -4,14 +4,10 @@ import { getRecipes } from "../repositories/queries.js";
 
 export const getAllRecipes = async (req, res) => {
   try {
-    const page = parseInt(req.query.page);
-    const skipValue = parseInt(req.query.skip || 0);
     const limitValue = parseInt(req.query.limit);
-    // const skipValue = parseInt(page - 1) * limitValue;
 
-    // const sort = req.query.sort;
-    // const sort = JSON.parse(req.query.sort);
-
+    const page = parseInt(req.query.page || 1);
+    const skipValue = page * limitValue;
     const recipes = await getRecipes(skipValue, limitValue);
 
     return res.status(200).send(recipes);
@@ -58,7 +54,7 @@ export const searchRecipe = async (req, res) => {
   });
   // .sort(req.query.sort);
   // .limit(req.query.limit);
-  console.log(recipe);
+  // console.log(recipe);
 
   res.send(recipe);
 };

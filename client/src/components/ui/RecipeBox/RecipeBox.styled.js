@@ -61,7 +61,7 @@ export const ReadMoreButton = styled(Button)`
   padding: 0.2rem;
   text-transform: lowercase;
   font-weight: normal;
-  background-color: #6f6c6c;
+  background-color: #6d6d6c;
 
   &:hover {
     letter-spacing: 0.1rem;
