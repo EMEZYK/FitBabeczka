@@ -9,10 +9,11 @@ export const authenticationController = (req, res) => {
     expires: Date.now() + parseInt(36000),
   };
   const token = jwt.sign(JSON.stringify(payload), process.env.SECRET_KEY); //generuję token i w respons zwracam
+  console.log(token);
   res
     .cookie("jwt", token, { httpOnly: true, secure: true })
     .status(200)
-    .send("Authenticated succesfully, token in cookie"); //przypsuję jwt do cookie
+    .send({ token: token }); //przypsuję jwt do cookie
 };
 
 const verifyToken = (token) => {
@@ -33,4 +34,5 @@ export const isAuthenticated = (req, res, next) => {
   if (!check) {
     return res.status(401).send("You are not authenticated");
   }
+  console.log(token);
 };

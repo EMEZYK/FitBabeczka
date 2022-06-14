@@ -4,7 +4,7 @@ const AdminPanelPages = () => {
   const pages = [
     { source: "/user/home", name: "Mój profil" },
     { source: "/user/menu", name: "Menu" },
-    { source: "/user/login", name: "Wyloguj się", icon: "/icons/login.svg" },
+    { source: "/user/logout", name: "Wyloguj się", icon: "/icons/login.svg" },
   ];
   return pages.map((page) => (
     <Navbar

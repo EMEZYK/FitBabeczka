@@ -20,7 +20,8 @@ export const theme = {
       searchButton: "#fff",
     },
     card: {
-      boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+      boxShadow: "0px 2px 2px 1px rgba(0, 0, 0, 0.25)",
+      loginBoxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)",
       primary: "#fff",
       secondary: "#F4F1F4",
     },

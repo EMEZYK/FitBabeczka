@@ -20,11 +20,16 @@ import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";
 import LandingPanelPages from "./components/views/Navigation/GeneralNavbarPages";
 import RecipePage from "./components/views/OneRecipePage/OneRecipePage";
 import { theme } from "./theme/theme";
+import { Logout } from "./components/views/LoginPage/Logout";
 import RecipesProvider from "./context/recipes-context";
 import CategoryRecipesPage from "./components/views/CategoryRecipesPage/CategoryRecipesPage";
 import useFetchData from "./hooks/fetch-data";
+import { Navigate } from "react-router-dom";
+import { useState } from "react";
 
 const App = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
   const { response, error } = useFetchData({
     url: "/categories",
     method: "GET",
@@ -42,10 +47,6 @@ const App = () => {
           <GlobalStyles />
           <Router>
             <Routes>
-              <Route element={<PagesWithAdminNavbar />}>
-                <Route path="/user/home" element={<UserHomePage />} />
-                <Route path="/user/menu" element={<EditMenuPage />} />
-              </Route>
               <Route path="/" element={<PagesWithCommonNavbar />}>
                 <Route
                   path="/"
@@ -79,9 +80,18 @@ const App = () => {
                   />
                 ))}
                 <Route path="/kontakt" element={<AboutMePage />} />
-                <Route path="/user/login" element={<LoginPage />} />
+                <Route
+                  path="/user/login"
+                  element={<LoginPage setIsAuth={setIsAuth} />}
+                />
               </Route>
-              <Route path="/user/przepis" element={<DishFormPage />} />
+
+              <Route path="/" element={<PagesWithAdminNavbar auth={isAuth} />}>
+                <Route path="/user/home" element={<UserHomePage />} />
+                <Route path="/user/menu" element={<EditMenuPage />} />
+                <Route path="/user/logout" element={<Logout />} />
+                <Route path="/user/przepis" element={<DishFormPage />} />
+              </Route>
 
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
@@ -92,12 +102,14 @@ const App = () => {
   );
 };
 
-const PagesWithAdminNavbar = () => {
-  return (
+const PagesWithAdminNavbar = ({ auth }) => {
+  return auth ? (
     <>
       <NavigateContainer page={<AdminPanelPages />} />
       <Outlet />
     </>
+  ) : (
+    <Navigate to="/user/login" />
   );
 };
 

@@ -12,4 +12,5 @@ export const FlexWrapper = styled.div`
   padding: ${({ padding }) => (padding ? padding : "0")};
   justify-content: center;
   border-bottom: ${({ border }) => (border ? border : "0")};
+  /* min-height: ${({ minHeight }) => (minHeight ? minHeight : "100%")}; ; */
 `;
