@@ -1,10 +1,10 @@
 import React from "react";
-
+import { FlexWrapper } from "../../global-styles/Flex.styled";
 const EditMenuPage = () => {
   return (
-    <>
-      <div>Edit dishes page </div>;
-    </>
+    <FlexWrapper>
+      <div>Edit dishes page </div>
+    </FlexWrapper>
   );
 };
 

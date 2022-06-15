@@ -14,9 +14,10 @@ import { useCookies } from "react-cookie";
 import { useFormik } from "formik";
 import { signInSchema } from "./LoginValidationSchema";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../../context/recipes-context";
 
-const LoginPage = ({ setIsAuth }) => {
+const LoginPage = ({ setIsAuth, setUserId }) => {
   const [, setToken] = useCookies(["token"]);
 
   const signInFormHandler = useFormik({
@@ -50,11 +51,19 @@ const LoginPage = ({ setIsAuth }) => {
     })
       .then((response) => {
         setToken("token", response.data.token);
+        const decodedToken = jwt_decode(response.data.token);
+        const userId = decodedToken.userid;
+        setUserId(userId);
+
+        // console.log(response);
+
         setIsAuth(true);
         navigation();
       })
       .catch(() => {
-        return toast.error("Incorrect data, check your credentials");
+        return toast.error(
+          "Nieudana próba logowania. Sprawdź wprowadzane dane"
+        );
       });
   };
 

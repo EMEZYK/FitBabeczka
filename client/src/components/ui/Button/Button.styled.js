@@ -3,6 +3,7 @@ import { theme } from "../../../theme/theme";
 
 export const Button = styled.button`
   min-width: ${({ minWidth }) => (minWidth ? minWidth : "6rem")};
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "8rem")};
   min-height: ${({ height }) => (height ? height : "1.4rem")};
   padding: ${({ padding }) => (padding ? padding : "0.5rem")};
   margin: ${({ margin }) => (margin ? margin : "0")};

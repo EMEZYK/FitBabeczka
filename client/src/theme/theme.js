@@ -6,6 +6,7 @@ export const theme = {
       mobileBackgroundColor: "#fff",
       heading: "#F8CECE",
       border: "#DEA8A8",
+      form: "#e4caca",
     },
     navbar: {
       primary: "#fff",
@@ -16,8 +17,9 @@ export const theme = {
       primary: "#6f6c6c",
       secondary: "#e4caca",
       boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-      activePage: "#F8CECE",
+      active: "#e6c6c6",
       searchButton: "#fff",
+      border: "#754279",
     },
     card: {
       boxShadow: "0px 2px 2px 1px rgba(0, 0, 0, 0.25)",

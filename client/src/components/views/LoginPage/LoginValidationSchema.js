@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
-const RegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+export const RegExp =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 export const signInSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),

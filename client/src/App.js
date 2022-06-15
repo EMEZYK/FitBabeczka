@@ -12,7 +12,7 @@ import AboutMePage from "./components/views/ContactPage/AboutMePage";
 import AllRecipesPage from "./components/views/AllRecipesPage/AllRecipes";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NotFoundPage from "./components/views/NotFoundPage/NotFoundPage";
-import UserHomePage from "./components/views/AdminPanel/UserHomePage";
+import EditProfilePage from "./components/views/AdminPanel/EditUserPage/EditUserProfilePage";
 import EditMenuPage from "./components/views/AdminPanel/ManageMenuPage";
 import DishFormPage from "./components/views/AdminPanel/DishFormPage";
 import NavigateContainer from "./components/ui/Navbar/NavContainer";
@@ -29,6 +29,7 @@ import { useState } from "react";
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
+  const [userId, setUserId] = useState();
 
   const { response, error } = useFetchData({
     url: "/categories",
@@ -82,12 +83,17 @@ const App = () => {
                 <Route path="/kontakt" element={<AboutMePage />} />
                 <Route
                   path="/user/login"
-                  element={<LoginPage setIsAuth={setIsAuth} />}
+                  element={
+                    <LoginPage setIsAuth={setIsAuth} setUserId={setUserId} />
+                  }
                 />
               </Route>
 
               <Route path="/" element={<PagesWithAdminNavbar auth={isAuth} />}>
-                <Route path="/user/home" element={<UserHomePage />} />
+                <Route
+                  path="/user/home"
+                  element={<EditProfilePage userId={userId} />}
+                />
                 <Route path="/user/menu" element={<EditMenuPage />} />
                 <Route path="/user/logout" element={<Logout />} />
                 <Route path="/user/przepis" element={<DishFormPage />} />

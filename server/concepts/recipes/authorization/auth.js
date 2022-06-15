@@ -6,8 +6,10 @@ import express from "express";
 export const authenticationController = (req, res) => {
   const payload = {
     username: req.user.email, // te dane trafią do JWT
+    userid: req.user._id,
     expires: Date.now() + parseInt(36000),
   };
+
   const token = jwt.sign(JSON.stringify(payload), process.env.SECRET_KEY); //generuję token i w respons zwracam
   console.log(token);
   res

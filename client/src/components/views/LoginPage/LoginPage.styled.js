@@ -30,7 +30,7 @@ export const LoginForm = styled.form`
 `;
 
 export const Input = styled.input`
-  min-height: 2.4rem;
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : "2.4rem")};
   text-align: left;
   padding: 0 0 0 0.6rem;
   margin: 0.6rem 0 0 0;
@@ -59,6 +59,6 @@ export const LoginButton = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.button.activePage};
+    background-color: ${({ theme }) => theme.colors.button.active};
   }
 `;
