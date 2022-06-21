@@ -13,7 +13,7 @@ import AllRecipesPage from "./components/views/AllRecipesPage/AllRecipes";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NotFoundPage from "./components/views/NotFoundPage/NotFoundPage";
 import EditProfilePage from "./components/views/AdminPanel/EditUserPage/EditUserProfilePage";
-import EditMenuPage from "./components/views/AdminPanel/ManageMenuPage";
+import EditMenuPage from "./components/views/AdminPanel/ManageRecipesPage/ManageRecipesPage";
 import DishFormPage from "./components/views/AdminPanel/DishFormPage";
 import NavigateContainer from "./components/ui/Navbar/NavContainer";
 import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";

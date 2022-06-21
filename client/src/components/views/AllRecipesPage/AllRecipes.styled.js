@@ -4,6 +4,7 @@ export const PaginatedList = styled.div`
   display: flex;
   height: 3rem;
   align-items: center;
+  margin: 0 0 1rem 0;
 `;
 
 export const NextPrevButton = styled.button`

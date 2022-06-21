@@ -1,27 +1,36 @@
 import GridContainer from "../../global-styles/Grid.styled";
 import RecipeBoxComponent from "../RecipeBox/RecipeBox";
-import { NavLink } from "react-router-dom";
+import RecipeEditableBox from "../RecipeBox/RecipeEditableBox";
 
-const AllDishesComponent = ({ recipes, loading }) => {
+const AllDishesComponent = ({
+  recipes,
+  loading,
+  isEditable,
+  setDeletedRecipeId,
+}) => {
   recipes = recipes ? recipes : [];
-  // recipes = recipes ? recipes : [];
 
   if (loading) {
     return <h2>Loading...</h2>;
   }
 
   return (
-    <GridContainer>
-      {recipes.map((recipe) => (
-        <NavLink
-          to={`/${recipe._id}`}
-          style={{ textDecoration: "none", color: "#000" }}
-          key={recipe._id}
-        >
-          <RecipeBoxComponent recipe={recipe}></RecipeBoxComponent>
-        </NavLink>
-      ))}
-    </GridContainer>
+    <>
+      <GridContainer>
+        {recipes.map((recipe) => (
+          <>
+            {isEditable ? (
+              <RecipeEditableBox
+                recipe={recipe}
+                setDeletedRecipeId={setDeletedRecipeId}
+              ></RecipeEditableBox>
+            ) : (
+              <RecipeBoxComponent recipe={recipe}></RecipeBoxComponent>
+            )}
+          </>
+        ))}
+      </GridContainer>
+    </>
   );
 };
 

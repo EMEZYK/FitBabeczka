@@ -1,9 +1,9 @@
 import React from "react";
 import { FlexWrapper } from "../../../global-styles/Flex.styled";
 import {
-  EditProfileWrapper,
+  FormWrapper,
   Title,
-  EditProfileForm,
+  Form,
   LabelName,
   SaveButton,
 } from "./EditUserProfilePage.styled";
@@ -57,9 +57,9 @@ const EditProfilePage = ({ userId }) => {
   return (
     <>
       <FlexWrapper>
-        <EditProfileWrapper>
+        <FormWrapper>
           <Title>Zmień hasło</Title>
-          <EditProfileForm type="submit" onSubmit={onSubmitHandler}>
+          <Form type="submit" onSubmit={onSubmitHandler}>
             <LabelName htmlFor="email">Email</LabelName>
             <Input
               type="email"
@@ -68,6 +68,7 @@ const EditProfilePage = ({ userId }) => {
               onChange={editProfileFormHandler.handleChange}
               onBlur={editProfileFormHandler.handleBlur}
               required
+              border="0.2px solid #DEA8A8"
             />
             {editProfileFormHandler.errors.email ? (
               <div>{editProfileFormHandler.errors.email}</div>
@@ -80,6 +81,7 @@ const EditProfilePage = ({ userId }) => {
               onChange={editProfileFormHandler.handleChange}
               onBlur={editProfileFormHandler.handleBlur}
               required
+              border="0.2px solid #DEA8A8"
             />
             {editProfileFormHandler.errors.password ? (
               <div>{editProfileFormHandler.errors.password}</div>
@@ -92,14 +94,15 @@ const EditProfilePage = ({ userId }) => {
               onChange={editProfileFormHandler.handleChange}
               onBlur={editProfileFormHandler.handleBlur}
               required
+              border="0.2px solid #DEA8A8"
             />
             {editProfileFormHandler.errors.confirmPassword ? (
               <div>{editProfileFormHandler.errors.confirmPassword}</div>
             ) : null}
             <SaveButton type="submit">Zapisz</SaveButton>
             <ToastContainer />
-          </EditProfileForm>
-        </EditProfileWrapper>
+          </Form>
+        </FormWrapper>
       </FlexWrapper>
     </>
   );

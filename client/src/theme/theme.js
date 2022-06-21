@@ -18,7 +18,9 @@ export const theme = {
       secondary: "#e4caca",
       boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       active: "#e6c6c6",
+      cancel: "#ddd",
       searchButton: "#fff",
+      dropdownButton: "#fff",
       border: "#754279",
     },
     card: {
@@ -29,6 +31,9 @@ export const theme = {
     },
     input: {
       primary: "#fff",
+    },
+    dropdown: {
+      list: "#fff",
     },
     footer: {
       primary: "#000",

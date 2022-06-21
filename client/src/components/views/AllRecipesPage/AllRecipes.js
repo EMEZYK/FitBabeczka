@@ -5,11 +5,15 @@ import { FlexWrapper } from "../../global-styles/Flex.styled";
 import CategoriesWrapperComponent from "../../ui/CategoryWrapper/CategoryWrapper";
 import InputSearchComponent from "../../ui/SearchInput/InputLoop";
 import FooterComponent from "../../ui/Footer/Footer";
-import { PaginatedList, NextPrevButton } from "./AllRecipes.styled";
 import axios from "axios";
 import { Pagination } from "../../ui/Pagination/Pagination";
 
-const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
+const AllRecipesPage = ({
+  categories,
+  categoriesLoadingError,
+  isEditable,
+  displayFooter,
+}) => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); //wpisywany
   const [termToLookup, setTermToLookup] = useState(""); // wpisany w input termin
@@ -19,6 +23,8 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [numberOfRecipes, setNumberOfRecipes] = useState();
+
+  const [deletedRecipeId, setDeletedRecipeId] = useState("");
 
   const fetchData = async () => {
     await axios({
@@ -39,7 +45,13 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
 
   useEffect(() => {
     fetchData();
-  }, [limitOfRecipes, searchTerm === "", pageNumber, numberOfRecipes]);
+  }, [
+    limitOfRecipes,
+    searchTerm === "",
+    pageNumber,
+    numberOfRecipes,
+    deletedRecipeId,
+  ]);
 
   const fetchSearchData = async () => {
     await axios({
@@ -74,7 +86,14 @@ const AllRecipesPage = ({ categories, categoriesLoadingError }) => {
   };
 
   const renderRecipes = () => {
-    return <AllDishesComponent recipes={recipes} loading={loading} />;
+    return (
+      <AllDishesComponent
+        recipes={recipes}
+        loading={loading}
+        isEditable={isEditable}
+        setDeletedRecipeId={setDeletedRecipeId}
+      />
+    );
   };
 
   return (

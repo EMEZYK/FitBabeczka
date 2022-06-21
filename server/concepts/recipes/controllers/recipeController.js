@@ -24,9 +24,10 @@ export const getRecipe = async (req, res) => {
 };
 
 export const createRecipe = async (req, res) => {
+  console.log(req.body);
   Recipe.create(req.body)
     .then((result) => res.status(200).json(result))
-    .catch((error) => res.status(500).json({ msg: error }));
+    .catch((error) => console.log(error.message));
 };
 
 export const updateRecipe = async (req, res) => {

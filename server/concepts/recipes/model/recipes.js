@@ -23,19 +23,24 @@ const recipeSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    image: [
-      {
-        url: {
-          type: String,
-          required: true,
-        },
-        isMainPhoto: {
-          type: Boolean,
-          required: true,
-          default: false,
-        },
-      },
-    ],
+    image: {
+      url: String,
+      type: String,
+      required: true,
+    },
+    // image: [
+    //   {
+    //     url: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     isMainPhoto: {
+    //       type: Boolean,
+    //       required: true,
+    //       default: false,
+    //     },
+    //   },
+    // ],
     time: {
       type: String,
       required: true,

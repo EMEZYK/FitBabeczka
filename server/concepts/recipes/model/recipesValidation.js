@@ -7,12 +7,13 @@ const validateRecipe = (recipe) => {
     ingredients: Joi.array().items(Joi.string()).descriptionmax(40).required(),
     preparation: Joi.string().max(500).required(),
     category: Joi.objectId().required(),
-    image: Joi.array().items(
-      Joi.object({
-        url: Joi.string().required(),
-        isMainPhoto: Joi.boolean().required(),
-      })
-    ),
+    image: Joi.string().required(),
+    // image: Joi.array().items(
+    //   Joi.object({
+    //     url: Joi.string().required(),
+    //     isMainPhoto: Joi.boolean().required(),
+    //   })
+    // ),
   });
 
   return schema.validate(recipe);

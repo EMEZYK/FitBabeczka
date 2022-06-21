@@ -27,23 +27,6 @@ export const SearchInput = styled.input`
   border: 0;
   padding: 0 0.2rem;
   background-color: #fff;
-
-  :-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-  }
-
-  ::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    height: 0.8rem;
-    width: 0.8rem;
-    background-image: url("/icons/clear.svg");
-    background-size: 0.8rem 0.8rem;
-    cursor: pointer;
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const InputIcon = styled.svg`
@@ -63,7 +46,6 @@ export const LoopButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.button.searchButton};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.button.secondary}; */
+    background-color: ${({ theme }) => theme.colors.button.secondary};
   }
-
 `;
