@@ -6,7 +6,7 @@ import { Button } from "../../../ui/Button/Button.styled";
 export const FormWrapper = styled(FlexWrapper)`
   background-color: hsl(0 20% 88%);
   max-width: 33vw;
-  min-height: 80vh;
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : "80vh")};
   border-radius: 4px;
   box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : theme.fontsize.xl)}px;

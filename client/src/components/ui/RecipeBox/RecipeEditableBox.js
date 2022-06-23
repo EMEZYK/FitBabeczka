@@ -64,7 +64,7 @@ const RecipeEditableBox = (props) => {
           style={{ textDecoration: "none", color: "#000" }}
           key={props.recipe._id}
         >
-          <Image src={props.recipe.image[0].url} alt=""></Image>
+          <Image src={props.recipe.image} alt=""></Image>
         </NavLink>
         <RecipeNameWrapper>
           <RecipeName>{props.recipe.name}</RecipeName>

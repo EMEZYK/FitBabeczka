@@ -6,7 +6,14 @@ import mongoose from "mongoose";
 import recipeRoutes from "./concepts/recipes/routes/recipeRoutes.js";
 import categoriesRoutes from "./concepts/recipes/routes/categoriesRoutes.js";
 import adminRoutes from "./concepts/recipes/routes/adminRoutes.js";
+import multer from "multer";
 import passport from "passport";
+import path from "path";
+import { dirname } from "path";
+// import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 config();
 
@@ -18,6 +25,29 @@ app.use(express.static("public")); //zeby za kazdym razem nie trzeba bylo calej 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "./uploads");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.fieldname + "-" + Date.now());
+//   },
+// });
+
+// const filefilter = (req, file, cb) => {
+//   if (
+//     file.mimetype === "image/png" ||
+//     file.mimetype === "image/jpg" ||
+//     file.mimetype === "image/jpeg"
+//   ) {
+//     cb(null, true);
+//   } else {
+//     cb(null, false);
+//   }
+// };
+
+// const upload = multer({ storage: storage, filefilter: filefilter });
 
 mongoose
   .connect(process.env.DB_CONNECT, {
@@ -31,3 +61,4 @@ mongoose
 app.use("/recipes", recipeRoutes);
 app.use("/categories", categoriesRoutes);
 app.use("/admin", adminRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));

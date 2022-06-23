@@ -2,13 +2,7 @@ import React from "react";
 
 import { DropdownComponent } from "./Dropdown";
 
-export const DifficultyLevelDropdown = ({
-  onChange,
-  value,
-  onBlur,
-  // name,
-  id,
-}) => {
+export const DifficultyLevelDropdown = ({ onChange, value, onBlur, id }) => {
   const difficultyLevels = [
     { label: "Trudny", value: "Trudny" },
     { label: "Średni", value: "Średni" },

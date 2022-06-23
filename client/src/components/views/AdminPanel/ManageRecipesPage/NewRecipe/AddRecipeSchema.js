@@ -9,5 +9,7 @@ export const addRecipeSchema = Yup.object({
   servingsNumber: Yup.number().required("Podaj ilość porcji"),
   time: Yup.string().required("Podaj czas przygotowania"),
   difficultyLevel: Yup.string().required("Podaj poziom trudności"),
-  image: Yup.string().required("Dodaj link do zdjęcia"),
+  image: Yup.object().nullable().optional(),
+
+  // image: Yup.mixed().nullable().required("Dodaj link do zdjęcia"),
 });

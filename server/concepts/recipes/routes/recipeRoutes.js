@@ -7,12 +7,13 @@ import {
   deleteRecipe,
   searchRecipe,
 } from "../controllers/recipeController.js";
+import { upload } from "../useCases/upload.js";
 const router = express.Router();
 
 router.get("/", getAllRecipes);
 router.get("/search/:key", searchRecipe);
 router.get("/:id", getRecipe);
-router.post("/", createRecipe);
+router.post("/", upload.single("photo"), createRecipe);
 router.put("/:id", updateRecipe);
 router.delete("/:id", deleteRecipe);
 

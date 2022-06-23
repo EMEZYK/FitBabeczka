@@ -1,25 +1,12 @@
 import React from "react";
-// import {
-//   Dropdown,
-//   DropdownButton,
-//   SelectedCategory,
-//   ShowList,
-//   ListOfItems,
-//   Item,
-//   Select,
-// } from "./CategoryDropdown.styled";
 import { useState } from "react";
 import Select from "react-select";
-// import Async, { useAsync } from "react-select/async";
 import AsyncSelect from "react-select/async";
 
 export const DropdownComponent = ({
-  // items,
   onChange,
-  // onInputChange,
   value,
   onBlur,
-  name,
   id,
   options,
   async,
@@ -31,10 +18,19 @@ export const DropdownComponent = ({
   };
 
   const handleChange = (value) => {
-    console.log("tutaj", value);
-
     setSelectedValue(value);
     onChange(value);
+  };
+
+  const customStyles = {
+    option: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+    }),
+    control: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+    }),
   };
 
   return (
@@ -50,6 +46,7 @@ export const DropdownComponent = ({
           loadOptions={promiseOptions}
           getOptionLabel={(e) => e.name}
           getOptionValue={(e) => e._id}
+          styles={customStyles}
         />
       ) : (
         <Select
@@ -61,7 +58,7 @@ export const DropdownComponent = ({
           }}
           options={options}
           onBlur={onBlur}
-          style={{ display: "block" }}
+          styles={customStyles}
         ></Select>
       )}
     </>

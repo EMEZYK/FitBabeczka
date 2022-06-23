@@ -23,6 +23,7 @@ import { useParams } from "react-router-dom";
 export const RecipePage = () => {
   const recipes = useContext(GetRecipes);
   console.log("rec", recipes);
+  console.log(recipes);
 
   const { id } = useParams();
 
@@ -31,15 +32,16 @@ export const RecipePage = () => {
   }
   const recipe = recipes.filteredData.find((recipe) => recipe._id === id);
   let recipeLevel = recipe.difficultyLevel;
+  console.log(recipeLevel);
 
   switch (recipeLevel) {
-    case "łatwy":
+    case "Łatwy":
       recipeLevel = "/icons/level.png";
       break;
-    case "średni":
+    case "Średni":
       recipeLevel = "/icons/medium-level.png";
       break;
-    case "trudny":
+    case "Trudny":
       recipeLevel = "/icons/high-level.png";
       break;
     default:
@@ -50,7 +52,7 @@ export const RecipePage = () => {
     <RecipeContainer>
       <FlexWrapper height={"80vh"} width={"90%"}>
         <ImageContainer>
-          <Image src={recipe.image[0].url} />
+          <Image src={recipe.image} />
           <RecipeInfoCard image={"/icons/time.png"} details={recipe.time} />
           <RecipeInfoCard
             image={recipeLevel}

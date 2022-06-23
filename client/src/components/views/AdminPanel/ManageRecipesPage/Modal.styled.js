@@ -15,14 +15,15 @@ export const ModalWrapper = styled.div`
   top: ${({ topDistance }) => (topDistance ? topDistance : "20vh")};
   left: 25%;
   width: 50%;
-  background-color: #fff;
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? backgroundColor : "#fff"};
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   z-index: 10;
-  overflow-y: scroll;
-  min-height: 80vh;
-  max-height: 90vh;
+  overflow-y: ${({ scroll }) => (scroll ? scroll : "scroll")};
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : "80vh")};
+  max-height: ${({ maxHeight }) => (maxHeight ? maxHeight : "90vh")};
 
   p {
     margin: 0 0 1rem 0;
@@ -31,13 +32,13 @@ export const ModalWrapper = styled.div`
   button {
     cursor: pointer;
     border: 0;
-    /* border-radius: 3px; */
   }
 `;
 
 export const DeleteButton = styled.button`
   background-color: #ff0000;
   margin: 0 0.4rem 0 0;
+  padding: 0.4rem;
   color: #fff;
 
   :hover {
@@ -47,7 +48,7 @@ export const DeleteButton = styled.button`
 
 export const CancelButton = styled.button`
   background-color: ${({ theme }) => theme.colors.button.cancel};
-
+  padding: 0.4rem;
   :hover {
     background-color: #b1b1b1;
   }

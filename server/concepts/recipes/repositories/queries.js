@@ -2,8 +2,8 @@ import Recipe from "../model/recipes.js";
 import mongoose from "mongoose";
 
 export async function getRecipes(skip, limit, sort) {
-  console.log(skip);
-  console.log(limit);
+  // console.log(skip);
+  // console.log(limit);
   const recipes = await Recipe.aggregate([
     { $match: {} },
     {

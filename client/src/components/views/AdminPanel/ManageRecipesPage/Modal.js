@@ -14,7 +14,7 @@ export const Modal = ({ onDelete, onClose }) => {
     <Fragment>
       {ReactDOM.createPortal(
         <Backdrop>
-          <ModalWrapper>
+          <ModalWrapper minHeight="10vh" maxHeight="20vh" scroll="none">
             <p>Czy na pewno chcesz usunąć ten przepis?</p>
             <div>
               <DeleteButton onClick={onDelete}>Usuń</DeleteButton>
