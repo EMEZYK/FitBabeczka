@@ -55,8 +55,6 @@ const LoginPage = ({ setIsAuth, setUserId }) => {
         const userId = decodedToken.userid;
         setUserId(userId);
 
-        // console.log(response);
-
         setIsAuth(true);
         navigation();
       })

@@ -5,13 +5,21 @@ import { AddRecipe } from "./AddRecipe";
 
 const modal = document.getElementById("modal");
 
-export const NewRecipeModal = ({ setOpenModal }) => {
+export const NewRecipeModal = ({
+  setOpenModal,
+  setContext,
+  modalRecipeTitle,
+}) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
         <Backdrop>
           <ModalWrapper topDistance="5vh">
-            <AddRecipe setOpenModal={setOpenModal} />
+            <AddRecipe
+              setOpenModal={setOpenModal}
+              setContext={setContext}
+              modalRecipeTitle={modalRecipeTitle}
+            />
           </ModalWrapper>
         </Backdrop>,
         modal

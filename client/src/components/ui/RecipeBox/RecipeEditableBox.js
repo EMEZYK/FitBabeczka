@@ -10,11 +10,11 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { Modal } from "../../views/AdminPanel/ManageRecipesPage/Modal";
 import { useState } from "react";
+import { NewRecipeModal } from "../../views/AdminPanel/ManageRecipesPage/NewRecipe/NewRecipeModal";
 
 const RecipeEditableBox = (props) => {
   const [openModal, setOpenModal] = useState(false);
-
-  // console.log(props);
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const recipeId = props.recipe._id;
 
@@ -46,6 +46,11 @@ const RecipeEditableBox = (props) => {
     setOpenModal(true);
   };
 
+  const onEditButtonClick = () => {
+    fetchEditRecipe();
+    setOpenEditModal(true);
+  };
+
   const closeModal = () => {
     setOpenModal(false);
   };
@@ -70,9 +75,15 @@ const RecipeEditableBox = (props) => {
           <RecipeName>{props.recipe.name}</RecipeName>
         </RecipeNameWrapper>
         <ManageRecipeWrapper>
-          <button type="button" onClick={fetchEditRecipe}>
+          <button type="button" onClick={onEditButtonClick}>
             <img src="/icons/editRecipe.svg" alt="" />
           </button>
+          {openEditModal && (
+            <NewRecipeModal
+              setOpenModal={setOpenEditModal}
+              modalRecipeTitle="Edytuj przepis"
+            />
+          )}
           <button type="button" onClick={onDeleteButtonClick}>
             <img src="/icons/deleteRecipe.svg" alt="" />
           </button>

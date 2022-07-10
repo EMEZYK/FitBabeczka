@@ -15,10 +15,6 @@ export const NavContainer = styled.nav`
     margin-right: 1rem;
   }
 
-  /* a:hover {
-    color: #b12337;
-  } */
-
   .left-container {
     width: 30%;
     display: flex;

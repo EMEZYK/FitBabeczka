@@ -6,7 +6,6 @@ export const AddRecipeWrapper = styled(FlexWrapper)`
   width: 100%;
   background-color: #fff;
   align-items: center;
-  /* flex-direction: row; */
 `;
 
 export const AddRecipeButton = styled.button`
@@ -14,7 +13,6 @@ export const AddRecipeButton = styled.button`
   cursor: pointer;
   border: 0;
   background-color: #fff;
-  /* background-color: ${({ theme }) => theme.colors.common.backgroundColor}; */
 `;
 export const AddRecipeIcon = styled.img`
   max-width: 100%;

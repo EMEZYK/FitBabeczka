@@ -13,6 +13,7 @@ const AllRecipesPage = ({
   categoriesLoadingError,
   isEditable,
   displayFooter,
+  openModal,
 }) => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); //wpisywany
@@ -44,6 +45,9 @@ const AllRecipesPage = ({
   };
 
   useEffect(() => {
+    if (openModal) {
+      return;
+    }
     fetchData();
   }, [
     limitOfRecipes,
@@ -51,6 +55,7 @@ const AllRecipesPage = ({
     pageNumber,
     numberOfRecipes,
     deletedRecipeId,
+    openModal,
   ]);
 
   const fetchSearchData = async () => {

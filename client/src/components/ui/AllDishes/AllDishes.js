@@ -7,6 +7,7 @@ const AllDishesComponent = ({
   loading,
   isEditable,
   setDeletedRecipeId,
+  setAddedRecipeId,
 }) => {
   recipes = recipes ? recipes : [];
 
@@ -21,11 +22,16 @@ const AllDishesComponent = ({
           <>
             {isEditable ? (
               <RecipeEditableBox
+                key={recipe._id}
                 recipe={recipe}
                 setDeletedRecipeId={setDeletedRecipeId}
               ></RecipeEditableBox>
             ) : (
-              <RecipeBoxComponent recipe={recipe}></RecipeBoxComponent>
+              <RecipeBoxComponent
+                recipe={recipe}
+                key={recipe._id}
+                setAddedRecipeId={setAddedRecipeId}
+              ></RecipeBoxComponent>
             )}
           </>
         ))}

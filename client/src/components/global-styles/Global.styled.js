@@ -12,7 +12,6 @@ body {
     background-color: ${({ theme }) => theme.colors.common.body};
     font-family:'Open Sans', sans-serif;
     font-size: 1.13em;
-    /* height:100%; */
    
 }
 img {

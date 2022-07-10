@@ -16,23 +16,36 @@ import {
   ImageContainer,
 } from "./OneRecipePage.styled";
 import { RecipeInfoCard } from "../../ui/Card/InfoCard";
-import { useContext } from "react";
-import { GetRecipes } from "../../../context/recipes-context";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const RecipePage = () => {
-  const recipes = useContext(GetRecipes);
-  console.log("rec", recipes);
-  console.log(recipes);
+  const [recipe, setRecipe] = useState([]);
 
   const { id } = useParams();
 
-  if (recipes.length === 0) {
+  const fetchGetOneRecipe = async () => {
+    await axios({
+      url: `/recipes/${id}`,
+    })
+      .then((response) => {
+        setRecipe(response.data);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    fetchGetOneRecipe();
+  }, [id]);
+
+  if (recipe.length === 0) {
     return <div>Loading...</div>;
   }
-  const recipe = recipes.filteredData.find((recipe) => recipe._id === id);
+
+  console.log("przepis", recipe);
+
   let recipeLevel = recipe.difficultyLevel;
-  console.log(recipeLevel);
 
   switch (recipeLevel) {
     case "Łatwy":

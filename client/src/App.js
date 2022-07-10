@@ -26,6 +26,8 @@ import CategoryRecipesPage from "./components/views/CategoryRecipesPage/Category
 import useFetchData from "./hooks/fetch-data";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
+import { useContext } from "react";
+import { GetRecipes } from "./context/recipes-context";
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
@@ -38,6 +40,7 @@ const App = () => {
       accept: "*/*",
     },
   });
+  const recipes = useContext(GetRecipes);
 
   const categories = response;
 
@@ -94,7 +97,10 @@ const App = () => {
                   path="/user/home"
                   element={<EditProfilePage userId={userId} />}
                 />
-                <Route path="/user/menu" element={<EditMenuPage />} />
+                <Route
+                  path="/user/menu"
+                  element={<EditMenuPage setContext={recipes} />}
+                />
                 <Route path="/user/logout" element={<Logout />} />
                 <Route path="/user/przepis" element={<DishFormPage />} />
               </Route>
