@@ -14,7 +14,7 @@ router.get("/", getAllRecipes);
 router.get("/search/:key", searchRecipe);
 router.get("/:id", getRecipe);
 router.post("/", upload.single("photo"), createRecipe);
-router.put("/:id", updateRecipe);
+router.put("/:id", upload.single("photo"), updateRecipe);
 router.delete("/:id", deleteRecipe);
 
 export default router;

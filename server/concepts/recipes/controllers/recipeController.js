@@ -85,6 +85,7 @@ export const createRecipe = async (req, res) => {
 };
 
 export const updateRecipe = async (req, res) => {
+  const body = req.body;
   Recipe.findByIdAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
     runValidators: true,

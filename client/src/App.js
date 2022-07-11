@@ -99,7 +99,12 @@ const App = () => {
                 />
                 <Route
                   path="/user/menu"
-                  element={<EditMenuPage setContext={recipes} />}
+                  element={
+                    <EditMenuPage
+                      setContext={recipes}
+                      categories={categories}
+                    />
+                  }
                 />
                 <Route path="/user/logout" element={<Logout />} />
                 <Route path="/user/przepis" element={<DishFormPage />} />

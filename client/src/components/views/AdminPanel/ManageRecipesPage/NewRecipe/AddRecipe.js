@@ -15,8 +15,21 @@ import { DropDownCategory } from "./Dropdown/CategoryDropdown";
 import { DifficultyLevelDropdown } from "./Dropdown/DifficultyLevelDropdown";
 import { addRecipeSchema } from "./AddRecipeSchema";
 import { FormikProvider } from "formik";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export const AddRecipe = ({ setOpenModal, setContext, modalRecipeTitle }) => {
+export const AddRecipe = ({
+  setOpenModal,
+  modalRecipeTitle,
+  addOperation = true, //by default form handlers new recipe, but can be used to edit if set to false
+  recipeId,
+  // onSuccess,
+  // onFail,
+  categories,
+}) => {
+  const [recipeData, setRecipeData] = useState([]);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -30,24 +43,90 @@ export const AddRecipe = ({ setOpenModal, setContext, modalRecipeTitle }) => {
       photo: "",
     },
     validationSchema: addRecipeSchema,
+
     onSubmit: (values) => {
       values.ingredients = JSON.stringify([values.ingredients]);
       const formData = new FormData();
-      console.log(formData);
       for (let value in values) {
         formData.append(value, values[value]);
       }
-
-      axios
-        .post("/recipes", formData)
-        .then((res) => {
-          setOpenModal(false);
-        })
-        .cache((e) => console.log("Failed to upload recipe", e.message));
-
-      setContext(console.log("kontekst"));
+      if (addOperation) {
+        axios
+          .post("/recipes", formData)
+          .then((res) => {
+            setOpenModal(false);
+          })
+          .catch((e) => console.log("Failed to upload recipe", e.message));
+      } else {
+        axios
+          .put(`/recipes/${recipeId}`, formData)
+          .then(() => {
+            // onSuccess()
+            // toast.success("Twój przepis został zaktualizowany");
+            setOpenModal(false);
+          })
+          .catch(() => {
+            return toast.error(
+              "Twój przepis nie został zaktualizowany. Zweryfikuj wprowadzane dane"
+            );
+          });
+      }
     },
   });
+
+  const getCategoryName = () => {
+    if (categories) {
+      return categories.find((category) => category._id === recipeData.category)
+        ?.name;
+    }
+  };
+
+  const categoryName = getCategoryName();
+  console.log("categoryName", categoryName);
+
+  const autocompleteValues = () => {
+    formik.setValues({
+      name: recipeData ? recipeData.name : "",
+      description: recipeData ? recipeData.description : "",
+      ingredients: recipeData ? recipeData.ingredients : "",
+      preparation: recipeData ? recipeData.preparation : "",
+      category: recipeData ? categoryName : "elo",
+      servingsNumber: recipeData ? recipeData.servingsNumber : "",
+      time: recipeData ? recipeData.time : "",
+      difficultyLevel: recipeData ? recipeData.difficultyLevel : "",
+      photo: recipeData ? recipeData.image : "",
+    });
+  };
+
+  const fetchOneRecipe = async () => {
+    await axios({
+      url: `/recipes/${recipeId}`,
+    })
+      .then((response) => {
+        console.log("tutej 1 recipe", response);
+        setRecipeData(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    //----------
+    // if (!addOperation) {
+    //   fetchOneRecipe().then(() => {
+    //     console.log("recipe data", recipeData);
+    //     autocompleteValues();
+    //   });
+    // }
+
+    //----------
+
+    if (!addOperation) {
+      fetchOneRecipe();
+      autocompleteValues();
+    }
+  }, [recipeData._id]);
 
   const onCloseClick = () => {
     setOpenModal(false);
@@ -133,6 +212,7 @@ export const AddRecipe = ({ setOpenModal, setContext, modalRecipeTitle }) => {
             {formik.errors.category ? (
               <div>{formik.errors.category}</div>
             ) : null}
+
             <LabelName htmlFor="servings_number">Ilość porcji</LabelName>
             <Input
               type="number"
@@ -189,6 +269,7 @@ export const AddRecipe = ({ setOpenModal, setContext, modalRecipeTitle }) => {
           </Form>
         </FormikProvider>
       </FormWrapper>
+      <ToastContainer />
     </>
   );
 };

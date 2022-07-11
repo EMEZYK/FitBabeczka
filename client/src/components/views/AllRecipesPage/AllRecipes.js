@@ -12,7 +12,7 @@ const AllRecipesPage = ({
   categories,
   categoriesLoadingError,
   isEditable,
-  displayFooter,
+  // displayFooter,
   openModal,
 }) => {
   const [recipes, setRecipes] = useState([]);
@@ -97,6 +97,7 @@ const AllRecipesPage = ({
         loading={loading}
         isEditable={isEditable}
         setDeletedRecipeId={setDeletedRecipeId}
+        categories={categories}
       />
     );
   };

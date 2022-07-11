@@ -61,6 +61,7 @@ const RecipeEditableBox = (props) => {
     setOpenModal(false);
   };
 
+  const addOperationStatus = false;
   return (
     <>
       <RecipeBox>
@@ -82,6 +83,11 @@ const RecipeEditableBox = (props) => {
             <NewRecipeModal
               setOpenModal={setOpenEditModal}
               modalRecipeTitle="Edytuj przepis"
+              recipeId={recipeId}
+              addOperation={addOperationStatus}
+              categories={props.categories}
+              // categoryName={props.categoryName}
+              // categoryId={props.categoryId}
             />
           )}
           <button type="button" onClick={onDeleteButtonClick}>

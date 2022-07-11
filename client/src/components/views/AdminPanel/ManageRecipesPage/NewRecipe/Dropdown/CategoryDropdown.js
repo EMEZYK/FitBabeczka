@@ -17,6 +17,8 @@ export const DropDownCategory = ({ onChange, onBlur, value, id, name }) => {
       id={id}
       async={true}
       promiseOptions={promiseCategoriesFunction}
+      //dodan
+      value={value}
     />
   );
 };

@@ -8,6 +8,7 @@ const AllDishesComponent = ({
   isEditable,
   setDeletedRecipeId,
   setAddedRecipeId,
+  categories,
 }) => {
   recipes = recipes ? recipes : [];
 
@@ -25,6 +26,7 @@ const AllDishesComponent = ({
                 key={recipe._id}
                 recipe={recipe}
                 setDeletedRecipeId={setDeletedRecipeId}
+                categories={categories}
               ></RecipeEditableBox>
             ) : (
               <RecipeBoxComponent

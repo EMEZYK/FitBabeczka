@@ -12,12 +12,17 @@ export const DropdownComponent = ({
   async,
   promiseOptions,
 }) => {
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(value);
   const defaultValue = (options, value) => {
     return options ? options.find((option) => option.value === value) : "";
   };
+  console.log("async", async);
+  console.log("valu", value);
+  console.log("options", options);
+  console.log("selectedValue", selectedValue);
 
   const handleChange = (value) => {
+    console.log("change", value);
     setSelectedValue(value);
     onChange(value);
   };

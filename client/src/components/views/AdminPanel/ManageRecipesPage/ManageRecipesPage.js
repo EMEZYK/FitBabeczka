@@ -11,7 +11,7 @@ import { useState } from "react";
 
 import AllRecipesPage from "../../AllRecipesPage/AllRecipes";
 
-const EditMenuPage = ({ setContext }) => {
+const EditMenuPage = ({ setContext, categories }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const onAddRecipeButtonClick = () => {
@@ -35,7 +35,11 @@ const EditMenuPage = ({ setContext }) => {
           )}
         </AddRecipeWrapper>
       </FlexAddWrapper>
-      <AllRecipesPage isEditable={true} openModal={openModal}></AllRecipesPage>
+      <AllRecipesPage
+        categories={categories}
+        isEditable={true}
+        openModal={openModal}
+      ></AllRecipesPage>
     </>
   );
 };

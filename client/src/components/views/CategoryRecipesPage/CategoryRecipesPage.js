@@ -11,9 +11,17 @@ const CategoryRecipesPage = ({ categoryId, pageTitle }) => {
   const recipesByCategory = recipes.filteredData.filter(
     (recipe) => recipe.category === categoryId
   );
+  // console.log("bycategory", recipes);
+  // // const categoryName =
   const renderRecipes = () => {
     if (recipesByCategory) {
-      return <AllDishesComponent recipes={recipesByCategory} />;
+      return (
+        <AllDishesComponent
+          recipes={recipesByCategory}
+          // categoryId={categoryId}
+          // categoryName={categoryName}
+        />
+      );
     } else {
       return <div>cannot load recipes</div>;
     }
