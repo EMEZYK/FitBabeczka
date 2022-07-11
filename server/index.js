@@ -17,12 +17,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 config();
 
-app.use(cors());
+app.use(
+  cors({
+    // origin: "http://localhost:3001",
+    credentials: true,
+  })
+);
+app.options("*", cors());
+let corsOptions = {
+  origin: "https://fit-babeczka.herokuapp.com/",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(express.static("public")); //zeby za kazdym razem nie trzeba bylo calej sciezki podawa, tylko /img/image.jpg itp
-app.get("/", (req, res) => {
+app.get("/", cors(corsOptions), (req, res) => {
   res.send("Hello World!");
 });
 
