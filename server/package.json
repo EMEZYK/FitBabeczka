@@ -14,7 +14,7 @@
     "preinstall": "npx force-resolutions"
   },
   "resolutions": {
-    "graceful-fs": "4.2.4"
+    "graceful-fs": "^4.2.9"
   },
   "author": "Ewelina Mężyk",
   "license": "ISC",
