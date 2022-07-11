@@ -31,11 +31,11 @@
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "dotenv": "^16.0.1"
   },
   "type": "module",
   "devDependencies": {
-    "dotenv": "^16.0.1",
     "eslint": "^8.10.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.2",
