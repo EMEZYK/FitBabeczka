@@ -10,10 +10,9 @@
     "lint:eslint": "npm run prettier:write && npm run lint",
     "test": "npm test",
     "pretty-quick": "pretty-quick --staged",
-    "prepare": "husky install /.husky",
-    "preinstall": "npx force-resolutions"
+    "prepare": "husky install /.husky"
   },
-  "resolutions": {
+  "overrides": {
     "graceful-fs": "^4.2.9"
   },
   "author": "Ewelina Mężyk",
