@@ -1,7 +1,8 @@
+import { config } from "dotenv";
+config();
 import cors from "cors";
 import express from "express";
 const app = express();
-import { config } from "dotenv";
 import mongoose from "mongoose";
 import recipeRoutes from "./concepts/recipes/routes/recipeRoutes.js";
 import categoriesRoutes from "./concepts/recipes/routes/categoriesRoutes.js";
@@ -14,8 +15,6 @@ import { dirname } from "path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-config();
 
 app.use(
   cors({

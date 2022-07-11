@@ -35,7 +35,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "^8.10.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.2",
