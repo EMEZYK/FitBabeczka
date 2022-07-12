@@ -64,7 +64,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Connected into MongoDB.."))
-  .then((result) => app.listen(process.env.SERVER_PORT || 3000))
+  .then((result) => app.listen(process.env.PORT || 3000))
   .catch((err) => console.error(err));
 
 app.use("/recipes", recipeRoutes);
