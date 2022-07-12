@@ -1,5 +1,13 @@
+// // import "dotenv/config";
+// import { config } from "dotenv";
+// config();
+// import jwt from "jsonwebtoken";
+// import passport from "passport";
+// import express from "express";
+
 import jwt from "jsonwebtoken";
 import "dotenv/config";
+const secretKey = process.env.SECRET_KEY;
 import passport from "passport";
 import express from "express";
 
@@ -10,7 +18,8 @@ export const authenticationController = (req, res) => {
     expires: Date.now() + parseInt(36000),
   };
 
-  const token = jwt.sign(JSON.stringify(payload), process.env.SECRET_KEY); //generuję token i w respons zwracam
+  const token = jwt.sign(JSON.stringify(payload), secretKey); //generuję token i w respons zwracam
+  console.log(secretKey);
   console.log(token);
   res
     .cookie("jwt", token, { httpOnly: true, secure: true })

@@ -1,5 +1,5 @@
-import { config } from "dotenv";
-config();
+import "dotenv/config";
+const uri = process.env.MONGODB_URI;
 import cors from "cors";
 import express from "express";
 const app = express();
@@ -57,9 +57,9 @@ app.get("/", cors(corsOptions), (req, res) => {
 // };
 
 // const upload = multer({ storage: storage, filefilter: filefilter });
-
+console.log(process.env.MONGODB_URI);
 mongoose
-  .connect(process.env.DB_CONNECT, {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
