@@ -5,7 +5,7 @@ export const CategoriesWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  min-width: 80%;
   @media (max-width: 576px) {
     /* height: fit-content; */
     flex-wrap: wrap;

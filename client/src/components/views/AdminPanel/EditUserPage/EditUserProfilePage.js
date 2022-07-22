@@ -13,7 +13,7 @@ import axios from "axios";
 import { BASE_URL } from "../../../../context/recipes-context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Input } from "../../LoginPage/LoginPage.styled";
+import { Input } from "../../../ui/Input/Input.styled";
 
 const EditProfilePage = ({ userId }) => {
   const editProfileFormHandler = useFormik({

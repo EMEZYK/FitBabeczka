@@ -1,59 +1,56 @@
 import styled from "styled-components";
 import { Typography } from "../Typography/Typography.styled";
-import { theme } from "../../../theme/theme";
-import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { Button } from "../Button/Button.styled";
 
 export const RecipeBox = styled.div`
-  width: ${({ width }) => (width ? width : "16vw")};
+  width: ${({ width }) => (width ? width : "18vw")};
   height: ${({ height }) => (height ? height : "48vh")};
   background-color: ${({ theme, color }) =>
     color ? color : theme.colors.card.primary};
-  padding: ${({ padding }) => (padding ? padding : "0")};
   box-shadow: ${({ boxShadow }) => (boxShadow ? boxShadow : "0")};
   margin: ${({ margin }) => (margin ? margin : "0")};
+  padding: ${({ padding }) => (padding ? padding : "0")};
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 
   @media (max-width: 1440px) {
     min-width: 25vw;
   }
   @media (max-width: 1280px) {
     min-width: 35vw;
+    height: ${({ height }) => (height ? height : "60vh")};
+    width: 80%;
+    margin: 1rem 0;
   }
 
-  @media (max-width: 576px) {
-    min-width: 95vw;
+  @media (max-width: 600px) {
+    margin: 0.5rem 0 0 0;
+    width: 100%;
   }
 `;
 
 export const Image = styled.img`
   width: ${({ width }) => (width ? width : "100%")};
   height: ${({ height }) => (height ? height : "80%")};
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "100%")};
   object-fit: cover;
   cursor: pointer;
   margin: 0;
 `;
 
-export const RecipeNameWrapper = styled(FlexWrapper)`
+export const RecipeNameWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 0 0.3rem 0.5rem 0.3rem;
   background-color: #fff;
-
-  @media (max-width: 576px) {
-    flex-direction: row;
-    min-height: 8vh;
-    padding: 0.3rem 0.6rem 0.6rem 0;
-  }
+  height: 13vh;
 `;
 
 export const RecipeName = styled(Typography)`
-  font-size: ${({ fontSize }) =>
-    fontSize ? fontSize : theme.fontsize.desktop.m}px;
-
-  @media (max-width: 576px) {
-    min-width: 70%;
-    font-size: ${({ fontSize }) =>
-      fontSize ? fontSize : theme.fontsize.desktop.l}px;
-  }
+  width: 100%;
+  max-height: 50%; //jesli będę chaial równo ustawic napis, to zmienic tutaj
+  font-size: clamp(1.2rem, 2vw, 1.2rem);
 `;
 
 export const ReadMoreButton = styled(Button)`

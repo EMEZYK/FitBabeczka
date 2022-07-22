@@ -14,6 +14,13 @@ export const createNewRecipe = async (body) => {
       preparation: body.preparation,
       category: body.category,
       // image:
+      //   req.protocol +
+      //   "://" +
+      //   req.get("host") +
+      //   "/uploads/" +
+      //   req.file.filename,
+
+      // image:
       // req.protocol +
       // "://" +
       // req.get("host") +
@@ -31,11 +38,3 @@ export const createNewRecipe = async (body) => {
     return new Error("Recipe wasn't created" + err.message);
   }
 };
-
-// Recipe.find({})
-//   .then((recipes) => {
-//     res.json(recipes);
-//     const createdRecipe = await createRecipe();
-//     return createdRecipe;
-//   })
-//   .catch((err) => console.log(err.message));

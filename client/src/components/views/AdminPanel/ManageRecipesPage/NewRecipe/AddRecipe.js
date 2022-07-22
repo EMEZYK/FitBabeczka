@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik } from "formik";
+import { FieldArray, useFormik, FormikProvider, Field } from "formik";
 import axios from "axios";
 import {
   FormWrapper,
@@ -9,15 +9,26 @@ import {
   SaveButton,
   TitleWrapper,
 } from "../../EditUserPage/EditUserProfilePage.styled";
-import { Input } from "../../../LoginPage/LoginPage.styled";
+import { TextArea } from "../../../LoginPage/LoginPage.styled";
+import { Input } from "../../../../ui/Input/Input.styled";
 import { CloseModalButton } from "../Modal.styled";
 import { DropDownCategory } from "./Dropdown/CategoryDropdown";
 import { DifficultyLevelDropdown } from "./Dropdown/DifficultyLevelDropdown";
 import { addRecipeSchema } from "./AddRecipeSchema";
-import { FormikProvider } from "formik";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  AddIcon,
+  AddIngredientsButton,
+  IngredientsList,
+  OneIngredient as IngredientWrapper,
+  IngredientListWrapper,
+  ErrorInfo,
+} from "../ManageRecipes.styled";
+import { DeleteButton, MobileDeleteButton } from "../Modal.styled";
+import { NewRecipeFormWrapper } from "../Modal.styled";
+import { useMediaQuery } from "react-responsive";
 
 export const AddRecipe = ({
   setOpenModal,
@@ -34,7 +45,7 @@ export const AddRecipe = ({
     initialValues: {
       name: "",
       description: "",
-      ingredients: "",
+      ingredients: [],
       preparation: "",
       category: "",
       servingsNumber: "",
@@ -45,11 +56,25 @@ export const AddRecipe = ({
     validationSchema: addRecipeSchema,
 
     onSubmit: (values) => {
-      values.ingredients = JSON.stringify([values.ingredients]);
       const formData = new FormData();
+      // values = JSON.stringify(values);
+      const values2 = JSON.stringify(values);
+      console.log(values2);
+
       for (let value in values) {
+        console.log(value, values[value]);
+        if (value === "ingredients") {
+          console.log("if");
+          formData.append(value, JSON.stringify(values[value]));
+          continue;
+        }
+
         formData.append(value, values[value]);
       }
+
+      // formData.append("values", values);
+      console.log(formData);
+
       if (addOperation) {
         axios
           .post("/recipes", formData)
@@ -82,19 +107,19 @@ export const AddRecipe = ({
   };
 
   const categoryName = getCategoryName();
-  console.log("categoryName", categoryName);
 
   const autocompleteValues = () => {
+    console.log("data", recipeData);
     formik.setValues({
       name: recipeData ? recipeData.name : "",
       description: recipeData ? recipeData.description : "",
-      ingredients: recipeData ? recipeData.ingredients : "",
+      ingredients: recipeData ? recipeData.ingredients : [],
       preparation: recipeData ? recipeData.preparation : "",
       category: recipeData ? categoryName : "elo",
       servingsNumber: recipeData ? recipeData.servingsNumber : "",
       time: recipeData ? recipeData.time : "",
       difficultyLevel: recipeData ? recipeData.difficultyLevel : "",
-      photo: recipeData ? recipeData.image : "",
+      photo: recipeData ? recipeData.photo : "",
     });
   };
 
@@ -103,7 +128,8 @@ export const AddRecipe = ({
       url: `/recipes/${recipeId}`,
     })
       .then((response) => {
-        console.log("tutej 1 recipe", response);
+        console.log(response.data);
+
         setRecipeData(response.data);
       })
       .catch((err) => {
@@ -111,30 +137,23 @@ export const AddRecipe = ({
       });
   };
 
+  const onCloseClick = () => {
+    setOpenModal(false);
+  };
   useEffect(() => {
-    //----------
-    // if (!addOperation) {
-    //   fetchOneRecipe().then(() => {
-    //     console.log("recipe data", recipeData);
-    //     autocompleteValues();
-    //   });
-    // }
-
-    //----------
-
     if (!addOperation) {
       fetchOneRecipe();
       autocompleteValues();
     }
   }, [recipeData._id]);
 
-  const onCloseClick = () => {
-    setOpenModal(false);
-  };
+  const isMobile = useMediaQuery({
+    query: "(max-width: 599px)",
+  });
 
   return (
     <>
-      <FormWrapper fontSize="16">
+      <NewRecipeFormWrapper>
         <TitleWrapper>
           <CloseModalButton
             aria-label="Close"
@@ -161,9 +180,11 @@ export const AddRecipe = ({
               required
               border="0.2px solid #DEA8A8"
             />
-            {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+            {formik.errors.name ? (
+              <ErrorInfo>{formik.errors.name}</ErrorInfo>
+            ) : null}
             <LabelName htmlFor="description">Krótki opis</LabelName>
-            <Input
+            <TextArea
               type="text"
               id="description"
               value={formik.values.description}
@@ -173,23 +194,91 @@ export const AddRecipe = ({
               border="0.2px solid #DEA8A8"
             />
             {formik.errors.description ? (
-              <div>{formik.errors.description}</div>
+              <ErrorInfo>{formik.errors.description}</ErrorInfo>
             ) : null}
             <LabelName htmlFor="ingredients">Składniki</LabelName>
-            <Input
-              type="text"
-              id="ingredients"
-              value={formik.values.ingredients}
-              onChange={formik.handleChange} //to do - zmienic na array stringów
-              onBlur={formik.handleBlur}
-              required
-              border="0.2px solid #DEA8A8"
-            />
+            <FieldArray name="ingredients">
+              {(fieldArrayProps) => {
+                const { push, remove, form } = fieldArrayProps;
+                const { values } = form;
+                const { ingredients } = values;
+
+                return (
+                  <>
+                    <IngredientListWrapper>
+                      <IngredientsList>
+                        {values.ingredients && values.ingredients.length > 0
+                          ? ingredients.map((value, index) => (
+                              <>
+                                <IngredientWrapper key={index}>
+                                  <Field
+                                    name={`ingredients[${index}]`}
+                                    type="text"
+                                    width="100%"
+                                    id={index}
+                                  >
+                                    {({ field }) => (
+                                      <Input
+                                        {...field}
+                                        type="text"
+                                        id="ingredients"
+                                        placeholder="wpisz składnik"
+                                        width="80%"
+                                        border="0.2px solid #DEA8A8"
+                                        required
+                                      />
+                                    )}
+                                  </Field>
+
+                                  {isMobile === true ? (
+                                    <MobileDeleteButton
+                                      type="button"
+                                      onClick={() => remove(index)}
+                                    >
+                                      <img
+                                        src="/icons/deleteRecipe.svg"
+                                        alt=""
+                                      />
+                                    </MobileDeleteButton>
+                                  ) : (
+                                    <DeleteButton
+                                      type="button"
+                                      onClick={() => remove(index)}
+                                      padding="0.2rem"
+                                      hoverColor="none"
+                                      borderRadius="3px"
+                                      margin="0 0 0 0.8rem"
+                                      height="80%"
+                                    >
+                                      Usuń
+                                    </DeleteButton>
+                                  )}
+                                </IngredientWrapper>
+                              </>
+                            ))
+                          : ""}
+
+                        <AddIngredientsButton
+                          type="button"
+                          onClick={() => push()}
+                        >
+                          <AddIcon
+                            src="/icons/addRecipe.svg"
+                            mediaWidth="20%"
+                          />
+                          Dodaj
+                        </AddIngredientsButton>
+                      </IngredientsList>
+                    </IngredientListWrapper>
+                  </>
+                );
+              }}
+            </FieldArray>
             {formik.errors.ingredients ? (
-              <div>{formik.errors.ingredients}</div>
+              <ErrorInfo>{formik.errors.ingredients}</ErrorInfo>
             ) : null}
             <LabelName htmlFor="preparation">Przygotowanie</LabelName>
-            <Input
+            <TextArea
               type="text"
               id="preparation"
               value={formik.values.preparation}
@@ -199,7 +288,7 @@ export const AddRecipe = ({
               border="0.2px solid #DEA8A8"
             />
             {formik.errors.preparation ? (
-              <div>{formik.errors.preparation}</div>
+              <ErrorInfo>{formik.errors.preparation}</ErrorInfo>
             ) : null}
             <LabelName htmlFor="category">Kategoria</LabelName>
             <DropDownCategory
@@ -210,12 +299,12 @@ export const AddRecipe = ({
               required
             />
             {formik.errors.category ? (
-              <div>{formik.errors.category}</div>
+              <ErrorInfo>{formik.errors.category}</ErrorInfo>
             ) : null}
-
             <LabelName htmlFor="servings_number">Ilość porcji</LabelName>
             <Input
               type="number"
+              min="1"
               id="servingsNumber"
               value={formik.values.servingsNumber}
               onChange={formik.handleChange}
@@ -224,7 +313,7 @@ export const AddRecipe = ({
               border="0.2px solid #DEA8A8"
             />
             {formik.errors.servingsNumber ? (
-              <div>{formik.errors.servingsNumber}</div>
+              <ErrorInfo>{formik.errors.servingsNumber}</ErrorInfo>
             ) : null}
             <LabelName type="text" htmlFor="preparation_time">
               Czas przygotowania
@@ -238,7 +327,9 @@ export const AddRecipe = ({
               required
               border="0.2px solid #DEA8A8"
             />
-            {formik.errors.time ? <div>{formik.errors.time}</div> : null}
+            {formik.errors.time ? (
+              <ErrorInfo>{formik.errors.time}</ErrorInfo>
+            ) : null}
             <LabelName htmlFor="difficultyLevel">Poziom trudności</LabelName>
             <DifficultyLevelDropdown
               id="difficultyLevel"
@@ -250,10 +341,9 @@ export const AddRecipe = ({
               required
             />
             {formik.errors.difficultyLevel ? (
-              <div>{formik.errors.difficultyLevel}</div>
+              <ErrorInfo>{formik.errors.difficultyLevel}</ErrorInfo>
             ) : null}
-            <LabelName htmlFor="dish_photo">Zdjęcie</LabelName>
-
+            <LabelName htmlFor="photo">Zdjęcie</LabelName>
             <Input
               minHeight="0"
               border="0"
@@ -264,11 +354,13 @@ export const AddRecipe = ({
                 formik.setFieldValue("photo", e.currentTarget.files[0])
               }
             />
-            {formik.errors.image ? <div>{formik.errors.image}</div> : null}
+            {formik.errors.photo ? (
+              <ErrorInfo>{formik.errors.photo}</ErrorInfo>
+            ) : null}
             <SaveButton type="submit">Zapisz</SaveButton>
           </Form>
         </FormikProvider>
-      </FormWrapper>
+      </NewRecipeFormWrapper>
       <ToastContainer />
     </>
   );

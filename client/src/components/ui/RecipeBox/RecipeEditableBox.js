@@ -39,7 +39,7 @@ const RecipeEditableBox = (props) => {
       .then((response) => {
         console.log(response);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.err(err));
   };
 
   const onDeleteButtonClick = () => {

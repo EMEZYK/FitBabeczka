@@ -1,19 +1,34 @@
 import styled from "styled-components";
-import { theme } from "../../../theme/theme";
+import { themes } from "../../../theme/theme";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 
 export const SignInWrapper = styled(FlexWrapper)`
+  flex-direction: column;
+  min-height: 60vh;
+  width: auto;
   background-color: #fffa;
-  max-width: 30vw;
-  height: 60vh;
+  background-color: #fff;
+  /* background: rgba(0, 0, 0, 0.5); */
+  padding: 2rem;
   box-shadow: ${({ theme }) => theme.colors.card.loginBoxShadow};
+
+  @media (max-width: 1080px) {
+    min-width: 40vw;
+    min-height: 10vh;
+  }
+
+  @media (max-width: 876px) {
+    min-width: 50vw;
+  }
+
+  @media (max-width: 600px) {
+    min-width: 60vw;
+  }
 `;
 
 export const Title = styled.h2`
-  font-size: ${({ fontSize }) =>
-    fontSize ? fontSize : theme.fontsize.desktop.xxxl}px;
+  font-size: clamp(1.8rem, 0.75rem + 1vw, 3rem);
   margin: 0 0 2.5rem 0;
-  /* text-transform: uppercase; */
   letter-spacing: 2px;
 `;
 
@@ -23,23 +38,21 @@ export const LoginForm = styled.form`
   flex-wrap: wrap;
   min-width: 24vw;
   min-height: 30vh;
+  width: 100%;
   padding: 2.4rem;
   background-color: ${({ theme }) => theme.colors.common.body};
   border-radius: 0.3rem;
   box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
 `;
 
-export const Input = styled.input`
-  min-height: ${({ minHeight }) => (minHeight ? minHeight : "2.4rem")};
-  text-align: left;
-  padding: 0 0 0 0.6rem;
-  margin: 0.6rem 0 0 0;
+export const TextArea = styled.textarea`
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : "4rem")};
+  max-width: 100%;
+  padding: 0.6rem;
   border: ${({ border }) => (border ? border : "0.2px solid #aaa")};
   border-radius: 0.2rem;
-
-  ::placeholder {
-    text-transform: uppercase;
-  }
+  text-align: left;
+  resize: none;
 `;
 
 export const LoginButton = styled.button`
@@ -49,7 +62,7 @@ export const LoginButton = styled.button`
   background-color: ${({ theme }) => theme.colors.button.secondary};
   color: #363434;
   font-size: ${({ fontSize }) =>
-    fontSize ? fontSize : theme.fontsize.desktop.s}px;
+    fontSize ? fontSize : themes.fontsize.desktop.s}px;
   font-weight: ${({ theme }) => theme.weight.bold};
   text-transform: uppercase;
   letter-spacing: 1px;

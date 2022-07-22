@@ -1,4 +1,4 @@
-export const theme = {
+export const themes = {
   colors: {
     common: {
       body: "#fff",
@@ -11,6 +11,7 @@ export const theme = {
     navbar: {
       primary: "#fff",
       secondary: "#D7C4CF",
+      burgerMenu: "#F4F1F4",
       boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
     },
     button: {

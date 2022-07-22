@@ -1,4 +1,4 @@
-import { theme } from "../../../theme/theme";
+import { themes } from "../../../theme/theme";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { RecipeBox } from "../../ui/RecipeBox/RecipeBox.styled";
 import { Image } from "../../ui/RecipeBox/RecipeBox.styled";
@@ -6,6 +6,7 @@ import {
   RecipePreparation,
   RecipeHeader,
   RecipeContainer,
+  OneRecipeWrapper,
   Ingredient,
   IngredientList,
   IngredientsContainer,
@@ -14,6 +15,7 @@ import {
   RecipeDescriptionContainer,
   TitleRecipe,
   ImageContainer,
+  RecipeInfoContainer,
 } from "./OneRecipePage.styled";
 import { RecipeInfoCard } from "../../ui/Card/InfoCard";
 import { useParams } from "react-router-dom";
@@ -43,7 +45,7 @@ export const RecipePage = () => {
     return <div>Loading...</div>;
   }
 
-  console.log("przepis", recipe);
+  // console.log("przepis", recipe);
 
   let recipeLevel = recipe.difficultyLevel;
 
@@ -63,25 +65,32 @@ export const RecipePage = () => {
 
   return (
     <RecipeContainer>
-      <FlexWrapper height={"80vh"} width={"90%"}>
+      <FlexWrapper
+        height={"80vh"}
+        minHeight="100%"
+        width={"90vw"}
+        // minHeight="100%"
+      >
         <ImageContainer>
-          <Image src={recipe.image} />
-          <RecipeInfoCard image={"/icons/time.png"} details={recipe.time} />
-          <RecipeInfoCard
-            image={recipeLevel}
-            details={recipe.difficultyLevel}
-          />
-          <RecipeInfoCard
-            image={"/icons/plates.png"}
-            details={recipe.servingsNumber}
-          />
+          <Image src={recipe.image} height="80%" />
+          <RecipeInfoContainer>
+            <RecipeInfoCard image={"/icons/time.png"} details={recipe.time} />
+            <RecipeInfoCard
+              image={recipeLevel}
+              details={recipe.difficultyLevel}
+            />
+            <RecipeInfoCard
+              image={"/icons/plates.png"}
+              details={recipe.servingsNumber}
+            />
+          </RecipeInfoContainer>
         </ImageContainer>
         <RecipeBox
           height={"90%"}
           width={"60%"}
           padding={"2rem"}
-          color={theme.colors.card.secondary}
-          boxShadow={theme.colors.card.boxShadow}
+          color={themes.colors.card.secondary}
+          boxShadow={themes.colors.card.boxShadow}
         >
           <TitleRecipe>{recipe.name}</TitleRecipe>
           <RecipeShortDescription>{recipe.description}</RecipeShortDescription>

@@ -3,15 +3,14 @@ import styled from "styled-components";
 export const CategoryCircle = styled.div`
   width: 10vw;
   margin: 2rem 0.5rem;
-  /* background-color: green; */
 
   @media (max-width: 1280px) {
-    width: 20%;
+    width: 80%;
+    margin: 0.2rem;
   }
 
   @media (max-width: 576px) {
     width: 30%;
-    margin: 0.2rem;
   }
 
   .category-name {
@@ -32,7 +31,17 @@ export const CategoryImage = styled.img`
   cursor: pointer;
 
   @media (max-width: 1280px) {
-    width: 8rem;
-    height: 8rem;
+    width: 7rem;
+    height: 7rem;
+  }
+
+  @media (max-width: 992px) {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  @media (max-width: 599px) {
+    width: 4rem;
+    height: 4rem;
   }
 `;

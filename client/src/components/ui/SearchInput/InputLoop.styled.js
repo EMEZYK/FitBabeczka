@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { Button } from "../Button/Button.styled";
 
-export const InputSearchContainer = styled(FlexWrapper)`
+export const InputSearchContainer = styled.div`
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   width: 20vw;
@@ -12,11 +12,15 @@ export const InputSearchContainer = styled(FlexWrapper)`
   border-radius: 0.2rem;
 
   @media (max-width: 1280px) {
-    width: 30%;
+    width: 30vw;
   }
 
-  @media (max-width: 768px) {
-    width: 50%;
+  @media (max-width: 876px) {
+    width: 40vw;
+  }
+
+  @media (max-width: 600px) {
+    width: 60vw;
   }
 `;
 

@@ -1,26 +1,43 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme/theme";
+import { themes } from "../../../../theme/theme";
 import { FlexWrapper } from "../../../global-styles/Flex.styled";
 import { Button } from "../../../ui/Button/Button.styled";
 
 export const FormWrapper = styled(FlexWrapper)`
   background-color: hsl(0 20% 88%);
   max-width: 33vw;
+  min-width: 30vw;
   min-height: ${({ minHeight }) => (minHeight ? minHeight : "80vh")};
   border-radius: 4px;
   box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : theme.fontsize.xl)}px;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : themes.fontsize.xl)}px;
 
-  @media (max-width: 1280px) {
-    max-width: 90%;
+  @media (max-width: 600px) {
+    min-width: 95vw;
+    padding: 1rem;
+  }
+
+  @media (min-width: 601px) {
+    min-width: 65vw;
+    min-height: 50vh;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    min-width: 50vw;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 33vw;
   }
 `;
 
 export const Title = styled.h2`
-  font-size: ${({ fontSize }) =>
-    fontSize ? fontSize : theme.fontsize.desktop.xxl}px;
+  font-size: clamp(1.5rem, 2vw, 1.8rem);
   font-weight: ${({ theme }) => theme.weight.regular};
   min-width: ${({ minWidth }) => (minWidth ? minWidth : "0")};
+  /* text-transform: uppercase; */
 `;
 
 export const Form = styled.form`
@@ -29,23 +46,29 @@ export const Form = styled.form`
   min-width: 90%;
   min-height: 20vh;
   padding: 1rem;
+
+  @media (max-width: 999px) {
+    min-width: 100%;
+  }
 `;
 
 export const LabelName = styled.label`
   text-align: left;
-  margin: 1rem 0 0 0;
+  margin: 1rem 0;
 `;
 
 export const SaveButton = styled(Button)`
   min-width: 8rem;
   margin: 2.5rem 0 0 0;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   align-self: center;
   text-transform: capitalize;
   color: #000;
   background-color: ${({ theme }) => theme.colors.button.secondary};
   letter-spacing: 0.2px;
-  font-size: ${({ theme }) => theme.fontsize.desktop.l}px;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  border: 1px solid;
+  border-radius: 3px;
 
   :hover {
     background-color: ${({ theme }) => theme.colors.button.active};

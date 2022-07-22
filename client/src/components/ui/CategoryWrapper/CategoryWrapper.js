@@ -5,7 +5,7 @@ const CategoriesWrapperComponent = ({ categories, categoriesLoadingError }) => {
   return (
     <>
       {
-        <div>
+        <>
           {categoriesLoadingError && categoriesLoadingError.message}
           {categories && categories.length > 0 && (
             <CategoriesWrapper>
@@ -20,7 +20,7 @@ const CategoriesWrapperComponent = ({ categories, categoriesLoadingError }) => {
               ))}
             </CategoriesWrapper>
           )}
-        </div>
+        </>
       }
     </>
   );

@@ -28,6 +28,7 @@ export const NavContainer = styled.nav`
     width: 70%;
     height: 100%;
     font-size: clamp(1.6rem, 1.2vw, 3rem);
+
     font-family: "Kaushan Script", cursiv;
   }
 
@@ -41,14 +42,26 @@ export const NavContainer = styled.nav`
 
   .menu-page:last-child {
     display: block;
-    margin-left: 2rem;
+    margin: 0 0 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 876px) {
+      margin: 0;
+    }
   }
 
   .menu-page:last-child img {
     max-width: 1.1rem;
     margin-right: 0.6rem;
+  }
+
+  @media (max-width: 876px) {
+    padding: 0.4rem 0 0 0;
+    /* background-color: red; */
+    /* .right-container {
+      display: none;
+    } */
   }
 `;

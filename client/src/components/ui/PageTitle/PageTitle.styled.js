@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../theme/theme";
+import { themes } from "../../../theme/theme";
 
 export const PageTitle = styled.h1`
   min-width: ${({ minWidth }) => (minWidth ? minWidth : "15vw")};
@@ -11,5 +11,5 @@ export const PageTitle = styled.h1`
     letterSpacing ? letterSpacing : "0.4rem"};
   font-family: "Kaushan Script", cursiv;
   background-color: ${({ theme }) => theme.colors.common.body};
-  border: 2px solid ${({ color }) => theme.colors.common.heading};
+  border: 2px solid ${({ color }) => themes.colors.common.heading};
 `;

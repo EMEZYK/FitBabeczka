@@ -1,5 +1,4 @@
 import Navbar from "../../ui/Navbar/Navigation";
-
 const LandingPanelPages = () => {
   const pages = [
     { source: "/przepisy", name: "Przepisy" },

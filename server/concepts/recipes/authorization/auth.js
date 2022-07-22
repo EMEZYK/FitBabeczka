@@ -1,10 +1,3 @@
-// // import "dotenv/config";
-// import { config } from "dotenv";
-// config();
-// import jwt from "jsonwebtoken";
-// import passport from "passport";
-// import express from "express";
-
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 const secretKey = process.env.SECRET_KEY;

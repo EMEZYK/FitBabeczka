@@ -17,7 +17,9 @@ export const Modal = ({ onDelete, onClose }) => {
           <ModalWrapper minHeight="10vh" maxHeight="20vh" scroll="none">
             <p>Czy na pewno chcesz usunąć ten przepis?</p>
             <div>
-              <DeleteButton onClick={onDelete}>Usuń</DeleteButton>
+              <DeleteButton width="10%" border="0" onClick={onDelete}>
+                Usuń
+              </DeleteButton>
               <CancelButton onClick={onClose}>Anuluj</CancelButton>
             </div>
           </ModalWrapper>

@@ -8,12 +8,17 @@ export const Footer = styled.footer`
   background-color: ${({ theme }) => theme.colors.footer.primary};
   color: #ffff;
 
-  p {
-    color: white;
-    font-size: 0.8rem;
-    width: 100%;
+  @media (max-width: 876px) {
+    height: 15vh;
+    align-content: center;
+  }
 
-    @media (max-width: 576px) {
+  p {
+    width: 100%;
+    font-size: 0.8rem;
+    color: white;
+
+    @media (max-width: 876px) {
       font-size: 0.8rem;
     }
   }

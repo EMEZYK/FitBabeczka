@@ -1,4 +1,4 @@
-import { FlexWrapper } from "../../global-styles/Flex.styled";
+// import { FlexWrapper } from "../../global-styles/Flex.styled";
 import FooterComponent from "../../ui/Footer/Footer";
 import CategoriesWrapperComponent from "../../ui/CategoryWrapper/CategoryWrapper";
 import AllDishesComponent from "../../ui/AllDishes/AllDishes";
@@ -8,6 +8,7 @@ import {
   IntroductionHeading,
   ShortDescription,
   Heading,
+  LandingFlexWrapper,
 } from "./LandinPage.styled";
 
 const LandingPage = ({ categories, categoriesLoadingError }) => {
@@ -37,7 +38,7 @@ const LandingPage = ({ categories, categoriesLoadingError }) => {
 
   return (
     <>
-      <FlexWrapper>
+      <LandingFlexWrapper>
         <Header>
           <div className="wrapper-about">
             <IntroductionHeading>
@@ -57,7 +58,7 @@ const LandingPage = ({ categories, categoriesLoadingError }) => {
         <Heading>Najnowsze przepisy</Heading>
         {renderRecipes()}
         <FooterComponent />
-      </FlexWrapper>
+      </LandingFlexWrapper>
     </>
   );
 };

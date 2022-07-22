@@ -1,11 +1,11 @@
 import React from "react";
 import {
   LoginForm,
-  Input,
   Title,
   LoginButton,
   SignInWrapper,
 } from "./LoginPage.styled";
+import { Input } from "../../ui/Input/Input.styled";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -41,15 +41,19 @@ const LoginPage = ({ setIsAuth, setUserId }) => {
     e.preventDefault();
     handleSignIn();
 
-    await axios({
-      method: "POST",
-      url: BASE_URL + "/admin/login",
-      data: {
-        email: signInFormHandler.values.email,
-        password: signInFormHandler.values.password,
+    await axios(
+      {
+        method: "POST",
+        url: BASE_URL + "/admin/login",
+        data: {
+          email: signInFormHandler.values.email,
+          password: signInFormHandler.values.password,
+        },
       },
-    })
+      { withCredentials: true }
+    )
       .then((response) => {
+        console.log(response.data);
         setToken("token", response.data.token);
         const decodedToken = jwt_decode(response.data.token);
         const userId = decodedToken.userid;
@@ -76,6 +80,7 @@ const LoginPage = ({ setIsAuth, setUserId }) => {
             placeholder="E-mail"
             value={signInFormHandler.values.email}
             onChange={signInFormHandler.handleChange}
+            margin="0 0 0.6rem 0"
             required
           ></Input>
           {signInFormHandler.errors.email ? (

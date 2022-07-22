@@ -7,9 +7,8 @@ import mongoose from "mongoose";
 import recipeRoutes from "./concepts/recipes/routes/recipeRoutes.js";
 import categoriesRoutes from "./concepts/recipes/routes/categoriesRoutes.js";
 import adminRoutes from "./concepts/recipes/routes/adminRoutes.js";
-import multer from "multer";
 import passport from "passport";
-import path from "path";
+import path from "node:path";
 import { dirname } from "path";
 // import { fileURLToPath } from "url";
 import { fileURLToPath } from "node:url";
@@ -57,7 +56,7 @@ app.get("/", cors(corsOptions), (req, res) => {
 // };
 
 // const upload = multer({ storage: storage, filefilter: filefilter });
-console.log(process.env.MONGODB_URI);
+// console.log(process.env.MONGODB_URI);
 mongoose
   .connect(uri, {
     useNewUrlParser: true,

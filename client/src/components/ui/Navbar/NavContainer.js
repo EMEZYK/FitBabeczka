@@ -3,8 +3,30 @@ import LogoIcon from "../Logo/Logo";
 import { NavContainer } from "./NavContainer.styled";
 import BlogNameComponent from "../BlogName/PageName";
 import { NavLink } from "react-router-dom";
+import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+import { useMediaQuery } from "react-responsive";
 
-const NavigateContainer = ({ page }) => {
+const NavigateContainer = ({ page, setBackground }) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width: 991px)",
+  });
+
+  const showBurger = () => {
+    if (isMobile === true) {
+      return (
+        <>
+          <BurgerMenu page={page} setBackground={setBackground}></BurgerMenu>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="right-container">{page}</div>
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <NavContainer>
@@ -14,8 +36,13 @@ const NavigateContainer = ({ page }) => {
             <BlogNameComponent />
           </div>
         </NavLink>
+        {showBurger()}
+        {/* 
+        <div className="right-container">
+          {page}
 
-        <div className="right-container">{page}</div>
+          {isMobile && <BurgerMenu page={page}></BurgerMenu>}
+        </div> */}
       </NavContainer>
     </>
   );

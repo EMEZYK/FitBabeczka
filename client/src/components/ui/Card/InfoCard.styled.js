@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const RecipeInfo = styled.div`
   width: 30%;
-  height: 10%;
+  /* height: 80%; */
   border-right: 1px solid #3c3c43;
 
   img {
@@ -12,5 +12,9 @@ export const RecipeInfo = styled.div`
 
   &:last-child {
     border-right: none;
+  }
+
+  @media (max-width: 876px) {
+    width: 40%;
   }
 `;

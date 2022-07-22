@@ -31,20 +31,23 @@ export const getRecipe = async (req, res) => {
 };
 
 export const createRecipe = async (req, res) => {
-  const body = req.body;
-  console.log("oto body");
+  let body = req.body;
+  // let body = req.body.values;
+  // body = JSON.parse(body);
   console.log(body);
   body.ingredients = JSON.parse(body.ingredients);
-  console.log("Po arrayowaniu ingredientow", body);
 
-  const { error } = validateRecipe(req.body);
+  const { error } = validateRecipe(body);
   if (error) {
     console.log(error.message);
 
     return res.status(400).send(error.details[0].message);
   }
+
+  console.log("filename", req.file);
+
   try {
-    console.log("req", req);
+    // console.log("req", req);
     const recipe = await newRecipe({
       name: body.name,
       description: body.description,
@@ -57,16 +60,15 @@ export const createRecipe = async (req, res) => {
         req.get("host") +
         "/uploads/" +
         req.file.filename,
-
+      time: req.body.time,
+      difficultyLevel: req.body.difficultyLevel,
+      servingsNumber: req.body.servingsNumber,
       // req.protocol +
       // "://" +
       // req.get("host") +
       // "/uploads/" +
       // req.file.filename,
       // fs.readFileSync(path.join(__dirname + "/uploads/" + file.filename)),
-      time: req.body.time,
-      difficultyLevel: req.body.difficultyLevel,
-      servingsNumber: req.body.servingsNumber,
     });
     console.log("we're about to save a recipe to DB", recipe);
     recipe

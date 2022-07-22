@@ -103,24 +103,22 @@ const AllRecipesPage = ({
   };
 
   return (
-    <>
-      <FlexWrapper>
-        <CategoriesWrapperComponent
-          categories={categories}
-          categoriesLoadingError={categoriesLoadingError}
-        />
-        <InputSearchComponent
-          setSearchTerm={setSearchTerm}
-          setTermToLookup={setTermToLookup}
-          searchTerm={searchTerm}
-        />
+    <FlexWrapper>
+      <CategoriesWrapperComponent
+        categories={categories}
+        categoriesLoadingError={categoriesLoadingError}
+      />
+      <InputSearchComponent
+        setSearchTerm={setSearchTerm}
+        setTermToLookup={setTermToLookup}
+        searchTerm={searchTerm}
+      />
 
-        {renderRecipes()}
-        {displayPagination()}
+      {renderRecipes()}
+      {displayPagination()}
 
-        <FooterComponent />
-      </FlexWrapper>
-    </>
+      <FooterComponent />
+    </FlexWrapper>
   );
 };
 export default AllRecipesPage;
