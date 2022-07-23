@@ -1,11 +1,10 @@
-import { response } from "express";
 import Recipe from "../model/recipes.js";
 import { getRecipes } from "../repositories/queries.js";
 import validateRecipe from "../model/recipesValidation.js";
 import { newRecipe } from "../repositories/commands.js";
-import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import * as fs from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -32,9 +31,7 @@ export const getRecipe = async (req, res) => {
 
 export const createRecipe = async (req, res) => {
   let body = req.body;
-  // let body = req.body.values;
-  // body = JSON.parse(body);
-  console.log(body);
+
   body.ingredients = JSON.parse(body.ingredients);
 
   const { error } = validateRecipe(body);
@@ -47,7 +44,6 @@ export const createRecipe = async (req, res) => {
   console.log("filename", req.file);
 
   try {
-    // console.log("req", req);
     const recipe = await newRecipe({
       name: body.name,
       description: body.description,
@@ -88,7 +84,12 @@ export const createRecipe = async (req, res) => {
 
 export const updateRecipe = async (req, res) => {
   const body = req.body;
-  Recipe.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+
+  if (body.ingredients) {
+    body.ingredients = JSON.parse(body.ingredients);
+  }
+
+  Recipe.findByIdAndUpdate({ _id: req.params.id }, body, {
     new: true,
     runValidators: true,
   })
@@ -98,7 +99,21 @@ export const updateRecipe = async (req, res) => {
 
 export const deleteRecipe = async (req, res) => {
   Recipe.findByIdAndDelete({ _id: req.params.id })
-    .then((result) => res.status(200).json(result))
+    .then((result) => {
+      const image = result.image;
+      const startIndex = image.indexOf("/uploads");
+
+      const imagePath = "." + image.substr(startIndex);
+
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+
+      res.status(200).json(result);
+    })
     .catch((error) => res.status(404).json({ msg: "Recipe not found" }));
 };
 
@@ -116,9 +131,3 @@ export const searchRecipe = async (req, res) => {
 
   res.send(recipe);
 };
-// export const createRecipe = async (req, res) => {
-//   console.log(req.body);
-//   Recipe.create(req.body)
-//     .then((result) => res.status(200).json(result))
-//     .catch((error) => console.log(error.message));
-// };

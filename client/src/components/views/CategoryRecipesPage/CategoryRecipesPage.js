@@ -6,21 +6,32 @@ import { FlexWrapper } from "../../global-styles/Flex.styled";
 import FooterComponent from "../../ui/Footer/Footer";
 import { PageTitle } from "../../ui/PageTitle/PageTitle.styled";
 
-const CategoryRecipesPage = ({ categoryId, pageTitle }) => {
+const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
   const recipes = useContext(GetRecipes);
   const recipesByCategory = recipes.filteredData.filter(
     (recipe) => recipe.category === categoryId
   );
-  // console.log("bycategory", recipes);
-  // // const categoryName =
+
   const renderRecipes = () => {
     if (recipesByCategory) {
       return (
-        <AllDishesComponent
-          recipes={recipesByCategory}
-          // categoryId={categoryId}
-          // categoryName={categoryName}
-        />
+        <>
+          {toEdit ? (
+            <AllDishesComponent
+              recipes={recipesByCategory}
+              isEditable={true}
+              // categoryId={categoryId}
+              // categoryName={categoryName}
+            />
+          ) : (
+            <AllDishesComponent
+              recipes={recipesByCategory}
+              isEditable={false}
+              // categoryId={categoryId}
+              // categoryName={categoryName}
+            />
+          )}
+        </>
       );
     } else {
       return <div>cannot load recipes</div>;

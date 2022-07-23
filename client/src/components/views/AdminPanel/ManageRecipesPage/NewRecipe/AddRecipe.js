@@ -2,7 +2,6 @@ import React from "react";
 import { FieldArray, useFormik, FormikProvider, Field } from "formik";
 import axios from "axios";
 import {
-  FormWrapper,
   Title,
   Form,
   LabelName,
@@ -35,9 +34,9 @@ export const AddRecipe = ({
   modalRecipeTitle,
   addOperation = true, //by default form handlers new recipe, but can be used to edit if set to false
   recipeId,
+  categories,
   // onSuccess,
   // onFail,
-  categories,
 }) => {
   const [recipeData, setRecipeData] = useState([]);
 
@@ -57,23 +56,15 @@ export const AddRecipe = ({
 
     onSubmit: (values) => {
       const formData = new FormData();
-      // values = JSON.stringify(values);
-      const values2 = JSON.stringify(values);
-      console.log(values2);
 
       for (let value in values) {
-        console.log(value, values[value]);
         if (value === "ingredients") {
-          console.log("if");
           formData.append(value, JSON.stringify(values[value]));
           continue;
         }
 
         formData.append(value, values[value]);
       }
-
-      // formData.append("values", values);
-      console.log(formData);
 
       if (addOperation) {
         axios

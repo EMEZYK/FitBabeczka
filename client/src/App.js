@@ -15,7 +15,7 @@ import LoginPage from "./components/views/LoginPage/LoginPage";
 import NotFoundPage from "./components/views/NotFoundPage/NotFoundPage";
 import EditProfilePage from "./components/views/AdminPanel/EditUserPage/EditUserProfilePage";
 import EditMenuPage from "./components/views/AdminPanel/ManageRecipesPage/ManageRecipesPage";
-import DishFormPage from "./components/views/AdminPanel/DishFormPage";
+// import DishFormPage from "./components/views/AdminPanel/DishFormPage";
 import NavigateContainer from "./components/ui/Navbar/NavContainer";
 import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";
 import LandingPanelPages from "./components/views/Navigation/GeneralNavbarPages";
@@ -29,14 +29,12 @@ import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
 import { GetRecipes } from "./context/recipes-context";
-// import { theme } from "./components/global-styles/Flex.styled";
 import { ThemeStore } from "./context/ThemeStore";
 import Theme from "./context/Theme";
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [userId, setUserId] = useState();
-  // const [darkTheme, setDarkTheme] = useState("");
 
   const { response, error } = useFetchData({
     url: "/categories",
@@ -58,13 +56,7 @@ const App = () => {
               <GlobalStyles />
               <Router>
                 <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <PagesWithCommonNavbar />
-                      // <PagesWithCommonNavbar setBackground={setDarkTheme} />
-                    }
-                  >
+                  <Route path="/" element={<PagesWithCommonNavbar />}>
                     <Route
                       path="/"
                       element={
@@ -107,15 +99,10 @@ const App = () => {
                       }
                     />
                   </Route>
+
                   <Route
                     path="/"
                     element={<PagesWithAdminNavbar auth={isAuth} />}
-                    // element={
-                    //   <PagesWithAdminNavbar
-                    //     auth={isAuth}
-                    //     setBackground={setDarkTheme}
-                    //   />
-                    // }
                   >
                     <Route
                       path="/user/home"
@@ -130,8 +117,9 @@ const App = () => {
                         />
                       }
                     />
+
                     <Route path="/user/logout" element={<Logout />} />
-                    <Route path="/user/przepis" element={<DishFormPage />} />
+                    {/* <Route path="/user/przepis" element={<DishFormPage />} /> */}
                   </Route>
 
                   <Route path="*" element={<NotFoundPage />} />
@@ -160,7 +148,6 @@ const PagesWithAdminNavbar0 = ({ auth, setBackground }) => {
 };
 
 const PagesWithAdminNavbar = styled(PagesWithAdminNavbar0)`
-  /* background-color: rgba(255, 255, 255, 0.5); */
   opacity: 0.2;
 `;
 
