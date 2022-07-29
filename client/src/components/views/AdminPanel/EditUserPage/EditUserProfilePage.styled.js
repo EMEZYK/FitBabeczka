@@ -13,13 +13,12 @@ export const FormWrapper = styled(FlexWrapper)`
   font-size: ${({ fontSize }) => (fontSize ? fontSize : themes.fontsize.xl)}px;
 
   @media (max-width: 600px) {
-    min-width: 95vw;
+    min-width: 85vw;
     padding: 1rem;
   }
 
   @media (min-width: 601px) {
     min-width: 65vw;
-    min-height: 50vh;
     padding: 1rem;
     margin: 1rem 0;
   }
@@ -37,7 +36,6 @@ export const Title = styled.h2`
   font-size: clamp(1.5rem, 2vw, 1.8rem);
   font-weight: ${({ theme }) => theme.weight.regular};
   min-width: ${({ minWidth }) => (minWidth ? minWidth : "0")};
-  /* text-transform: uppercase; */
 `;
 
 export const Form = styled.form`

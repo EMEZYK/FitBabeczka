@@ -37,12 +37,6 @@ const NavigateContainer = ({ page, setBackground }) => {
           </div>
         </NavLink>
         {showBurger()}
-        {/* 
-        <div className="right-container">
-          {page}
-
-          {isMobile && <BurgerMenu page={page}></BurgerMenu>}
-        </div> */}
       </NavContainer>
     </>
   );

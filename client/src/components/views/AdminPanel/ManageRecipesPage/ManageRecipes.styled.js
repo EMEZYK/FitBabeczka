@@ -5,6 +5,7 @@ export const FlexAddWrapper = styled(FlexWrapper)`
   align-items: flex-end;
   min-height: auto;
   padding: 0 3rem 0 0;
+  height: auto;
 
   @media (max-width: 991px) {
     padding: 0;
@@ -109,4 +110,22 @@ export const IngredientListWrapper = styled.div`
 
 export const ErrorInfo = styled.div`
   font-size: clamp(1rem, 2vw, 1.1rem);
+`;
+
+export const RecipeImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0 0;
+`;
+
+export const RecipePhoto = styled.img`
+  max-width: 20vw;
+  max-height: 50vh;
+
+  @media (max-width: 599px) {
+    max-height: fit-content;
+    max-width: fit-content;
+  }
 `;

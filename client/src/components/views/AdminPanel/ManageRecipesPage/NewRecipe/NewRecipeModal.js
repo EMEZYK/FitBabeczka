@@ -12,6 +12,8 @@ export const NewRecipeModal = ({
   recipeId,
   addOperation,
   categories,
+  imageName,
+  newRecipe,
 }) => {
   return (
     <Fragment>
@@ -25,6 +27,8 @@ export const NewRecipeModal = ({
               recipeId={recipeId}
               addOperation={addOperation}
               categories={categories}
+              imageName={imageName}
+              newRecipe={newRecipe}
             />
           </ModalWrapper>
         </Backdrop>,

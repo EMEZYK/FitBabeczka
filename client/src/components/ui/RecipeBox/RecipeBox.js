@@ -8,7 +8,6 @@ import {
 import { NavLink } from "react-router-dom";
 
 const RecipeBoxComponent = (props) => {
-  console.log(props.recipe.image);
   return (
     <RecipeBox>
       <NavLink

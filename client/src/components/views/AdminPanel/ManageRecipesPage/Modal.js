@@ -5,6 +5,7 @@ import {
   Backdrop,
   DeleteButton,
   CancelButton,
+  RemovEditButtonsWrapper,
 } from "./Modal.styled";
 
 const modal = document.getElementById("modal");
@@ -14,14 +15,20 @@ export const Modal = ({ onDelete, onClose }) => {
     <Fragment>
       {ReactDOM.createPortal(
         <Backdrop>
-          <ModalWrapper minHeight="10vh" maxHeight="20vh" scroll="none">
+          <ModalWrapper
+            minHeight="10vh"
+            maxHeight="20vh"
+            scroll="none"
+            padding="1rem"
+            margin="0"
+          >
             <p>Czy na pewno chcesz usunąć ten przepis?</p>
-            <div>
-              <DeleteButton width="10%" border="0" onClick={onDelete}>
+            <RemovEditButtonsWrapper>
+              <DeleteButton width="auto" border="0" onClick={onDelete}>
                 Usuń
               </DeleteButton>
               <CancelButton onClick={onClose}>Anuluj</CancelButton>
-            </div>
+            </RemovEditButtonsWrapper>
           </ModalWrapper>
         </Backdrop>,
         modal

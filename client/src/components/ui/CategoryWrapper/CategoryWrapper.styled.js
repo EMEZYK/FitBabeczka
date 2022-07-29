@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const CategoriesWrapper = styled.div`
-  margin-top: 1rem;
   display: flex;
+  min-width: 80%;
   align-items: center;
   justify-content: center;
-  min-width: 80%;
+  margin-top: 1rem;
+
   @media (max-width: 576px) {
-    /* height: fit-content; */
     flex-wrap: wrap;
   }
 `;

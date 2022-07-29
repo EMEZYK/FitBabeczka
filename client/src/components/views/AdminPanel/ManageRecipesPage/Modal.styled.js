@@ -31,12 +31,12 @@ export const ModalWrapper = styled.div`
   justify-content: center;
 
   p {
-    margin: 0 0 1rem 0;
+    margin: ${({ margin }) => (margin ? margin : "0 0 1rem 0")};
   }
 
   @media (max-width: 991px) {
     max-width: 90vw;
-    padding: 0;
+    padding: ${({ padding }) => (padding ? padding : "0")};
   }
 
   @media (min-width: 992px) and (max-width: 1280px) {
@@ -47,10 +47,13 @@ export const ModalWrapper = styled.div`
 export const NewRecipeFormWrapper = styled(FormWrapper)`
   margin: auto 0;
   min-width: 40vw;
+  min-height: 100%;
 
   @media (max-width: 767px) {
-    min-width: 90vw;
+    /* min-width: 90vw; */
+    max-width: 90vw;
   }
+
   @media (min-width: 768px) and (max-width: 991px) {
     min-width: 60vw;
   }
@@ -97,7 +100,7 @@ export const MobileDeleteButton = styled(DeleteButton)`
 `;
 
 export const CancelButton = styled.button`
-  width: 10%;
+  width: auto;
   height: ${({ height }) => (height ? height : "100%")};
   background-color: ${({ theme }) => theme.colors.button.cancel};
   padding: 0.4rem;
@@ -116,10 +119,18 @@ export const CloseModalButton = styled.button`
   border: 2px solid #000;
   padding: 0.3rem;
   max-height: 6vh;
-  /* width: 8%; */
   background-color: hsl(0 20% 88%);
   font-size: 3rem;
   align-self: flex-end;
   text-align: center;
   cursor: pointer;
+`;
+
+export const RemovEditButtonsWrapper = styled.div`
+  display: flex;
+  margin: 0 0 0 1rem;
+
+  @media (max-width: 599px) {
+    margin: 1rem 0 0 0;
+  }
 `;

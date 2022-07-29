@@ -17,6 +17,7 @@ export const AboutMeWrapper = styled(FlexWrapper)`
     padding: 1rem 0;
     margin-top: 20px;
     flex-direction: column;
+    width: 95vw;
   }
 `;
 export const PhotoAbout = styled(Image)`
@@ -47,19 +48,8 @@ export const TextContainer = styled.div`
   }
 `;
 
-export const Header = styled(Typography)`
-  font-size: clamp(1.8rem, 2vw, 3rem);
-  text-align: left;
-  color: #956682;
-  font-family: "Kaushan Script", cursiv;
-
-  @media (max-width: 1200px) {
-    text-align: center;
-  }
-`;
-
 export const Greeting = styled(Typography)`
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   text-align: left;
   padding: 1rem 0;
   margin: 10px 0;
@@ -72,9 +62,5 @@ export const Greeting = styled(Typography)`
 export const DescriptionAbout = styled(Typography)`
   text-align: left;
   line-height: 1.5;
-  font-size: clamp(0.8rem, 2vw, 1rem);
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+  font-size: clamp(0.85rem, 2vw, 0.9rem);
 `;

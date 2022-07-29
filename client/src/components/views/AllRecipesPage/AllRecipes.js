@@ -12,15 +12,15 @@ const AllRecipesPage = ({
   categories,
   categoriesLoadingError,
   isEditable,
-  // displayFooter,
   openModal,
+  isAdminPanel,
 }) => {
   const [recipes, setRecipes] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); //wpisywany
-  const [termToLookup, setTermToLookup] = useState(""); // wpisany w input termin
+  const [searchTerm, setSearchTerm] = useState("");
+  const [termToLookup, setTermToLookup] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const [limitOfRecipes] = useState(4);
+  const [limitOfRecipes] = useState(8);
   const [pageNumber, setPageNumber] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [numberOfRecipes, setNumberOfRecipes] = useState();
@@ -103,10 +103,11 @@ const AllRecipesPage = ({
   };
 
   return (
-    <FlexWrapper>
+    <FlexWrapper height="auto" mobilePadding="0">
       <CategoriesWrapperComponent
         categories={categories}
         categoriesLoadingError={categoriesLoadingError}
+        isAdminPanel={isAdminPanel}
       />
       <InputSearchComponent
         setSearchTerm={setSearchTerm}

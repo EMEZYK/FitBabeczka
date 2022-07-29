@@ -13,18 +13,18 @@ export const DropdownComponent = ({
   promiseOptions,
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
+  const [selectedName, setSelectedName] = useState(value);
+
   const defaultValue = (options, value) => {
+    console.log("defaultValue", value);
+
     return options ? options.find((option) => option.value === value) : "";
   };
-  // console.log("async", async);
-  // console.log("valu", value);
-  // console.log("options", options);
-  // console.log("selectedValue", selectedValue);
-
   const handleChange = (value) => {
-    // console.log("change", value);
+    console.log("handlechangeval", value);
     setSelectedValue(value);
     onChange(value);
+    setSelectedName(value.name);
   };
 
   const customStyles = {
@@ -38,20 +38,25 @@ export const DropdownComponent = ({
     }),
   };
 
+  console.log("selectedName", selectedName);
+
   return (
     <>
       {async ? (
         <AsyncSelect
           cacheOptions
-          defaultOptions
+          autoFocus
+          defaultOptions={true}
+          loadOptions={promiseOptions}
+          onChange={handleChange}
+          name={selectedName}
           id={id}
           value={selectedValue}
+          getOptionLabel={(option) => option.name}
+          getOptionValue={(option) => option._id}
           onBlur={onBlur}
-          onChange={handleChange}
-          loadOptions={promiseOptions}
-          getOptionLabel={(e) => e.name}
-          getOptionValue={(e) => e._id}
           styles={customStyles}
+          placeholder="Wybierz kategorię"
         />
       ) : (
         <Select

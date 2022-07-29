@@ -3,32 +3,31 @@ import styled from "styled-components";
 export const NavContainer = styled.nav`
   display: flex;
   align-items: center;
-  border-bottom: 2px solid black;
   justify-content: space-between;
+  border-bottom: 2px solid black;
   background-color: ${({ theme }) => theme.colors.navbar.primary};
   padding: 0.4rem;
   list-style: none;
 
   a {
+    margin-right: 1rem;
     color: #000;
     text-decoration: none;
-    margin-right: 1rem;
   }
 
   .left-container {
-    width: 30%;
     display: flex;
+    width: 30%;
     align-items: center;
   }
 
   .right-container {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
     width: 70%;
     height: 100%;
+    justify-content: flex-end;
+    align-items: center;
     font-size: clamp(1.6rem, 1.2vw, 3rem);
-
     font-family: "Kaushan Script", cursiv;
   }
 
@@ -41,11 +40,10 @@ export const NavContainer = styled.nav`
   }
 
   .menu-page:last-child {
-    display: block;
-    margin: 0 0 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 0 0 2rem;
 
     @media (max-width: 876px) {
       margin: 0;
@@ -57,11 +55,7 @@ export const NavContainer = styled.nav`
     margin-right: 0.6rem;
   }
 
-  @media (max-width: 876px) {
+  /* @media (max-width: 876px) {
     padding: 0.4rem 0 0 0;
-    /* background-color: red; */
-    /* .right-container {
-      display: none;
-    } */
-  }
+  } */
 `;

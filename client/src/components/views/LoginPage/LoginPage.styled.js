@@ -5,24 +5,24 @@ import { FlexWrapper } from "../../global-styles/Flex.styled";
 export const SignInWrapper = styled(FlexWrapper)`
   flex-direction: column;
   min-height: 60vh;
-  width: auto;
+  height: 60vh;
+  width: 30vw;
   background-color: #fffa;
   background-color: #fff;
-  /* background: rgba(0, 0, 0, 0.5); */
   padding: 2rem;
   box-shadow: ${({ theme }) => theme.colors.card.loginBoxShadow};
 
   @media (max-width: 1080px) {
     min-width: 40vw;
-    min-height: 10vh;
+    min-height: 80vh;
   }
 
   @media (max-width: 876px) {
-    min-width: 50vw;
+    min-width: 60vw;
   }
 
   @media (max-width: 600px) {
-    min-width: 60vw;
+    min-width: 90vw;
   }
 `;
 
@@ -43,10 +43,14 @@ export const LoginForm = styled.form`
   background-color: ${({ theme }) => theme.colors.common.body};
   border-radius: 0.3rem;
   box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
+
+  @media (max-width: 599px) {
+    padding: 2rem 0.6rem;
+  }
 `;
 
 export const TextArea = styled.textarea`
-  min-height: ${({ minHeight }) => (minHeight ? minHeight : "4rem")};
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : "8rem")};
   max-width: 100%;
   padding: 0.6rem;
   border: ${({ border }) => (border ? border : "0.2px solid #aaa")};

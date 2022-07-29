@@ -31,13 +31,14 @@ export const ImageContainer = styled(RecipeBox)`
   @media (max-width: 991px) {
     align-items: flex-start;
     margin: 0;
+    height: 60vh;
   }
 
   @media (min-width: 769px) and (max-width: 991px) {
     width: 60%;
   }
   @media (min-width: 601px) and (max-width: 768px) {
-    width: 70%;
+    width: 90%;
   }
 
   @media (max-width: 600px) {

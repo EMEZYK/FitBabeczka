@@ -9,10 +9,10 @@ import { ManageRecipeWrapper } from "./RecipeEditableBox.styled";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { Modal } from "../../views/AdminPanel/ManageRecipesPage/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NewRecipeModal } from "../../views/AdminPanel/ManageRecipesPage/NewRecipe/NewRecipeModal";
 
-const RecipeEditableBox = (props) => {
+const EditRecipe = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
 
@@ -27,7 +27,7 @@ const RecipeEditableBox = (props) => {
         console.log(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -39,7 +39,7 @@ const RecipeEditableBox = (props) => {
       .then((response) => {
         console.log(response);
       })
-      .catch((err) => console.err(err));
+      .catch((err) => console.error(err));
   };
 
   const onDeleteButtonClick = () => {
@@ -62,11 +62,20 @@ const RecipeEditableBox = (props) => {
   };
 
   const addOperationStatus = false;
+
+  useEffect(() => {
+    if (openEditModal || openModal === true) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [openEditModal, openModal]);
+
   return (
     <>
-      <RecipeBox>
+      <RecipeBox margin="2rem 0">
         <NavLink
-          to={`/${props.recipe._id}`}
+          to={`/user/${props.recipe._id}`}
           style={{ textDecoration: "none", color: "#000" }}
           key={props.recipe._id}
         >
@@ -86,6 +95,8 @@ const RecipeEditableBox = (props) => {
               recipeId={recipeId}
               addOperation={addOperationStatus}
               categories={props.categories}
+              imageName={props.recipe.image}
+              newRecipe={false}
               // categoryName={props.categoryName}
               // categoryId={props.categoryId}
             />
@@ -106,4 +117,4 @@ const RecipeEditableBox = (props) => {
   );
 };
 
-export default RecipeEditableBox;
+export default EditRecipe;

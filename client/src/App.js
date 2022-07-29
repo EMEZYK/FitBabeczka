@@ -3,6 +3,7 @@ import {
   Outlet,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
@@ -15,7 +16,6 @@ import LoginPage from "./components/views/LoginPage/LoginPage";
 import NotFoundPage from "./components/views/NotFoundPage/NotFoundPage";
 import EditProfilePage from "./components/views/AdminPanel/EditUserPage/EditUserProfilePage";
 import EditMenuPage from "./components/views/AdminPanel/ManageRecipesPage/ManageRecipesPage";
-// import DishFormPage from "./components/views/AdminPanel/DishFormPage";
 import NavigateContainer from "./components/ui/Navbar/NavContainer";
 import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";
 import LandingPanelPages from "./components/views/Navigation/GeneralNavbarPages";
@@ -25,16 +25,16 @@ import { Logout } from "./components/views/LoginPage/Logout";
 import RecipesProvider from "./context/recipes-context";
 import CategoryRecipesPage from "./components/views/CategoryRecipesPage/CategoryRecipesPage";
 import useFetchData from "./hooks/fetch-data";
-import { Navigate } from "react-router-dom";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GetRecipes } from "./context/recipes-context";
 import { ThemeStore } from "./context/ThemeStore";
-import Theme from "./context/Theme";
+import ThemeOfPage from "./context/Theme";
+import { useCookies } from "react-cookie";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [token] = useCookies(["token"]);
   const [userId, setUserId] = useState();
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const { response, error } = useFetchData({
     url: "/categories",
@@ -44,7 +44,7 @@ const App = () => {
     },
   });
   const recipes = useContext(GetRecipes);
-
+  console.log("rec", recipes);
   const categories = response;
 
   return (
@@ -52,7 +52,7 @@ const App = () => {
       <RecipesProvider>
         <ThemeProvider theme={themes}>
           <ThemeStore>
-            <Theme>
+            <ThemeOfPage>
               <GlobalStyles />
               <Router>
                 <Routes>
@@ -84,6 +84,7 @@ const App = () => {
                           <CategoryRecipesPage
                             pageTitle={category.name}
                             categoryId={category._id}
+                            const={recipes}
                           />
                         }
                       />
@@ -93,8 +94,8 @@ const App = () => {
                       path="/user/login"
                       element={
                         <LoginPage
-                          setIsAuth={setIsAuth}
                           setUserId={setUserId}
+                          setisLoggedIn={setisLoggedIn}
                         />
                       }
                     />
@@ -102,7 +103,14 @@ const App = () => {
 
                   <Route
                     path="/"
-                    element={<PagesWithAdminNavbar auth={isAuth} />}
+                    element={
+                      <PagesWithAdminNavbar
+                        auth={
+                          token.token != null && token.token !== "undefined"
+                        }
+                        isLoggedIn={isLoggedIn}
+                      />
+                    }
                   >
                     <Route
                       path="/user/home"
@@ -119,13 +127,26 @@ const App = () => {
                     />
 
                     <Route path="/user/logout" element={<Logout />} />
-                    {/* <Route path="/user/przepis" element={<DishFormPage />} /> */}
-                  </Route>
+                    <Route path="/user/:id" element={<RecipePage />} />
 
+                    {categories.map((category) => (
+                      <Route
+                        key={category._id}
+                        path={`/user${category.path}`}
+                        element={
+                          <CategoryRecipesPage
+                            pageTitle={category.name}
+                            categoryId={category._id}
+                            toEdit={true}
+                          />
+                        }
+                      />
+                    ))}
+                  </Route>
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </Router>
-            </Theme>
+            </ThemeOfPage>
           </ThemeStore>
         </ThemeProvider>
       </RecipesProvider>
@@ -133,8 +154,8 @@ const App = () => {
   );
 };
 
-const PagesWithAdminNavbar0 = ({ auth, setBackground }) => {
-  return auth ? (
+const PagesWithAdminNavbar0 = ({ auth, setBackground, isLoggedIn }) => {
+  return isLoggedIn || auth ? (
     <>
       <NavigateContainer
         page={<AdminPanelPages />}

@@ -14,11 +14,14 @@ body {
     font-size: 1.13em;
     max-width: 100%;
   overflow-x: hidden;
-   
 }
+
 img {
     max-width: 100%;
 }
+
+
+
 
 `;
 export default GlobalStyles;

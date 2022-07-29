@@ -11,7 +11,6 @@ export const Header = styled.div`
   display: flex;
   min-height: 55vh;
   width: 100%;
-  /* align-items: flex-end; */
   align-items: center;
   justify-content: right;
   background: url(/photos/landingPhoto.jpg) top;
@@ -34,7 +33,6 @@ export const Header = styled.div`
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(8px);
     border: 10px solid hsla(0, 0%, 100%, 0.3);
-    /* box-shadow: 0 0 5px 7px rgba(255, 255, 255, 0.6); */
 
     @media (max-width: 1280px) {
       margin: 0 0 0 1rem;

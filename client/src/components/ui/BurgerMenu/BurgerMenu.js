@@ -1,9 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { StyledBurger, AsideNavbar, BurgerNavbar } from "./BurgerMenu.styled";
-import { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeStore";
-import { themeDark } from "../../global-styles/Flex.styled";
 
 export const BurgerMenu = ({ page, setBackground }) => {
   const [open, setOpen] = useState(false);
@@ -11,7 +9,6 @@ export const BurgerMenu = ({ page, setBackground }) => {
 
   const handleBurgerMenu = () => {
     setOpen(!open);
-    console.log("th", themeDark);
     switchTheme("dark");
   };
 

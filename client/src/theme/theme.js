@@ -67,10 +67,3 @@ export const themes = {
     bold: 700,
   },
 };
-
-//       input: {
-//         primary: "#F9F8F8",
-//         secondary: "#000",
-//         placeholder: "#9E9999",
-//         transparent: "transparent",
-//       },

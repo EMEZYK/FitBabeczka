@@ -1,5 +1,4 @@
 import React from "react";
-
 import { DropdownComponent } from "./Dropdown";
 
 export const DifficultyLevelDropdown = ({ onChange, value, onBlur, id }) => {

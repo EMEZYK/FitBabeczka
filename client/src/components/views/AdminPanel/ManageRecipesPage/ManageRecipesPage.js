@@ -7,8 +7,7 @@ import {
   FlexAddWrapper,
 } from "./ManageRecipes.styled";
 import { NewRecipeModal } from "./NewRecipe/NewRecipeModal";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import AllRecipesPage from "../../AllRecipesPage/AllRecipes";
 import { FlexWrapper } from "../../../global-styles/Flex.styled";
 
@@ -19,9 +18,17 @@ const EditMenuPage = ({ setContext, categories }) => {
     setOpenModal(true);
   };
 
+  useEffect(() => {
+    if (openModal === true) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [openModal]);
+
   return (
     <>
-      <FlexWrapper>
+      <FlexWrapper direction="row">
         <FlexAddWrapper>
           <AddRecipeWrapper>
             <AddRecipeButton onClick={onAddRecipeButtonClick}>
@@ -46,6 +53,7 @@ const EditMenuPage = ({ setContext, categories }) => {
           categories={categories}
           isEditable={true}
           openModal={openModal}
+          isAdminPanel={true}
         ></AllRecipesPage>
       </FlexWrapper>
     </>

@@ -2,13 +2,12 @@ import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemeStore";
 import { ThemeProvider } from "styled-components";
-import { themeDark } from "../components/global-styles/Flex.styled";
+import { ThemeOfPage } from "../components/global-styles/Theme.styled";
 
-const Theme = ({ children }) => {
-  const { theme } = useContext(ThemeContext); // get the current theme ('light' or 'dark')
-  console.log("theme in Theme", theme);
+const PageTheme = ({ children }) => {
+  const { theme } = useContext(ThemeContext);
 
-  return <ThemeProvider theme={themeDark[theme]}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={ThemeOfPage[theme]}>{children}</ThemeProvider>;
 };
 
-export default Theme;
+export default PageTheme;

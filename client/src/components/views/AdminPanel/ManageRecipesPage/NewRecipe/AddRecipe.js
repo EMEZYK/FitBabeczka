@@ -10,7 +10,6 @@ import {
 } from "../../EditUserPage/EditUserProfilePage.styled";
 import { TextArea } from "../../../LoginPage/LoginPage.styled";
 import { Input } from "../../../../ui/Input/Input.styled";
-import { CloseModalButton } from "../Modal.styled";
 import { DropDownCategory } from "./Dropdown/CategoryDropdown";
 import { DifficultyLevelDropdown } from "./Dropdown/DifficultyLevelDropdown";
 import { addRecipeSchema } from "./AddRecipeSchema";
@@ -24,21 +23,30 @@ import {
   OneIngredient as IngredientWrapper,
   IngredientListWrapper,
   ErrorInfo,
+  RecipePhoto,
+  RecipeImageWrapper,
 } from "../ManageRecipes.styled";
-import { DeleteButton, MobileDeleteButton } from "../Modal.styled";
-import { NewRecipeFormWrapper } from "../Modal.styled";
+import {
+  DeleteButton,
+  MobileDeleteButton,
+  NewRecipeFormWrapper,
+  CloseModalButton,
+} from "../Modal.styled";
 import { useMediaQuery } from "react-responsive";
 
 export const AddRecipe = ({
   setOpenModal,
   modalRecipeTitle,
-  addOperation = true, //by default form handlers new recipe, but can be used to edit if set to false
+  addOperation = true,
   recipeId,
   categories,
+  imageName: currentImage,
+  newRecipe = true,
   // onSuccess,
   // onFail,
 }) => {
   const [recipeData, setRecipeData] = useState([]);
+  const [newImage, setNewImage] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -71,6 +79,7 @@ export const AddRecipe = ({
           .post("/recipes", formData)
           .then((res) => {
             setOpenModal(false);
+            // document.body.style.overflow = "unset";
           })
           .catch((e) => console.log("Failed to upload recipe", e.message));
       } else {
@@ -80,6 +89,7 @@ export const AddRecipe = ({
             // onSuccess()
             // toast.success("Twój przepis został zaktualizowany");
             setOpenModal(false);
+            // document.body.style.overflow = "unset";
           })
           .catch(() => {
             return toast.error(
@@ -98,19 +108,26 @@ export const AddRecipe = ({
   };
 
   const categoryName = getCategoryName();
+  // console.log("categoryname", categoryName);
+
+  const imageChange = (e) => {
+    const srcode = URL.createObjectURL(e.target.files[0]);
+    setNewImage(srcode);
+  };
 
   const autocompleteValues = () => {
-    console.log("data", recipeData);
+    console.log("recipeData", recipeData);
+
     formik.setValues({
       name: recipeData ? recipeData.name : "",
       description: recipeData ? recipeData.description : "",
       ingredients: recipeData ? recipeData.ingredients : [],
       preparation: recipeData ? recipeData.preparation : "",
-      category: recipeData ? categoryName : "elo",
+      category: recipeData ? categoryName : "",
       servingsNumber: recipeData ? recipeData.servingsNumber : "",
       time: recipeData ? recipeData.time : "",
       difficultyLevel: recipeData ? recipeData.difficultyLevel : "",
-      photo: recipeData ? recipeData.photo : "",
+      photo: recipeData ? recipeData.image : "",
     });
   };
 
@@ -119,8 +136,6 @@ export const AddRecipe = ({
       url: `/recipes/${recipeId}`,
     })
       .then((response) => {
-        console.log(response.data);
-
         setRecipeData(response.data);
       })
       .catch((err) => {
@@ -130,6 +145,7 @@ export const AddRecipe = ({
 
   const onCloseClick = () => {
     setOpenModal(false);
+    // document.body.style.overflow = "unset";
   };
   useEffect(() => {
     if (!addOperation) {
@@ -284,9 +300,11 @@ export const AddRecipe = ({
             <LabelName htmlFor="category">Kategoria</LabelName>
             <DropDownCategory
               type="text"
-              id="category"
+              // id="category"
+              // value={categoryName}
+              value={formik.values.category}
               onChange={(value) => formik.setFieldValue("category", value._id)}
-              onBlur={formik.setFieldTouched}
+              onBlur={formik.handleBlur}
               required
             />
             {formik.errors.category ? (
@@ -341,10 +359,17 @@ export const AddRecipe = ({
               type="file"
               name="photo"
               accept="image/*"
-              onChange={(e) =>
-                formik.setFieldValue("photo", e.currentTarget.files[0])
-              }
+              title=" "
+              id="img"
+              onChange={(e) => {
+                imageChange(e);
+                formik.setFieldValue("photo", e.currentTarget.files[0]);
+              }}
             />
+            <RecipeImageWrapper>
+              <p>Zdjęcie przepisu:</p>
+              <RecipePhoto alt="" src={newRecipe ? newImage : currentImage} />
+            </RecipeImageWrapper>
             {formik.errors.photo ? (
               <ErrorInfo>{formik.errors.photo}</ErrorInfo>
             ) : null}

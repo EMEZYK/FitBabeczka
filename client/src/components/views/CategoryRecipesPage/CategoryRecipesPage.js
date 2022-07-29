@@ -8,6 +8,7 @@ import { PageTitle } from "../../ui/PageTitle/PageTitle.styled";
 
 const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
   const recipes = useContext(GetRecipes);
+  console.log(recipes);
   const recipesByCategory = recipes.filteredData.filter(
     (recipe) => recipe.category === categoryId
   );
@@ -17,18 +18,11 @@ const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
       return (
         <>
           {toEdit ? (
-            <AllDishesComponent
-              recipes={recipesByCategory}
-              isEditable={true}
-              // categoryId={categoryId}
-              // categoryName={categoryName}
-            />
+            <AllDishesComponent recipes={recipesByCategory} isEditable={true} />
           ) : (
             <AllDishesComponent
               recipes={recipesByCategory}
               isEditable={false}
-              // categoryId={categoryId}
-              // categoryName={categoryName}
             />
           )}
         </>
@@ -37,6 +31,10 @@ const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
       return <div>cannot load recipes</div>;
     }
   };
+
+  // useEffect(() => {
+  //   renderRecipes();
+  // }, [id]);
 
   return (
     <>

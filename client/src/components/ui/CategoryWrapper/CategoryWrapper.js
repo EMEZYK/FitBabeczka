@@ -1,7 +1,11 @@
 import CategoryCircleComponent from "../CategoryCircle/CategoryCircle";
 import { CategoriesWrapper } from "./CategoryWrapper.styled";
 
-const CategoriesWrapperComponent = ({ categories, categoriesLoadingError }) => {
+const CategoriesWrapperComponent = ({
+  categories,
+  categoriesLoadingError,
+  isAdminPanel,
+}) => {
   return (
     <>
       {
@@ -16,6 +20,7 @@ const CategoriesWrapperComponent = ({ categories, categoriesLoadingError }) => {
                   key={category._id}
                   categoryId={category._id}
                   name={category.name}
+                  isAdminPanel={isAdminPanel}
                 ></CategoryCircleComponent>
               ))}
             </CategoriesWrapper>

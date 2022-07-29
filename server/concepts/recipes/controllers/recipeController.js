@@ -73,11 +73,9 @@ export const createRecipe = async (req, res) => {
         res.json(savedRecipe);
       })
       .catch((err) => {
-        console.log(err.message);
         res.status(500).send(error.message);
       });
   } catch (error) {
-    console.log(error.message);
     res.status(500).send(error.message);
   }
 };
@@ -89,11 +87,21 @@ export const updateRecipe = async (req, res) => {
     body.ingredients = JSON.parse(body.ingredients);
   }
 
+  if (req.file?.filename) {
+    body.image =
+      req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
+  }
+
   Recipe.findByIdAndUpdate({ _id: req.params.id }, body, {
     new: true,
     runValidators: true,
   })
-    .then((result) => res.status(200).json(result))
+    .then((result) => {
+      console.log("result", result);
+
+      res.status(200).json(result);
+    })
+
     .catch((error) => res.status(404).json({ msg: "Recipe not found" }));
 };
 

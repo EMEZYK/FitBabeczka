@@ -1,6 +1,6 @@
 import GridContainer from "../../global-styles/Grid.styled";
 import RecipeBoxComponent from "../RecipeBox/RecipeBox";
-import RecipeEditableBox from "../RecipeBox/RecipeEditableBox";
+import EditRecipe from "../RecipeBox/RecipeEditableBox";
 
 const AllDishesComponent = ({
   recipes,
@@ -22,12 +22,13 @@ const AllDishesComponent = ({
         {recipes.map((recipe) => (
           <>
             {isEditable ? (
-              <RecipeEditableBox
+              <EditRecipe
                 key={recipe._id}
                 recipe={recipe}
                 setDeletedRecipeId={setDeletedRecipeId}
+                setAddedRecipeId={setAddedRecipeId}
                 categories={categories}
-              ></RecipeEditableBox>
+              ></EditRecipe>
             ) : (
               <RecipeBoxComponent
                 recipe={recipe}

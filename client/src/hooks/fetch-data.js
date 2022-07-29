@@ -14,7 +14,7 @@ const useFetchData = ({ url, method, headers = null, body = null }) => {
         method: method,
         url: url,
         data: body,
-      }); // await axios.get("/recipes");
+      });
       setResponse(result.data);
       setError(null);
     } catch (err) {

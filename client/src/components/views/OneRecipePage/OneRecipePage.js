@@ -6,7 +6,6 @@ import {
   RecipePreparation,
   RecipeHeader,
   RecipeContainer,
-  OneRecipeWrapper,
   Ingredient,
   IngredientList,
   IngredientsContainer,
@@ -45,8 +44,6 @@ export const RecipePage = () => {
     return <div>Loading...</div>;
   }
 
-  // console.log("przepis", recipe);
-
   let recipeLevel = recipe.difficultyLevel;
 
   switch (recipeLevel) {
@@ -66,10 +63,10 @@ export const RecipePage = () => {
   return (
     <RecipeContainer>
       <FlexWrapper
-        height={"80vh"}
         minHeight="100%"
-        width={"90vw"}
-        // minHeight="100%"
+        width="100%"
+        height="80vh"
+        mobileHeight="auto"
       >
         <ImageContainer>
           <Image src={recipe.image} height="80%" />

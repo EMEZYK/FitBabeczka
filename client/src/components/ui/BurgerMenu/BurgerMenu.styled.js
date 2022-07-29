@@ -5,20 +5,19 @@ export const StyledBurger = styled.div`
   z-index: 99;
 
   .fas {
-    color: #000;
     display: block;
     font-size: 2rem;
     margin: 0 2rem 0 0;
+    color: #000;
   }
 `;
 
 export const AsideNavbar = styled.aside`
   position: absolute;
+  min-width: 50%;
   top: 4.8rem;
   right: 0;
-  min-width: 50%;
   background-color: ${({ theme }) => theme.colors.navbar.burgerMenu};
-  /* border-left: 1px solid #ddd; */
   transition: 0.3s linear;
   z-index: 1;
   padding: 0.7rem 0;
@@ -31,8 +30,8 @@ export const AsideNavbar = styled.aside`
 
 export const BurgerNavbar = styled.nav`
   display: flex;
-  height: auto;
   flex-direction: column;
+  height: auto;
 
   .menu-page {
     border-bottom: 1px solid #ddd;

@@ -24,11 +24,11 @@ export const CategoryCircle = styled.div`
 `;
 
 export const CategoryImage = styled.img`
-  border-radius: 50%;
   width: 6.5rem;
   height: 6.5rem;
   object-fit: cover;
   cursor: pointer;
+  border-radius: 50%;
 
   @media (max-width: 1280px) {
     width: 7rem;

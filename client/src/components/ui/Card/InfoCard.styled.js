@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const RecipeInfo = styled.div`
   width: 30%;
-  /* height: 80%; */
   border-right: 1px solid #3c3c43;
 
   img {

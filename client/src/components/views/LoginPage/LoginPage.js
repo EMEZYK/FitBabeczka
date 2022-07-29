@@ -17,8 +17,9 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../../context/recipes-context";
 
-const LoginPage = ({ setIsAuth, setUserId }) => {
+const LoginPage = ({ setUserId, setisLoggedIn, token, setTok }) => {
   const [, setToken] = useCookies(["token"]);
+  let decodedToken;
 
   const signInFormHandler = useFormik({
     initialValues: {
@@ -53,13 +54,13 @@ const LoginPage = ({ setIsAuth, setUserId }) => {
       { withCredentials: true }
     )
       .then((response) => {
-        console.log(response.data);
         setToken("token", response.data.token);
-        const decodedToken = jwt_decode(response.data.token);
+        decodedToken = jwt_decode(response.data.token);
+        console.log("decodedtoken", decodedToken);
+
         const userId = decodedToken.userid;
         setUserId(userId);
-
-        setIsAuth(true);
+        setisLoggedIn(true);
         navigation();
       })
       .catch(() => {
