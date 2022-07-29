@@ -9,11 +9,12 @@ import {
   TitleWrapper,
 } from "../../EditUserPage/EditUserProfilePage.styled";
 import { TextArea } from "../../../LoginPage/LoginPage.styled";
+import { RecipesContext } from "../../../../../context/recipes-context";
 import { Input } from "../../../../ui/Input/Input.styled";
 import { DropDownCategory } from "./Dropdown/CategoryDropdown";
 import { DifficultyLevelDropdown } from "./Dropdown/DifficultyLevelDropdown";
 import { addRecipeSchema } from "./AddRecipeSchema";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -47,6 +48,7 @@ export const AddRecipe = ({
 }) => {
   const [recipeData, setRecipeData] = useState([]);
   const [newImage, setNewImage] = useState("");
+  const { recipes, setRecipes } = useContext(RecipesContext);
 
   const formik = useFormik({
     initialValues: {
@@ -74,12 +76,26 @@ export const AddRecipe = ({
         formData.append(value, values[value]);
       }
 
+      const getRecipes = () => {
+        return axios({
+          method: "GET",
+          url: "/recipes?limit=1000",
+          headers: {
+            accept: "*/*",
+          },
+        });
+      };
+
       if (addOperation) {
         axios
           .post("/recipes", formData)
           .then((res) => {
             setOpenModal(false);
             // document.body.style.overflow = "unset";
+            return getRecipes();
+          })
+          .then((recipesResponse) => {
+            setRecipes(recipesResponse.data);
           })
           .catch((e) => console.log("Failed to upload recipe", e.message));
       } else {
@@ -90,6 +106,10 @@ export const AddRecipe = ({
             // toast.success("Twój przepis został zaktualizowany");
             setOpenModal(false);
             // document.body.style.overflow = "unset";
+            return getRecipes();
+          })
+          .then((recipesResponse) => {
+            setRecipes(recipesResponse.data);
           })
           .catch(() => {
             return toast.error(

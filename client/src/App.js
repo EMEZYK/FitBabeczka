@@ -26,7 +26,7 @@ import RecipesProvider from "./context/recipes-context";
 import CategoryRecipesPage from "./components/views/CategoryRecipesPage/CategoryRecipesPage";
 import useFetchData from "./hooks/fetch-data";
 import { useState, useContext, useEffect } from "react";
-import { GetRecipes } from "./context/recipes-context";
+import { RecipesContext } from "./context/recipes-context";
 import { ThemeStore } from "./context/ThemeStore";
 import ThemeOfPage from "./context/Theme";
 import { useCookies } from "react-cookie";
@@ -43,8 +43,7 @@ const App = () => {
       accept: "*/*",
     },
   });
-  const recipes = useContext(GetRecipes);
-  console.log("rec", recipes);
+  const recipes = useContext(RecipesContext);
   const categories = response;
 
   return (
@@ -84,7 +83,6 @@ const App = () => {
                           <CategoryRecipesPage
                             pageTitle={category.name}
                             categoryId={category._id}
-                            const={recipes}
                           />
                         }
                       />
