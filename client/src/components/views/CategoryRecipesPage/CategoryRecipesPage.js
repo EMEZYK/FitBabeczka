@@ -1,16 +1,15 @@
 import React from "react";
 import { useContext } from "react";
 import { RecipesContext } from "../../../context/recipes-context";
-import AllDishesComponent from "../../ui/AllDishes/AllDishes";
+import AllDishes from "../../ui/AllDishes/AllDishes";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 import FooterComponent from "../../ui/Footer/Footer";
-import { PageTitle } from "../../ui/PageTitle/PageTitle.styled";
+import { PageSubtitle } from "../../ui/PageSubtitle/PageSubtitle.styled";
 
 const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
   const recipesContext = useContext(RecipesContext);
   const recipes = recipesContext.recipes;
 
-  console.log(recipes);
   const recipesByCategory =
     recipes.length !== 0
       ? recipes.filteredData.filter((recipe) => recipe.category === categoryId)
@@ -21,12 +20,9 @@ const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
       return (
         <>
           {toEdit ? (
-            <AllDishesComponent recipes={recipesByCategory} isEditable={true} />
+            <AllDishes recipes={recipesByCategory} isEditable={true} />
           ) : (
-            <AllDishesComponent
-              recipes={recipesByCategory}
-              isEditable={false}
-            />
+            <AllDishes recipes={recipesByCategory} isEditable={false} />
           )}
         </>
       );
@@ -38,7 +34,7 @@ const CategoryRecipesPage = ({ categoryId, pageTitle, toEdit }) => {
   return (
     <>
       <FlexWrapper>
-        <PageTitle>{pageTitle}</PageTitle>
+        <PageSubtitle>{pageTitle}</PageSubtitle>
         {renderRecipes()}
         <FooterComponent />
       </FlexWrapper>

@@ -18,7 +18,6 @@ export const getAllRecipes = async (req, res) => {
 
     return res.status(200).send(recipes);
   } catch (error) {
-    console.log(error.message);
     return res.status(500).send(error.message);
   }
 };
@@ -36,12 +35,8 @@ export const createRecipe = async (req, res) => {
 
   const { error } = validateRecipe(body);
   if (error) {
-    console.log(error.message);
-
     return res.status(400).send(error.details[0].message);
   }
-
-  console.log("filename", req.file);
 
   try {
     const recipe = await newRecipe({
@@ -59,14 +54,7 @@ export const createRecipe = async (req, res) => {
       time: req.body.time,
       difficultyLevel: req.body.difficultyLevel,
       servingsNumber: req.body.servingsNumber,
-      // req.protocol +
-      // "://" +
-      // req.get("host") +
-      // "/uploads/" +
-      // req.file.filename,
-      // fs.readFileSync(path.join(__dirname + "/uploads/" + file.filename)),
     });
-    console.log("we're about to save a recipe to DB", recipe);
     recipe
       .save()
       .then((savedRecipe) => {
@@ -97,8 +85,6 @@ export const updateRecipe = async (req, res) => {
     runValidators: true,
   })
     .then((result) => {
-      console.log("result", result);
-
       res.status(200).json(result);
     })
 
@@ -128,14 +114,11 @@ export const deleteRecipe = async (req, res) => {
 export const searchRecipe = async (req, res) => {
   let recipe = await Recipe.find({
     $or: [
-      { name: { $regex: req.params.key, $options: "i" } }, //w nazwie ; key = szukane słowo
-      { description: { $regex: req.params.key, $options: "i" } }, //w opisie
-      { ingredients: { $regex: req.params.key, $options: "i" } }, //szukam w składnikach
-    ], //$or oznacza, ze mozemy tez wielu fieldow szukac
+      { name: { $regex: req.params.key, $options: "i" } },
+      { description: { $regex: req.params.key, $options: "i" } },
+      { ingredients: { $regex: req.params.key, $options: "i" } },
+    ],
   });
-  // .sort(req.query.sort);
-  // .limit(req.query.limit);
-  // console.log(recipe);
 
   res.send(recipe);
 };

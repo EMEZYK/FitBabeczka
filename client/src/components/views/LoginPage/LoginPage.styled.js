@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { themes } from "../../../theme/theme";
+import { theme } from "../../../theme/theme";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 
 export const SignInWrapper = styled(FlexWrapper)`
@@ -10,7 +10,8 @@ export const SignInWrapper = styled(FlexWrapper)`
   background-color: #fffa;
   background-color: #fff;
   padding: 2rem;
-  box-shadow: ${({ theme }) => theme.colors.card.loginBoxShadow};
+  box-shadow: ${({ boxShadow }) =>
+    boxShadow ? boxShadow : theme.colors.card.loginBoxShadow};
 
   @media (max-width: 1080px) {
     min-width: 40vw;
@@ -40,9 +41,11 @@ export const LoginForm = styled.form`
   min-height: 30vh;
   width: 100%;
   padding: 2.4rem;
-  background-color: ${({ theme }) => theme.colors.common.body};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? backgroundColor : theme.colors.common.body};
   border-radius: 0.3rem;
-  box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
+  box-shadow: ${({ boxShadow }) =>
+    boxShadow ? boxShadow : theme.colors.card.boxShadow};
 
   @media (max-width: 599px) {
     padding: 2rem 0.6rem;
@@ -63,19 +66,22 @@ export const LoginButton = styled.button`
   min-height: 2.4rem;
   padding: 0.4rem;
   margin: 2rem 0 0 0;
-  background-color: ${({ theme }) => theme.colors.button.secondary};
+  background-color: ${({ buttonBgc }) =>
+    buttonBgc ? buttonBgc : theme.colors.button.secondary};
   color: #363434;
   font-size: ${({ fontSize }) =>
-    fontSize ? fontSize : themes.fontsize.desktop.s}px;
-  font-weight: ${({ theme }) => theme.weight.bold};
+    fontSize ? fontSize : theme.fontsize.desktop.s}px;
+  font-weight: ${({ fontWeight }) =>
+    fontWeight ? fontWeight : theme.weight.bold};
   text-transform: uppercase;
   letter-spacing: 1px;
   border: 0;
   border-radius: 0.2rem;
-  box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
+  box-shadow: ${({ boxShadow }) =>
+    boxShadow ? boxShadow : theme.colors.card.boxShadow};
   cursor: pointer;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.button.active};
+    background-color: ${({ bgc }) => (bgc ? bgc : theme.colors.button.active)};
   }
 `;

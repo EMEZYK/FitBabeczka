@@ -5,8 +5,8 @@ import localStrategy from "passport-local";
 import { createUser } from "../repositories/commands.js";
 
 export const hashPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10); //salt = random string
-  return await bcrypt.hash(password, salt); //hash + salt = nie do odgadniecia haslo;  to samo haslo nie jest tym samym hashem
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
 };
 
 export const signUpUser = async (body) => {

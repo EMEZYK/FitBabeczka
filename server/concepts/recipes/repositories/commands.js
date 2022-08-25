@@ -18,7 +18,7 @@ export const createUser = async (data) => {
     if (err.name === "MongoServerError" && err.code === 11000) {
       throw new Error("Email must be unique");
     } else {
-      console.log("inny error");
+      console.error(err);
     }
   }
 };
@@ -41,30 +41,6 @@ export const newRecipe = async (data) => {
   try {
     return await newRecipe.save();
   } catch (err) {
-    console.log(err.message);
     return new Error("Recipe wasn't created");
   }
 };
-
-//   try {
-//     const savedRecipe = await newRecipe.save();
-//     return {
-//       name: savedRecipe.name,
-//       description: savedRecipe.description,
-//       ingredients: savedRecipe.ingredients,
-//       preparation: savedRecipe.preparation,
-//       category: savedRecipe.category,
-//       image:
-//         req.protocol +
-//         "://" +
-//         req.get("host") +
-//         "/uploads/" +
-//         req.file.filename,
-//       time: savedRecipe.time,
-//       difficultyLevel: savedRecipe.difficultyLevel,
-//       servingsNumber: savedRecipe.servingsNumber,
-//     };
-//   } catch (err) {
-//     return new Error("Recipe wasn't created");
-//   }
-// };

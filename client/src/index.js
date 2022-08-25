@@ -3,9 +3,10 @@ import App from "./App";
 import { createRoot } from "react-dom/client";
 import { CookiesProvider } from "react-cookie";
 
-const root = document.getElementById("root");
+const rootElement =
+  document.getElementById("root") || document.createElement("div");
 
-createRoot(root).render(
+createRoot(rootElement).render(
   <React.StrictMode>
     <CookiesProvider>
       <App />

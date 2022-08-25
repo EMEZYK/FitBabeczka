@@ -1,13 +1,13 @@
-import { Footer } from "./Footer.styled";
+import { FooterComponent } from "./Footer.styled";
 
-const FooterComponent = () => {
+const Footer = () => {
   return (
     <>
-      <Footer>
+      <FooterComponent data-testid="footer">
         <p>&copy;2022 Ewelina Mężyk, Wszelkie prawa zastrzeżone</p>
-      </Footer>
+      </FooterComponent>
     </>
   );
 };
 
-export default FooterComponent;
+export default Footer;

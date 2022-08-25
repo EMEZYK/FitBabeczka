@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination components Check if takes a snapshot', 1`] = `
+<DocumentFragment>
+  .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0 0 0 0.5rem;
+}
+
+.c3 {
+  width: 2rem;
+  justify-items: center;
+  text-align: center;
+  padding: 0.3rem;
+  margin: 0 0.5rem 0 0;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+.c3.active {
+  background-color: #cc9933;
+  color: #fff;
+}
+
+.c3 a {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #000;
+}
+
+.c3 a.active {
+  color: #fff;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 1rem 0;
+}
+
+.c1 {
+  width: 2rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.c1 a {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #000;
+}
+
+<div
+    class="c0"
+    data-testid="pagination"
+  >
+    <button
+      class="c1"
+    >
+      <a
+        href="#"
+      >
+        «
+      </a>
+    </button>
+    <ul
+      class="c2"
+    >
+      <li
+        class="c3 active"
+        data-testid="page-number"
+      >
+        <a
+          class="active"
+          href="#/"
+        >
+          1
+        </a>
+      </li>
+    </ul>
+    <button
+      class="c1"
+    >
+      <a
+        href="#"
+      >
+        »
+      </a>
+    </button>
+  </div>
+</DocumentFragment>
+`;

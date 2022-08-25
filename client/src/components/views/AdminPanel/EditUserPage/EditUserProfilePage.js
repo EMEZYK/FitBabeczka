@@ -13,7 +13,7 @@ import axios from "axios";
 import { BASE_URL } from "../../../../context/recipes-context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Input } from "../../../ui/Input/Input.styled";
+import { InputComponent } from "../../../ui/Input/Input.styled";
 
 const EditProfilePage = ({ userId }) => {
   const editProfileFormHandler = useFormik({
@@ -61,7 +61,7 @@ const EditProfilePage = ({ userId }) => {
           <Title>Zmień hasło</Title>
           <Form type="submit" onSubmit={onSubmitHandler}>
             <LabelName htmlFor="email">Email</LabelName>
-            <Input
+            <InputComponent
               type="email"
               id="email"
               value={editProfileFormHandler.values.email}
@@ -74,9 +74,10 @@ const EditProfilePage = ({ userId }) => {
               <div>{editProfileFormHandler.errors.email}</div>
             ) : null}
             <LabelName htmlFor="password">Hasło</LabelName>
-            <Input
+            <InputComponent
               type="password"
               id="password"
+              data-testid="password"
               value={editProfileFormHandler.values.password}
               onChange={editProfileFormHandler.handleChange}
               onBlur={editProfileFormHandler.handleBlur}
@@ -84,12 +85,15 @@ const EditProfilePage = ({ userId }) => {
               border="0.2px solid #DEA8A8"
             />
             {editProfileFormHandler.errors.password ? (
-              <div>{editProfileFormHandler.errors.password}</div>
+              <div data-testid="error-password">
+                {editProfileFormHandler.errors.password}
+              </div>
             ) : null}
             <LabelName htmlFor="password">Potwierdź hasło</LabelName>
-            <Input
+            <InputComponent
               type="password"
               id="confirmPassword"
+              data-testid="confirm-password"
               value={editProfileFormHandler.values.confirmPassword}
               onChange={editProfileFormHandler.handleChange}
               onBlur={editProfileFormHandler.handleBlur}
@@ -97,7 +101,9 @@ const EditProfilePage = ({ userId }) => {
               border="0.2px solid #DEA8A8"
             />
             {editProfileFormHandler.errors.confirmPassword ? (
-              <div>{editProfileFormHandler.errors.confirmPassword}</div>
+              <div data-testid="error-confirm-password">
+                {editProfileFormHandler.errors.confirmPassword}
+              </div>
             ) : null}
             <SaveButton type="submit">Zapisz</SaveButton>
             <ToastContainer />

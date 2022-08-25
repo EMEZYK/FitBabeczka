@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutMePage components Check if takes a snapshot', 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ hvLzQT"
+  >
+    <div
+      class="sc-bczRLJ sc-dkzDqf lhmkud kDgsQz"
+    >
+      <h2
+        class="sc-hKMtZM gGDAVZ"
+      >
+        Zmień hasło
+      </h2>
+      <form
+        class="sc-eCYdqJ brYmts"
+        type="submit"
+      >
+        <label
+          class="sc-jSMfEi eHcCgu"
+          for="email"
+        >
+          Email
+        </label>
+        <input
+          class="sc-ftvSup EXDDb"
+          id="email"
+          required=""
+          type="email"
+          value=""
+        />
+        <label
+          class="sc-jSMfEi eHcCgu"
+          for="password"
+        >
+          Hasło
+        </label>
+        <input
+          class="sc-ftvSup EXDDb"
+          data-testid="password"
+          id="password"
+          required=""
+          type="password"
+          value=""
+        />
+        <label
+          class="sc-jSMfEi eHcCgu"
+          for="password"
+        >
+          Potwierdź hasło
+        </label>
+        <input
+          class="sc-ftvSup EXDDb"
+          data-testid="confirm-password"
+          id="confirmPassword"
+          required=""
+          type="password"
+          value=""
+        />
+        <button
+          class="sc-gsnTZi sc-gKXOVf goHXkf dEJMjr"
+          type="submit"
+        >
+          Zapisz
+        </button>
+        <div
+          class="Toastify"
+        />
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

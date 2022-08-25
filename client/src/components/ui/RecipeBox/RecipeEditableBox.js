@@ -8,15 +8,21 @@ import {
 import { ManageRecipeWrapper } from "./RecipeEditableBox.styled";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { Modal } from "../../views/AdminPanel/ManageRecipesPage/Modal";
+import { Modal } from "../../views/AdminPanel/ManageRecipesPage/EditDeleteModal/Modal";
 import { useState, useEffect } from "react";
 import { NewRecipeModal } from "../../views/AdminPanel/ManageRecipesPage/NewRecipe/NewRecipeModal";
 
-const EditRecipe = (props) => {
-  const [openModal, setOpenModal] = useState(false);
+const RecipeEditableBox = ({
+  recipe,
+  setEditedRecipeId,
+  setDeletedRecipeId,
+  categories,
+}) => {
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
   const [openEditModal, setOpenEditModal] = useState(false);
 
-  const recipeId = props.recipe._id;
+  const recipeId = recipe._id;
 
   const fetchDeleteRecipe = async () => {
     await axios({
@@ -35,54 +41,51 @@ const EditRecipe = (props) => {
     await axios({
       url: `/recipes/${recipeId}`,
       method: "PUT",
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => console.error(err));
+    }).catch((err) => console.error(err));
+  };
+
+  const updateRecipe = () => {
+    fetchEditRecipe();
   };
 
   const onDeleteButtonClick = () => {
-    setOpenModal(true);
+    setOpenDeleteModal(true);
   };
 
   const onEditButtonClick = () => {
-    fetchEditRecipe();
     setOpenEditModal(true);
   };
 
   const closeModal = () => {
-    setOpenModal(false);
+    setOpenDeleteModal(false);
   };
 
   const deleteRecipe = () => {
     fetchDeleteRecipe();
-    props.setDeletedRecipeId(recipeId);
-    setOpenModal(false);
+    setDeletedRecipeId(recipe._id);
+    setOpenDeleteModal(false);
   };
 
-  const addOperationStatus = false;
-
   useEffect(() => {
-    if (openEditModal || openModal === true) {
+    if (openEditModal || openDeleteModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [openEditModal, openModal]);
+  }, [openEditModal, openDeleteModal]);
 
   return (
     <>
       <RecipeBox margin="2rem 0">
         <NavLink
-          to={`/user/${props.recipe._id}`}
+          to={`/user/${recipeId}`}
           style={{ textDecoration: "none", color: "#000" }}
-          key={props.recipe._id}
+          key={recipeId}
         >
-          <Image src={props.recipe.image} alt=""></Image>
+          <Image src={recipe.image} alt=""></Image>
         </NavLink>
         <RecipeNameWrapper>
-          <RecipeName>{props.recipe.name}</RecipeName>
+          <RecipeName>{recipe.name}</RecipeName>
         </RecipeNameWrapper>
         <ManageRecipeWrapper>
           <button type="button" onClick={onEditButtonClick}>
@@ -93,20 +96,19 @@ const EditRecipe = (props) => {
               setOpenModal={setOpenEditModal}
               modalRecipeTitle="Edytuj przepis"
               recipeId={recipeId}
-              addOperation={addOperationStatus}
-              categories={props.categories}
-              imageName={props.recipe.image}
-              newRecipe={false}
-              // categoryName={props.categoryName}
-              // categoryId={props.categoryId}
+              addOperation={false}
+              categories={categories}
+              imageName={recipe.image}
+              onEdit={updateRecipe}
+              setEditedRecipeId={setEditedRecipeId}
             />
           )}
           <button type="button" onClick={onDeleteButtonClick}>
             <img src="/icons/deleteRecipe.svg" alt="" />
           </button>
-          {openModal && (
+          {openDeleteModal && (
             <Modal
-              setOpenModal={setOpenModal}
+              setOpenModal={setOpenDeleteModal}
               onClose={closeModal}
               onDelete={deleteRecipe}
             />
@@ -117,4 +119,4 @@ const EditRecipe = (props) => {
   );
 };
 
-export default EditRecipe;
+export default RecipeEditableBox;

@@ -6,18 +6,16 @@ import express from "express";
 
 export const authenticationController = (req, res) => {
   const payload = {
-    username: req.user.email, // te dane trafią do JWT
+    username: req.user.email,
     userid: req.user._id,
     expires: Date.now() + parseInt(36000),
   };
 
-  const token = jwt.sign(JSON.stringify(payload), secretKey); //generuję token i w respons zwracam
-  console.log(secretKey);
-  console.log(token);
+  const token = jwt.sign(JSON.stringify(payload), secretKey);
   res
     .cookie("jwt", token, { httpOnly: true, secure: true })
     .status(200)
-    .send({ token: token }); //przypsuję jwt do cookie
+    .send({ token: token });
 };
 
 const verifyToken = (token) => {
@@ -38,5 +36,4 @@ export const isAuthenticated = (req, res, next) => {
   if (!check) {
     return res.status(401).send("You are not authenticated");
   }
-  console.log(token);
 };

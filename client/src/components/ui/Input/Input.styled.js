@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Input = styled.input`
+export const InputComponent = styled.input`
   min-height: ${({ minHeight }) => (minHeight ? minHeight : "2.4rem")};
   width: ${({ width }) => (width ? width : "100%")};
   text-align: left;

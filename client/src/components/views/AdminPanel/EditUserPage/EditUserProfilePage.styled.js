@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { themes } from "../../../../theme/theme";
+import { theme } from "../../../../theme/theme";
 import { FlexWrapper } from "../../../global-styles/Flex.styled";
 import { Button } from "../../../ui/Button/Button.styled";
 
@@ -9,8 +9,9 @@ export const FormWrapper = styled(FlexWrapper)`
   min-width: 30vw;
   min-height: ${({ minHeight }) => (minHeight ? minHeight : "80vh")};
   border-radius: 4px;
-  box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : themes.fontsize.xl)}px;
+  box-shadow: ${({ boxShadow }) =>
+    boxShadow ? boxShadow : theme.colors.card.boxShadow};
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : theme.fontsize.xl)}px;
 
   @media (max-width: 600px) {
     min-width: 85vw;
@@ -34,7 +35,8 @@ export const FormWrapper = styled(FlexWrapper)`
 
 export const Title = styled.h2`
   font-size: clamp(1.5rem, 2vw, 1.8rem);
-  font-weight: ${({ theme }) => theme.weight.regular};
+  font-weight: ${({ fotnWeight }) =>
+    fotnWeight ? fotnWeight : theme.weight.regular};
   min-width: ${({ minWidth }) => (minWidth ? minWidth : "0")};
 `;
 
@@ -62,14 +64,15 @@ export const SaveButton = styled(Button)`
   align-self: center;
   text-transform: capitalize;
   color: #000;
-  background-color: ${({ theme }) => theme.colors.button.secondary};
+  background-color: ${({ bgc }) => (bgc ? bgc : theme.colors.button.secondary)};
   letter-spacing: 0.2px;
   font-size: clamp(1rem, 3vw, 1.2rem);
   border: 1px solid;
   border-radius: 3px;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.button.active};
+    background-color: ${({ bgcHover }) =>
+      bgcHover ? bgcHover : theme.colors.button.active};
     letter-spacing: 1px;
   }
 `;

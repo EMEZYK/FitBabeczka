@@ -1,7 +1,6 @@
-// import { FlexWrapper } from "../../global-styles/Flex.styled";
 import FooterComponent from "../../ui/Footer/Footer";
-import CategoriesWrapperComponent from "../../ui/CategoryWrapper/CategoryWrapper";
-import AllDishesComponent from "../../ui/AllDishes/AllDishes";
+import CategoriesWrapper from "../../ui/CategoriesWrapper/CategoriesWrapper";
+import AllDishes from "../../ui/AllDishes/AllDishes";
 import useFetchData from "../../../hooks/fetch-data";
 import {
   Header,
@@ -14,7 +13,6 @@ import {
 const LandingPage = ({ categories, categoriesLoadingError }) => {
   const defaultParams = {
     url: "/recipes?limit=8",
-    // url: "/recipes?sort=-dateCreated&limit=8",
     method: "GET",
     headers: {
       accept: "*/*",
@@ -30,7 +28,12 @@ const LandingPage = ({ categories, categoriesLoadingError }) => {
 
   const renderRecipes = () => {
     if (!error) {
-      return <AllDishesComponent recipes={response.filteredData} />;
+      return (
+        <AllDishes
+          recipes={response.filteredData}
+          data-testid="latest-recipes"
+        />
+      );
     } else if (error) {
       return <div>cannot load recipes</div>;
     }
@@ -45,13 +48,12 @@ const LandingPage = ({ categories, categoriesLoadingError }) => {
               Sprawdzone przepisy na zdrowe słodkości
             </IntroductionHeading>
             <ShortDescription>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s
+              które zachwycą Cię smakiem i aromatem. Nie rezygnuj przyjemności.
+              Wypróbuj moje słodkie wypieki i poczuj radość z pieczenia!
             </ShortDescription>
           </div>
         </Header>
-        <CategoriesWrapperComponent
+        <CategoriesWrapper
           categories={categories}
           categoriesLoadingError={categoriesLoadingError}
         />

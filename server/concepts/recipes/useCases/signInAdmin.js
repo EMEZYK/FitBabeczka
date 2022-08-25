@@ -17,11 +17,7 @@ export const verifyCallback = async (email, password, done) => {
       .exec();
 
     if (!user) {
-      return done(
-        //FUNKCJA DONE PRZYJMUJE INF O BŁĘDZIE I OBIEKT UŻYTKOWNIKA
-        badCredentials,
-        false
-      );
+      return done(badCredentials, false);
     }
 
     const matchPassword = await bcrypt.compare(password, user.password);

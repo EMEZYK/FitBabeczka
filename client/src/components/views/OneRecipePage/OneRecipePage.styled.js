@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Typography } from "../../ui/Typography/Typography.styled";
 import { RecipeBox } from "../../ui/RecipeBox/RecipeBox.styled";
+import { theme } from "../../../theme/theme";
 
 export const RecipeContainer = styled.div`
   display: flex;
@@ -81,7 +82,8 @@ export const RecipePreparation = styled(Typography)`
 `;
 
 export const RecipeHeader = styled(Typography)`
-  font-size: ${({ theme }) => theme.fontsize.desktop.m}px;
+  font-size: ${({ fontSize }) =>
+    fontSize ? fontSize : theme.fontsize.desktop.m}px;
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.weight.bold};
   text-align: left;

@@ -7,7 +7,6 @@ const validateRecipe = (recipe) => {
     ingredients: Joi.array().items(Joi.string()).max(40).required(),
     preparation: Joi.string().max(800).required(),
     category: Joi.objectId().required(),
-    // image: Joi.string().allow("").optional(),
     image: Joi.optional(),
     time: Joi.string().required(),
     difficultyLevel: Joi.string().required(),
@@ -18,9 +17,3 @@ const validateRecipe = (recipe) => {
 };
 
 export default validateRecipe;
-// image: Joi.array().items(
-//   Joi.object({
-//     url: Joi.string().required(),
-//     isMainPhoto: Joi.boolean().required(),
-//   })
-// ),

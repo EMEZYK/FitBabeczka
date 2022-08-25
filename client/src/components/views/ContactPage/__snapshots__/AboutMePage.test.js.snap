@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutMePage components Should take a snapshot', 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-ftvSup dIGkDo"
+  >
+    <div
+      class="sc-gsnTZi sc-papXJ fRA-dqe kcfMkN"
+      direction="row"
+      width="84%"
+    >
+      <img
+        alt="photo-about"
+        class="sc-eCYdqJ sc-jqUVSM fjibNq cOOeGx"
+        src="/photos/adminPhoto.png"
+      />
+      <div
+        class="sc-kDDrLX frtriJ"
+      >
+        <p
+          class="sc-bczRLJ sc-iqcoie hsohjl dANOlj"
+          data-testid="greeting"
+        >
+          Hej! Jestem Ewelina
+        </p>
+        <p
+          class="sc-bczRLJ sc-crXcEl hsohjl dWAOqs"
+        >
+          Serdecznie witam Cię na mojej kulinarnej stronie i zapraszam do wspólnego pieczenia! 
+          <br />
+           
+          <br />
+          Jeśli tak jak ja, uwielbiasz przygotowywać różnego rodzaju słodkości, a jednocześnie chcesz zadbać o swoje zdrowie, to ten blog skierowany jest właśnie do Ciebie. Znajdziesz tu mnóstwo przepisów na wypieki (ciasta, babeczki, desery i wiele innych), w których najbardziej toksyczne dla organizmu składniki, staram się zastąpić zdrowymi zamienikami.
+          <br />
+          <br />
+          Kilka słów o mnie: Pasję do tworzenia słodkich wypieków odnalazłam w sobie już w dzieciństwie. Z czasem, coraz większą uwagę zaczęłam zwracać na aspekt zdrowotny moich słodkości. Stąd pojawił się pomysł na FitBabeczkę. W międzyczasie w moim życiu zrodziła się nowa pasja - programowanie. Cieszę się, że właśnie w tym miejscu, mogę połączyć oba moje zainteresowania i podzielić się z Tobą efektami mojej pracy.
+          <br />
+          <br />
+          Masz pytania? Napisz do mnie na adres: ewelinamezykmail@gmail.com.
+          <br />
+          <br />
+          Piecz, delektuj się słodkościami i żyj zdrowo!
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

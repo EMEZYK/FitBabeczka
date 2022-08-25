@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipePage components Should take a snapshot', 1`] = `
+<DocumentFragment>
+  .c0 {
+  width: 30%;
+  border-right: 1px solid #3c3c43;
+}
+
+.c0 img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c0:last-child {
+  border-right: none;
+}
+
+@media (max-width:876px) {
+  .c0 {
+    width: 40%;
+  }
+}
+
+<div
+    class="c0"
+  >
+    <img
+      data-testid="info-card"
+    />
+    <p />
+  </div>
+</DocumentFragment>
+`;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CategoryCircle = styled.div`
+export const CategoryCircleWrapper = styled.div`
   width: 10vw;
   margin: 2rem 0.5rem;
 

@@ -1,12 +1,12 @@
-import { Logo } from "./Logo.styled";
+import { LogoIcon } from "./Logo.styled";
 import { NavLink } from "react-router-dom";
 
-const LogoIcon = () => {
+const Logo = () => {
   return (
     <NavLink to={"/"}>
-      <Logo src="/icons/logo.png" />
+      <LogoIcon src="/icons/logo.png" />
     </NavLink>
   );
 };
 
-export default LogoIcon;
+export default Logo;

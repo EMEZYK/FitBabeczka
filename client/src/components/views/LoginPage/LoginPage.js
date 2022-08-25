@@ -5,14 +5,14 @@ import {
   LoginButton,
   SignInWrapper,
 } from "./LoginPage.styled";
-import { Input } from "../../ui/Input/Input.styled";
+import { InputComponent } from "../../ui/Input/Input.styled";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useFormik } from "formik";
-import { signInSchema } from "./LoginValidationSchema";
+import { LoginValidationSchema } from "./LoginValidationSchema";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { BASE_URL } from "../../../context/recipes-context";
@@ -26,7 +26,7 @@ const LoginPage = ({ setUserId, setisLoggedIn, token, setTok }) => {
       email: "",
       password: "",
     },
-    validationSchema: signInSchema,
+    validationSchema: LoginValidationSchema,
     onSubmit: (values) => JSON.stringify(values),
   });
 
@@ -56,7 +56,6 @@ const LoginPage = ({ setUserId, setisLoggedIn, token, setTok }) => {
       .then((response) => {
         setToken("token", response.data.token);
         decodedToken = jwt_decode(response.data.token);
-        console.log("decodedtoken", decodedToken);
 
         const userId = decodedToken.userid;
         setUserId(userId);
@@ -75,26 +74,29 @@ const LoginPage = ({ setUserId, setisLoggedIn, token, setTok }) => {
       <SignInWrapper>
         <Title>Logowanie </Title>
         <LoginForm type="submit" onSubmit={onSubmitHandler}>
-          <Input
+          <InputComponent
             type="email"
             id="email"
+            data-testid="email"
+            fieldName="email"
             placeholder="E-mail"
             value={signInFormHandler.values.email}
             onChange={signInFormHandler.handleChange}
             margin="0 0 0.6rem 0"
             required
-          ></Input>
+          ></InputComponent>
           {signInFormHandler.errors.email ? (
             <div>{signInFormHandler.errors.email}</div>
           ) : null}
-          <Input
+          <InputComponent
             type="password"
             id="password"
+            data-testid="password"
             placeholder="Hasło"
             value={signInFormHandler.values.password}
             onChange={signInFormHandler.handleChange}
             required
-          ></Input>
+          ></InputComponent>
           {signInFormHandler.errors.password ? (
             <div>{signInFormHandler.errors.password}</div>
           ) : null}

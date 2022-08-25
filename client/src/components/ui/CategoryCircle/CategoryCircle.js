@@ -1,9 +1,9 @@
-import { CategoryCircle, CategoryImage } from "./CategoryCircle.styled";
+import { CategoryCircleWrapper, CategoryImage } from "./CategoryCircle.styled";
 import { NavLink } from "react-router-dom";
 
-const CategoryCircleComponent = (props) => {
+const CategoryCircle = (props) => {
   return (
-    <CategoryCircle>
+    <CategoryCircleWrapper>
       {props.isAdminPanel ? (
         <NavLink
           to={`/user${props.source}`}
@@ -23,8 +23,8 @@ const CategoryCircleComponent = (props) => {
           <p className="category-name">{props.name}</p>
         </NavLink>
       )}
-    </CategoryCircle>
+    </CategoryCircleWrapper>
   );
 };
 
-export default CategoryCircleComponent;
+export default CategoryCircle;

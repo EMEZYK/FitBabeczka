@@ -1,4 +1,4 @@
-import { themes } from "../../../theme/theme";
+import { theme } from "../../../theme/theme";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { RecipeBox } from "../../ui/RecipeBox/RecipeBox.styled";
 import { Image } from "../../ui/RecipeBox/RecipeBox.styled";
@@ -16,7 +16,7 @@ import {
   ImageContainer,
   RecipeInfoContainer,
 } from "./OneRecipePage.styled";
-import { RecipeInfoCard } from "../../ui/Card/InfoCard";
+import { RecipeInfoCard } from "../../ui/Card/RecipeInfoCard";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -71,14 +71,21 @@ export const RecipePage = () => {
         <ImageContainer>
           <Image src={recipe.image} height="80%" />
           <RecipeInfoContainer>
-            <RecipeInfoCard image={"/icons/time.png"} details={recipe.time} />
+            <RecipeInfoCard
+              image={"/icons/time.png"}
+              details={recipe.time}
+              alt="preparation-time"
+              data-testid="preparation-time"
+            />
             <RecipeInfoCard
               image={recipeLevel}
               details={recipe.difficultyLevel}
+              alt="difficulty-level"
             />
             <RecipeInfoCard
               image={"/icons/plates.png"}
               details={recipe.servingsNumber}
+              alt="servings-number"
             />
           </RecipeInfoContainer>
         </ImageContainer>
@@ -86,8 +93,8 @@ export const RecipePage = () => {
           height={"90%"}
           width={"60%"}
           padding={"2rem"}
-          color={themes.colors.card.secondary}
-          boxShadow={themes.colors.card.boxShadow}
+          color={theme.colors.card.secondary}
+          boxShadow={theme.colors.card.boxShadow}
         >
           <TitleRecipe>{recipe.name}</TitleRecipe>
           <RecipeShortDescription>{recipe.description}</RecipeShortDescription>

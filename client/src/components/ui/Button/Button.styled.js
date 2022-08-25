@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { themes } from "../../../theme/theme";
+import { theme } from "../../../theme/theme";
 
 export const Button = styled.button`
   min-width: ${({ minWidth }) => (minWidth ? minWidth : "6rem")};
@@ -12,9 +12,9 @@ export const Button = styled.button`
   color: ${({ color }) => (color ? color : "#fff")};
   border: ${({ border }) => (border ? border : "0")};
   font-size: ${({ fontSize }) =>
-    fontSize ? fontSize : themes.fontsize.desktop.s}px;
+    fontSize ? fontSize : theme.fontsize.desktop.s}px;
   font-weight: ${({ fontWeight }) =>
-    fontWeight ? fontWeight : themes.weight.bold};
+    fontWeight ? fontWeight : theme.weight.bold};
   letter-spacing: ${({ letterSpacing }) =>
     letterSpacing ? letterSpacing : "0"};
   text-transform: ${({ textTransform }) =>

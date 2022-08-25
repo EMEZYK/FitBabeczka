@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage compponents Should take a snapshot', 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bczRLJ ciQwjP"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi hvLzQT egxkvU"
+    >
+      <h2
+        class="sc-dkzDqf SUhDv"
+      >
+        Logowanie 
+      </h2>
+      <form
+        class="sc-hKMtZM RlNcL"
+        type="submit"
+      >
+        <input
+          class="sc-gKXOVf kbCXOU"
+          data-testid="email"
+          id="email"
+          placeholder="E-mail"
+          required=""
+          type="email"
+          value=""
+        />
+        <input
+          class="sc-gKXOVf cBzZEe"
+          data-testid="password"
+          id="password"
+          placeholder="Hasło"
+          required=""
+          type="password"
+          value=""
+        />
+        <button
+          class="sc-jSMfEi hamXIW"
+          type="submit"
+        >
+          Zaloguj się
+        </button>
+        <div
+          class="Toastify"
+        />
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

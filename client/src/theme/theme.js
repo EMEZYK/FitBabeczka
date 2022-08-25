@@ -1,4 +1,4 @@
-export const themes = {
+export const theme = {
   colors: {
     common: {
       body: "#fff",

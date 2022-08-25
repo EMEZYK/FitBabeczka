@@ -1,8 +1,8 @@
 import React from "react";
-import { Input } from "./Input.styled";
+import { InputComponent } from "./Input.styled";
 
-const InputComponent = () => {
-  return <Input />;
+const Input = () => {
+  return <InputComponent />;
 };
 
-export default InputComponent;
+export default Input;

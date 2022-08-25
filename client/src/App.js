@@ -15,17 +15,17 @@ import AllRecipesPage from "./components/views/AllRecipesPage/AllRecipes";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NotFoundPage from "./components/views/NotFoundPage/NotFoundPage";
 import EditProfilePage from "./components/views/AdminPanel/EditUserPage/EditUserProfilePage";
-import EditMenuPage from "./components/views/AdminPanel/ManageRecipesPage/ManageRecipesPage";
-import NavigateContainer from "./components/ui/Navbar/NavContainer";
+import EditMenuPage from "./components/views/AdminPanel/ManageRecipesPage/EditMenuPage/EditMenuPage";
+import NavContainer from "./components/ui/Navigation/NavigateContainer";
 import AdminPanelPages from "./components/views/Navigation/AdminPanelPages";
 import LandingPanelPages from "./components/views/Navigation/GeneralNavbarPages";
 import RecipePage from "./components/views/OneRecipePage/OneRecipePage";
-import { themes } from "./theme/theme";
+import { theme } from "./theme/theme";
 import { Logout } from "./components/views/LoginPage/Logout";
 import RecipesProvider from "./context/recipes-context";
 import CategoryRecipesPage from "./components/views/CategoryRecipesPage/CategoryRecipesPage";
 import useFetchData from "./hooks/fetch-data";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { RecipesContext } from "./context/recipes-context";
 import { ThemeStore } from "./context/ThemeStore";
 import ThemeOfPage from "./context/Theme";
@@ -49,7 +49,7 @@ const App = () => {
   return (
     <div className="App">
       <RecipesProvider>
-        <ThemeProvider theme={themes}>
+        <ThemeProvider theme={theme}>
           <ThemeStore>
             <ThemeOfPage>
               <GlobalStyles />
@@ -155,10 +155,7 @@ const App = () => {
 const PagesWithAdminNavbar0 = ({ auth, setBackground, isLoggedIn }) => {
   return isLoggedIn || auth ? (
     <>
-      <NavigateContainer
-        page={<AdminPanelPages />}
-        setBackground={setBackground}
-      />
+      <NavContainer page={<AdminPanelPages />} setBackground={setBackground} />
       <Outlet />
     </>
   ) : (
@@ -173,7 +170,7 @@ const PagesWithAdminNavbar = styled(PagesWithAdminNavbar0)`
 const PagesWithCommonNavbar = ({ setBackground }) => {
   return (
     <>
-      <NavigateContainer
+      <NavContainer
         page={<LandingPanelPages />}
         setBackground={setBackground}
       />

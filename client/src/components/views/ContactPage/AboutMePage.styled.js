@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Typography } from "../../ui/Typography/Typography.styled";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
 import { Image } from "../../ui/RecipeBox/RecipeBox.styled";
+import { theme } from "../../../theme/theme";
 
 export const Page = styled.div`
   display: flex;
@@ -35,7 +36,8 @@ export const PhotoAbout = styled(Image)`
 export const TextContainer = styled.div`
   width: 50%;
   text-align: left;
-  font-size: ${({ theme }) => theme.fontsize.desktop.s}px;
+  font-size: ${({ fontSize }) =>
+    fontSize ? fontSize : theme.fontsize.desktop.s}px;
   padding: 1rem;
 
   @media (max-width: 599px) {
@@ -51,7 +53,7 @@ export const TextContainer = styled.div`
 export const Greeting = styled(Typography)`
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   text-align: left;
-  padding: 1rem 0;
+  padding: 0 0 1rem 0;
   margin: 10px 0;
 
   @media (max-width: 1200px) {
@@ -62,5 +64,5 @@ export const Greeting = styled(Typography)`
 export const DescriptionAbout = styled(Typography)`
   text-align: left;
   line-height: 1.5;
-  font-size: clamp(0.85rem, 2vw, 0.9rem);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
 `;

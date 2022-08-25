@@ -3,7 +3,6 @@ import {
   AboutMeWrapper,
   PhotoAbout,
   TextContainer,
-  Header,
   Greeting,
   DescriptionAbout,
   Page,
@@ -19,9 +18,9 @@ const AboutMePage = () => {
         border="12px solid #956682"
         flex-wrap="wrap"
       >
-        <PhotoAbout src={"/photos/adminPhoto.png"} />
+        <PhotoAbout src={"/photos/adminPhoto.png"} alt="photo-about" />
         <TextContainer>
-          <Greeting>Hej! Jestem Ewelina</Greeting>
+          <Greeting data-testid="greeting">Hej! Jestem Ewelina</Greeting>
           <DescriptionAbout>
             Serdecznie witam Cię na mojej kulinarnej stronie i zapraszam do
             wspólnego pieczenia! <br /> <br />

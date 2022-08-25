@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Typography } from "../../ui/Typography/Typography.styled";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
+import { theme } from "../../../theme/theme";
 
 export const LandingFlexWrapper = styled(FlexWrapper)`
   @media (max-width: 991px) {
@@ -46,10 +47,12 @@ export const Header = styled.div`
 `;
 
 export const IntroductionHeading = styled(Typography)`
-  font-size: ${({ theme }) => theme.fontsize.desktop.xl}px;
+  font-size: ${({ fontSize }) =>
+    fontSize ? fontSize : theme.fontsize.desktop.xl}px;
   font-size: clamp(1.1rem, 3vw, 1.6rem);
 
-  font-weight: ${({ theme }) => theme.weight.bold};
+  font-weight: ${({ fontWeight }) =>
+    fontWeight ? fontWeight : theme.weight.regular};
   text-align: left;
   margin: 0 0 1rem 0;
 
@@ -60,6 +63,7 @@ export const IntroductionHeading = styled(Typography)`
 
 export const ShortDescription = styled(Typography)`
   text-align: left;
+  font-size: 1.1rem;
 
   @media (min-width: 768px) and (max-width: 992px) {
     padding: 0 2rem;
@@ -70,10 +74,12 @@ export const ShortDescription = styled(Typography)`
 `;
 
 export const Heading = styled(Typography)`
-  font-size: ${({ theme }) => theme.fontsize.desktop.xxxl}px;
+  font-size: ${({ fontSize }) =>
+    fontSize ? fontSize : theme.fontsize.desktop.xxxl}px;
   font-size: clamp(1.8rem, 2.5vw, 2.4rem);
   letter-spacing: 0.1rem;
-  font-weight: ${({ theme }) => theme.weight.normal};
+  font-weight: ${({ fontWeight }) =>
+    fontWeight ? fontWeight : theme.weight.regular};
   padding: 0.4rem 1rem;
   margin: 2rem 0;
   font-family: "Kaushan Script", cursiv;

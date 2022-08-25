@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import { theme } from "../../../theme/theme";
 
-export const Footer = styled.footer`
+export const FooterComponent = styled.footer`
   display: flex;
   width: 100%;
   height: 10vh;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.footer.primary};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? backgroundColor : theme.colors.footer.primary};
   color: #ffff;
 
   @media (max-width: 876px) {

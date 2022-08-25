@@ -13,28 +13,12 @@ export const createNewRecipe = async (body) => {
       ingredients: body.ingredients,
       preparation: body.preparation,
       category: body.category,
-      // image:
-      //   req.protocol +
-      //   "://" +
-      //   req.get("host") +
-      //   "/uploads/" +
-      //   req.file.filename,
-
-      // image:
-      // req.protocol +
-      // "://" +
-      // req.get("host") +
-      // "/uploads/" +
-      // req.file.filename,
-      // fs.readFileSync(path.join(__dirname + "/uploads/" + file.filename)),
       time: body.time,
       difficultyLevel: body.difficultyLevel,
       servingsNumber: body.servingsNumber,
     });
-    console.log(recipe);
     return recipe;
   } catch (err) {
-    console.log(err.message);
     return new Error("Recipe wasn't created" + err.message);
   }
 };

@@ -1,34 +1,34 @@
 import ReactDOM from "react-dom";
 import { Fragment } from "react";
-import { ModalWrapper, Backdrop } from "../Modal.styled";
-import { AddRecipe as RecipeForm } from "./AddRecipe";
+import { ModalWrapper, Backdrop } from "../EditDeleteModal/Modal.styled";
+import { NewRecipeForm } from "./AddRecipeForm/NewRecipeForm";
 
 const modal = document.getElementById("modal");
 
 export const NewRecipeModal = ({
   setOpenModal,
-  setContext,
   modalRecipeTitle,
   recipeId,
   addOperation,
   categories,
   imageName,
-  newRecipe,
+  onEdit,
+  setEditedRecipeId,
 }) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
         <Backdrop>
           <ModalWrapper topDistance="5vh">
-            <RecipeForm
+            <NewRecipeForm
               setOpenModal={setOpenModal}
-              setContext={setContext}
               modalRecipeTitle={modalRecipeTitle}
               recipeId={recipeId}
               addOperation={addOperation}
               categories={categories}
               imageName={imageName}
-              newRecipe={newRecipe}
+              onEdit={onEdit}
+              setEditedRecipeId={setEditedRecipeId}
             />
           </ModalWrapper>
         </Backdrop>,

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { themes } from "../../theme/theme";
+import { theme } from "../../theme/theme";
 
 export const FlexWrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const FlexWrapper = styled.div`
   width: ${({ width }) => (width ? width : "94vw")};
   align-items: center;
   background-color: ${({ backgroundColor }) =>
-    backgroundColor ? backgroundColor : themes.colors.common.backgroundColor};
+    backgroundColor ? backgroundColor : theme.colors.common.backgroundColor};
   margin: 0 auto;
   padding: ${({ padding }) => (padding ? padding : "0")};
   justify-content: center;

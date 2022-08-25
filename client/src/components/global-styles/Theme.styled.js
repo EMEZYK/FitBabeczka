@@ -1,4 +1,4 @@
-import { themes } from "../../theme/theme";
+import { theme } from "../../theme/theme";
 
 export const ThemeOfPage = {
   dark: {
@@ -6,6 +6,6 @@ export const ThemeOfPage = {
     opacity: "0.4",
   },
   light: {
-    background: themes.colors.common.backgroundColor,
+    background: theme.colors.common.backgroundColor,
   },
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import AllDishesComponent from "../../ui/AllDishes/AllDishes";
+import AllDishes from "../../ui/AllDishes/AllDishes";
 import { FlexWrapper } from "../../global-styles/Flex.styled";
-import CategoriesWrapperComponent from "../../ui/CategoryWrapper/CategoryWrapper";
-import InputSearchComponent from "../../ui/SearchInput/InputLoop";
+import CategoriesWrapper from "../../ui/CategoriesWrapper/CategoriesWrapper";
+import SearchInputComponent from "../../ui/SearchInput/SearchInput";
 import FooterComponent from "../../ui/Footer/Footer";
 import axios from "axios";
 import { Pagination } from "../../ui/Pagination/Pagination";
@@ -26,6 +26,7 @@ const AllRecipesPage = ({
   const [numberOfRecipes, setNumberOfRecipes] = useState();
 
   const [deletedRecipeId, setDeletedRecipeId] = useState("");
+  const [editedRecipeId, setEditedRecipeId] = useState("");
 
   const fetchData = async () => {
     await axios({
@@ -55,6 +56,7 @@ const AllRecipesPage = ({
     pageNumber,
     numberOfRecipes,
     deletedRecipeId,
+    editedRecipeId,
     openModal,
   ]);
 
@@ -92,11 +94,12 @@ const AllRecipesPage = ({
 
   const renderRecipes = () => {
     return (
-      <AllDishesComponent
+      <AllDishes
         recipes={recipes}
         loading={loading}
         isEditable={isEditable}
         setDeletedRecipeId={setDeletedRecipeId}
+        setEditedRecipeId={setEditedRecipeId}
         categories={categories}
       />
     );
@@ -104,12 +107,12 @@ const AllRecipesPage = ({
 
   return (
     <FlexWrapper height="auto" mobilePadding="0">
-      <CategoriesWrapperComponent
+      <CategoriesWrapper
         categories={categories}
         categoriesLoadingError={categoriesLoadingError}
         isAdminPanel={isAdminPanel}
       />
-      <InputSearchComponent
+      <SearchInputComponent
         setSearchTerm={setSearchTerm}
         setTermToLookup={setTermToLookup}
         searchTerm={searchTerm}

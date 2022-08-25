@@ -5,10 +5,7 @@ import { PaginatedList } from "../../views/AllRecipesPage/AllRecipes.styled";
 import { NextPrevButton } from "../../views/AllRecipesPage/AllRecipes.styled";
 
 export const Pagination = ({
-  totalRecipes,
-  recipesPerPage,
   paginate,
-  thisPage,
   numberOfPages,
   setPageNumber,
   pageNumber,
@@ -30,7 +27,7 @@ export const Pagination = ({
   };
 
   return (
-    <PaginatedList>
+    <PaginatedList data-testid="pagination">
       <NextPrevButton
         onClick={() => {
           previousPage();
@@ -48,6 +45,7 @@ export const Pagination = ({
               toggleActive(page);
               paginate(page);
             }}
+            data-testid="page-number"
           >
             <a href="#/" className={activePageNumber === page ? "active" : ""}>
               {page + 1}
