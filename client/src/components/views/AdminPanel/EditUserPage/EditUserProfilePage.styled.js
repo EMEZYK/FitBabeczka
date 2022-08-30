@@ -7,21 +7,20 @@ export const FormWrapper = styled(FlexWrapper)`
   background-color: hsl(0 20% 88%);
   max-width: 33vw;
   min-width: 30vw;
-  min-height: ${({ minHeight }) => (minHeight ? minHeight : "80vh")};
   border-radius: 4px;
+  height: 90%;
   box-shadow: ${({ boxShadow }) =>
     boxShadow ? boxShadow : theme.colors.card.boxShadow};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : theme.fontsize.xl)}px;
+  padding: 1rem;
+  margin: 0.2rem auto;
 
   @media (max-width: 600px) {
     min-width: 85vw;
-    padding: 1rem;
   }
 
   @media (min-width: 601px) {
     min-width: 65vw;
-    padding: 1rem;
-    margin: 1rem 0;
   }
 
   @media (min-width: 768px) and (max-width: 1199px) {
@@ -45,7 +44,6 @@ export const Form = styled.form`
   flex-direction: column;
   min-width: 90%;
   min-height: 20vh;
-  padding: 1rem;
 
   @media (max-width: 999px) {
     min-width: 100%;

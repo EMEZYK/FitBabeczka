@@ -48,8 +48,9 @@ const LandingPage = ({ categories, categoriesLoadingError }) => {
               Sprawdzone przepisy na zdrowe słodkości
             </IntroductionHeading>
             <ShortDescription>
-              które zachwycą Cię smakiem i aromatem. Nie rezygnuj przyjemności.
-              Wypróbuj moje słodkie wypieki i poczuj radość z pieczenia!
+              które zachwycą Cię smakiem i aromatem. Nie rezygnuj z
+              przyjemności. Wypróbuj moje słodkie wypieki i poczuj radość z
+              pieczenia!
             </ShortDescription>
           </div>
         </Header>

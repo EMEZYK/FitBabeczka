@@ -62,12 +62,7 @@ export const RecipePage = () => {
 
   return (
     <RecipeContainer>
-      <FlexWrapper
-        minHeight="100%"
-        width="100%"
-        height="80vh"
-        mobileHeight="auto"
-      >
+      <FlexWrapper minHeight="auto" width="100%" mobileHeight="auto">
         <ImageContainer>
           <Image src={recipe.image} height="80%" />
           <RecipeInfoContainer>
@@ -90,8 +85,8 @@ export const RecipePage = () => {
           </RecipeInfoContainer>
         </ImageContainer>
         <RecipeBox
-          height={"90%"}
-          width={"60%"}
+          // height={"90%"}
+          width={"55%"}
           padding={"2rem"}
           color={theme.colors.card.secondary}
           boxShadow={theme.colors.card.boxShadow}

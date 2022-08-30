@@ -4,22 +4,22 @@ import { Button } from "../Button/Button.styled";
 
 export const RecipeBox = styled.div`
   width: ${({ width }) => (width ? width : "18vw")};
-  height: ${({ height }) => (height ? height : "48vh")};
+
+  height: auto;
+  min-height: 90%;
   background-color: ${({ theme, color }) =>
     color ? color : theme.colors.card.primary};
   box-shadow: ${({ boxShadow }) => (boxShadow ? boxShadow : "0")};
-  margin: ${({ margin }) => (margin ? margin : " 0")};
   padding: ${({ padding }) => (padding ? padding : "0")};
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  margin: 1rem;
 
   @media (max-width: 1440px) {
     min-width: 25vw;
   }
   @media (max-width: 1280px) {
-    max-width: 45vw;
-    height: ${({ height }) => (height ? height : "60vh")};
-    width: 80%;
-    margin: 1rem 0;
+    max-width: 65vw;
+    margin: 1rem;
   }
 
   @media (max-width: 992px) {
@@ -46,8 +46,13 @@ export const RecipeNameWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 14vh;
   background-color: #fff;
-  height: 13vh;
+  padding: 0 0 0.2rem 0;
+
+  @media (max-width: 599px) {
+    justify-content: space-around;
+  }
 `;
 
 export const RecipeName = styled(Typography)`
@@ -57,11 +62,13 @@ export const RecipeName = styled(Typography)`
 `;
 
 export const ReadMoreButton = styled(Button)`
-  margin: 0.4rem 0;
-  padding: 0.2rem;
-  text-transform: lowercase;
+  text-transform: capitalize;
   font-weight: normal;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
   background-color: #6d6d6c;
+  padding: 0.3rem 2rem;
+  margin: 0.4rem 0 0.2rem 0;
 
   &:hover {
     letter-spacing: 0.1rem;

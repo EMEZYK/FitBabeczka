@@ -13,7 +13,6 @@ const AboutMePage = () => {
     <Page>
       <AboutMeWrapper
         direction="row"
-        width="84%"
         padding="0px 40px"
         border="12px solid #956682"
         flex-wrap="wrap"

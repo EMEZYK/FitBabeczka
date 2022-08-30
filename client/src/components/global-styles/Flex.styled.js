@@ -4,7 +4,6 @@ import { theme } from "../../theme/theme";
 export const FlexWrapper = styled.div`
   display: flex;
   flex-wrap: ${({ wrap }) => (wrap ? wrap : "wrap")};
-  flex-direction: ${({ direction }) => (direction ? direction : "column")};
   height: ${({ height }) => (height ? height : "100%")};
   width: ${({ width }) => (width ? width : "94vw")};
   align-items: center;

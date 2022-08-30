@@ -7,7 +7,6 @@ export const RecipeContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100vw;
-  height: auto;
 
   @media (max-width: 991px) {
     align-items: flex-start;
@@ -23,6 +22,10 @@ export const ImageContainer = styled(RecipeBox)`
   width: 30%;
   box-shadow: ${({ theme }) => theme.colors.card.boxShadow};
   justify-content: center;
+
+  @media (max-width: 1280px) {
+    width: 37%;
+  }
 
   @media (max-width: 991px) {
     align-items: flex-start;
@@ -96,7 +99,8 @@ export const RecipeHeader = styled(Typography)`
 export const RecipeDescriptionContainer = styled.div`
   display: flex;
   height: auto;
-  padding: 1rem 0 0 0;
+  max-height: 100%;
+  padding: 1rem 0;
   border-top: 1px solid;
 
   @media (max-width: 876px) {
@@ -108,6 +112,7 @@ export const RecipeDescriptionContainer = styled.div`
 export const DescriptionContainer = styled.div`
   width: 65%;
   height: 100%;
+  min-height: auto;
 
   @media (max-width: 876px) {
     width: 100%;

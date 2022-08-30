@@ -57,7 +57,7 @@ const EditProfilePage = ({ userId }) => {
   return (
     <>
       <FlexWrapper>
-        <FormWrapper minHeight="70vh">
+        <FormWrapper>
           <Title>Zmień hasło</Title>
           <Form type="submit" onSubmit={onSubmitHandler}>
             <LabelName htmlFor="email">Email</LabelName>
