@@ -21,11 +21,7 @@ app.use(
 );
 app.options("*", cors());
 let corsOptions = {
-  origin: [
-    "https://fit-babeczka.herokuapp.com/",
-    "https://ec2-54-159-254-138.compute-1.amazonaws.com",
-    "172.31.81.251",
-  ],
+  origin: "https://fit-babeczka.herokuapp.com/",
   optionsSuccessStatus: 200,
 };
 app.use(express.json());
