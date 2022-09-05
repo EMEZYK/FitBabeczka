@@ -7,7 +7,7 @@ const validateRecipe = (recipe) => {
     ingredients: Joi.array().items(Joi.string()).max(40).required(),
     preparation: Joi.string().max(800).required(),
     category: Joi.objectId().required(),
-    image: Joi.optional(),
+    image: Joi.object().required(),
     time: Joi.string().required(),
     difficultyLevel: Joi.string().required(),
     servingsNumber: Joi.number().required(),

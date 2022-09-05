@@ -59,12 +59,28 @@ export const RecipePage = () => {
     default:
       recipeLevel = "/icons/medium-level.png";
   }
+  console.log("elo", recipe?.image, typeof recipe?.image.data);
+  console.log(
+    "elo2",
+    "data:" + recipe.image.contentType + ";base64, " + recipe.image.data
+  );
+
+  // src="data:image/<%=image.img.contentType%>;base64,
+  // <%=image.img.data.toString('base64')%>"
 
   return (
     <RecipeContainer>
       <FlexWrapper minHeight="auto" width="100%" mobileHeight="auto">
         <ImageContainer>
-          <Image src={recipe.image} height="80%" />
+          <Image
+            src={
+              "data:" +
+              recipe.image.contentType +
+              ";base64, " +
+              recipe.image.data
+            }
+            alt="recipe photo"
+          />
           <RecipeInfoContainer>
             <RecipeInfoCard
               image={"/icons/time.png"}

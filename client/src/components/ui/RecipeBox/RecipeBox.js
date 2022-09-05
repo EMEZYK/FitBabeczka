@@ -8,18 +8,27 @@ import {
 import { NavLink } from "react-router-dom";
 
 const RecipeBoxComponent = (props) => {
+  const recipe = props.recipe;
   return (
     <>
       <RecipeBox data-testid="recipe">
         <NavLink
-          to={`/${props.recipe._id}`}
+          to={`/${recipe._id}`}
           style={{ textDecoration: "none", color: "#000" }}
-          key={props.recipe._id}
+          key={recipe._id}
         >
-          <Image src={props.recipe.image} alt=""></Image>
+          <Image
+            src={
+              "data:" +
+              recipe.image.contentType +
+              ";base64, " +
+              recipe.image.data
+            }
+            alt="recipe photo"
+          ></Image>
 
           <RecipeNameWrapper>
-            <RecipeName>{props.recipe.name}</RecipeName>
+            <RecipeName>{recipe.name}</RecipeName>
             <ReadMoreButton>czytaj</ReadMoreButton>
           </RecipeNameWrapper>
         </NavLink>

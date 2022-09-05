@@ -23,7 +23,10 @@ const recipeSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    image: { type: String, required: true },
+    image: {
+      data: String,
+      contentType: String,
+    },
     time: {
       type: String,
       required: true,

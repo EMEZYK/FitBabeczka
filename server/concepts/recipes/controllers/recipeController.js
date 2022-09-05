@@ -5,6 +5,8 @@ import { newRecipe } from "../repositories/commands.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import * as fs from "fs";
+import path from "path";
+import appRoot from "app-root-path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -45,12 +47,16 @@ export const createRecipe = async (req, res) => {
       ingredients: body.ingredients,
       preparation: body.preparation,
       category: body.category,
-      image:
-        req.protocol +
-        "://" +
-        req.get("host") +
-        "/uploads/" +
-        req.file.filename,
+      image: {
+        data: fs
+          .readFileSync(
+            path.join(
+              appRoot + "/uploads/" + req.file.originalname.replace(/\s+/g, "-")
+            )
+          )
+          .toString("base64"),
+        contentType: req.file.mimetype,
+      },
       time: req.body.time,
       difficultyLevel: req.body.difficultyLevel,
       servingsNumber: req.body.servingsNumber,
@@ -74,11 +80,20 @@ export const updateRecipe = async (req, res) => {
   if (body.ingredients) {
     body.ingredients = JSON.parse(body.ingredients);
   }
-
   if (req.file?.filename) {
-    body.image =
-      req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
+    body.image = {
+      data: fs
+        .readFileSync(
+          path.join(
+            appRoot + "/uploads/" + req.file.originalname.replace(/\s+/g, "-")
+          )
+        )
+        .toString("base64"),
+      contentType: req.file.mimetype,
+    };
   }
+
+  console.log("body", body);
 
   Recipe.findByIdAndUpdate({ _id: req.params.id }, body, {
     new: true,
@@ -88,7 +103,10 @@ export const updateRecipe = async (req, res) => {
       res.status(200).json(result);
     })
 
-    .catch((error) => res.status(404).json({ msg: "Recipe not found" }));
+    .catch((error) => {
+      console.log(error.message);
+      res.status(404).json({ msg: "Recipe not found\n" + error.message });
+    });
 };
 
 export const deleteRecipe = async (req, res) => {

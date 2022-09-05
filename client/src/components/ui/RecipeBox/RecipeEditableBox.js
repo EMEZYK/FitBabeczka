@@ -82,7 +82,15 @@ const RecipeEditableBox = ({
           style={{ textDecoration: "none", color: "#000" }}
           key={recipeId}
         >
-          <Image src={recipe.image} alt=""></Image>
+          <Image
+            src={
+              "data:" +
+              recipe.image.contentType +
+              ";base64, " +
+              recipe.image.data
+            }
+            alt="recipe photo"
+          ></Image>
         </NavLink>
         <RecipeNameWrapper>
           <RecipeName>{recipe.name}</RecipeName>
