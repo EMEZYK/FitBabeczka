@@ -6,6 +6,7 @@ import { theme } from "../../../theme/theme";
 export const LandingFlexWrapper = styled(FlexWrapper)`
   @media (max-width: 991px) {
     min-height: auto;
+    padding: 0;
   }
 `;
 export const Header = styled.div`
