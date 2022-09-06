@@ -93,8 +93,6 @@ export const updateRecipe = async (req, res) => {
     };
   }
 
-  console.log("body", body);
-
   Recipe.findByIdAndUpdate({ _id: req.params.id }, body, {
     new: true,
     runValidators: true,
@@ -104,7 +102,6 @@ export const updateRecipe = async (req, res) => {
     })
 
     .catch((error) => {
-      console.log(error.message);
       res.status(404).json({ msg: "Recipe not found\n" + error.message });
     });
 };
